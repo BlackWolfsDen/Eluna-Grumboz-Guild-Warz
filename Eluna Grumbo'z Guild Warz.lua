@@ -1041,7 +1041,7 @@ function Guardcombat(eventid, creature, player)
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
 
-	for _, v in pairs(GetPlayersInWorld()) do
+	for _, v in ipairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cffff0000!!LOCATION "..GWARZ[LocId].entry.." IS UNDER ATTACK!!|r")
 		end
@@ -1062,7 +1062,7 @@ function Guarddied(eventid, creature, player)
 	PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)	
 	local Drop = (math.random(1, 4))
 	
-	for _, v in pairs(GetPlayersInWorld()) do
+	for _, v in ipairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cffcc0000!! I HAVE FAILED AT DEFENDING LOCATION "..LocId.." !!|r")
 		end
@@ -1088,7 +1088,7 @@ function Guardhit(eventid, creature, attacker, damage)
 	if(attacker:GetObjectType()=="Player")then
 		local a = (math.random(1, 4))
 		if(a==4)then
-			for _, v in pairs(GetPlayersInWorld()) do
+			for _, v in ipairs(GetPlayersInWorld()) do
 				if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 					v:SendBroadcastMessage("|cffff0000!!HURRY!! I NEED ASSISTANCE AT LOCATION "..LocId.."...!!HURRY!!|r")
 				end
@@ -1108,7 +1108,7 @@ function Guardkill(eventid, creature, victim)
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
 
-	for _, v in pairs(GetPlayersInWorld()) do
+	for _, v in ipairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cff00cc00!! I HAVE KILLED AN INTRUDER AT LOCATION "..GWARZ[LocId].entry.." !!|r")
 			v:SendBroadcastMessage("|cff00cc00I found some gold on him.|r")
