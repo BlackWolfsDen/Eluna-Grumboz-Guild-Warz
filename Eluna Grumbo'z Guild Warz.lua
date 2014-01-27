@@ -1036,6 +1036,11 @@ function Guardcombat(eventid, creature, player)
 	end
 	
 	local LocId = GetLocationId(creature)
+
+	if(LocId == nil)then
+		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
+	end
+
 	for _, v in pairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cffff0000!!LOCATION "..GWARZ[LocId].entry.." IS UNDER ATTACK!!|r")
@@ -1048,6 +1053,11 @@ RegisterCreatureEvent(49002, 1, Guardcombat)
 
 function Guarddied(eventid, creature, player)
 	local LocId = GetLocationId(creature)
+
+	if(LocId == nil)then
+		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
+	end
+
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
 	PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)	
 	local Drop = (math.random(1, 4))
@@ -1070,13 +1080,21 @@ RegisterCreatureEvent(49002, 4, Guarddied)
 
 function Guardhit(eventid, creature, attacker, damage)
 	local LocId = GetLocationId(creature)
-	local a = (math.random(1, 4))
-	if(a==4)then
-		for _, v in pairs(GetPlayersInWorld()) do
-			if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
-				v:SendBroadcastMessage("|cffff0000!!HURRY!! I NEED ASSISTANCE AT LOCATION "..LocId.."...!!HURRY!!|r")
+		
+	if(LocId == nil)then
+		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
+	end
+		
+	if(attacker:GetObjectType()=="Player")then
+		local a = (math.random(1, 4))
+		if(a==4)then
+			for _, v in pairs(GetPlayersInWorld()) do
+				if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
+					v:SendBroadcastMessage("|cffff0000!!HURRY!! I NEED ASSISTANCE AT LOCATION "..LocId.."...!!HURRY!!|r")
+				end
 			end
 		end
+	else
 	end
 end
 
@@ -1085,6 +1103,11 @@ RegisterCreatureEvent(49002, 9, Guardhit)
 
 function Guardkill(eventid, creature, victim)
 	local LocId = GetLocationId(creature)
+
+	if(LocId == nil)then
+		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
+	end
+
 	for _, v in pairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cff00cc00!! I HAVE KILLED AN INTRUDER AT LOCATION "..GWARZ[LocId].entry.." !!|r")
