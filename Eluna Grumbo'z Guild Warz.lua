@@ -483,36 +483,36 @@ local Guildname = ""..player:GetGuildName()..""
 
 			if(ChatCache[2] == GWCOMM[Guildname].loc)then
 		
-			if(GWARZ[LocId].guild_name ~= Server)then
-				player:SendBroadcastMessage("You cannot purchase this area.")
-				player:SendBroadcastMessage(""..GWARZ[LocId].guild_name.." owns this area.")
-			else
-				if(player:GetItemCount(GWCOMM["SERVER"].currency) < Zoneprice)then
-					player:SendBroadcastMessage("You do not have enough "..Currencyname.."'s.")
+				if(GWARZ[LocId].guild_name ~= Server)then
+					player:SendBroadcastMessage("You cannot purchase this area.")
+					player:SendBroadcastMessage(""..GWARZ[LocId].guild_name.." owns this area.")
 				else
-					if(GWARZ[LocId].team==3)then
-						player:SendBroadcastMessage("THIS IS OFF LIMITS")
+					if(player:GetItemCount(GWCOMM["SERVER"].currency) < Zoneprice)then
+						player:SendBroadcastMessage("You do not have enough "..Currencyname.."'s.")
 					else
-						Gflag = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
-						PreparedStatements(1, "guild_name", player:GetGuildName(), LocId)
-						PreparedStatements(1, "team", player:GetTeam(), LocId)
-						PreparedStatements(1, "x", player:GetX(), LocId)
-						PreparedStatements(1, "y", player:GetY(), LocId)
-						PreparedStatements(1, "z", player:GetZ(), LocId)
-						PreparedStatements(1, "flag_id", Gflag, LocId)
-						player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
-					
-						if(player:GetGender()==0)then
-							player:SendBroadcastMessage("|cff00cc00Congratulations King "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r")
+						if(GWARZ[LocId].team==3)then
+							player:SendBroadcastMessage("THIS IS OFF LIMITS")
 						else
-							player:SendBroadcastMessage("|cff00cc00Congratulations Queen "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r")
+							Gflag = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
+							PreparedStatements(1, "guild_name", player:GetGuildName(), LocId)
+							PreparedStatements(1, "team", player:GetTeam(), LocId)
+							PreparedStatements(1, "x", player:GetX(), LocId)
+							PreparedStatements(1, "y", player:GetY(), LocId)
+							PreparedStatements(1, "z", player:GetZ(), LocId)
+							PreparedStatements(1, "flag_id", Gflag, LocId)
+							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
+						
+							if(player:GetGender()==0)then
+								player:SendBroadcastMessage("|cff00cc00Congratulations King "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r")
+							else
+								player:SendBroadcastMessage("|cff00cc00Congratulations Queen "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r")
+							end
 						end
 					end
 				end
 			return false;
 			end
-		end
-
+	
 			if(ChatCache[2] == GWCOMM[Guildname].farm)then
 
 				if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
@@ -536,8 +536,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].barrack)then
@@ -563,8 +563,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].hall)then
@@ -590,8 +590,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].pig)then
@@ -621,8 +621,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].guard)then
@@ -646,8 +646,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 		end
 -- ******************* Sell commands ******************
@@ -671,8 +671,8 @@ local Guildname = ""..player:GetGuildName()..""
 						player:AddItem(GWCOMM["SERVER"].currency, Zoneprice)
 						player:SendBroadcastMessage("|cff00cc00!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r")
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].farm)then
@@ -698,8 +698,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].barrack)then
@@ -725,8 +725,8 @@ local Guildname = ""..player:GetGuildName()..""
 							end
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].hall)then
@@ -748,8 +748,8 @@ local Guildname = ""..player:GetGuildName()..""
 							player:SendBroadcastMessage("|cff00cc00!Congratulations!"..player:GetGuildName().." has sold a Hall. For "..GWCOMM["SERVER"].hall_cost.." "..Currencyname.."'s.|r")
 						end
 					end
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].pig)then
@@ -757,25 +757,25 @@ local Guildname = ""..player:GetGuildName()..""
 					player:SendBroadcastMessage("Your guild does not own this land.")
 				else
 					if(GWARZ[LocId].pig_count == 0)then
-							player:SendBroadcastMessage("You DONT have any pigs in this area.")
+						player:SendBroadcastMessage("You DONT have any pigs in this area.")
+					else
+						if(player:GetSelection() == nil)then
+							player:SendBroadcastMessage("You must select a pig.")
 						else
-							if(player:GetSelection() == nil)then
-								player:SendBroadcastMessage("You must select a pig.")
+							if(player:GetSelection():GetEntry() ~= GWCOMM["SERVER"].pig_id)then
+								player:SendBroadcastMessage("you must select a guild pig.")
 							else
-								if(player:GetSelection():GetEntry() ~= GWCOMM["SERVER"].pig_id)then
-									player:SendBroadcastMessage("you must select a guild pig.")
-								else
-									local pigspawnid = player:GetSelection():GetGUIDLow()
-									player:GetSelection():DespawnOrUnsummon()
-									PreparedStatements(2, "creature", pigspawnid)
-									PreparedStatements(1, "pig_count", GWARZ[LocId].pig_count-1, LocId)
-									player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].pig_cost)
-									player:SendBroadcastMessage("|cff00cc00Butcher "..player:GetName().." sold 1 pig to the market.|r")
-								end
+								local pigspawnid = player:GetSelection():GetGUIDLow()
+								player:GetSelection():DespawnOrUnsummon()
+								PreparedStatements(2, "creature", pigspawnid)
+								PreparedStatements(1, "pig_count", GWARZ[LocId].pig_count-1, LocId)
+								player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].pig_cost)
+								player:SendBroadcastMessage("|cff00cc00Butcher "..player:GetName().." sold 1 pig to the market.|r")
 							end
-						return false;
 						end
+					end
 				end
+			return false;
 			end
 			
 			if(ChatCache[2] == GWCOMM[Guildname].guard)then
@@ -803,8 +803,8 @@ local Guildname = ""..player:GetGuildName()..""
 						end
 					end
 				end
-			return false;
 			end	
+		return false;
 		end
 		
 -- **************** Game Master Commands **************
@@ -1031,19 +1031,19 @@ RegisterGameObjectEvent(187433, 9, Hordeflag)
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
 
 function Guardffa(eventid, creature, player)
-	local LocId = GetLocationId(creature)
+	local locid = GetLocationId(creature)
 	
 	if(LocId == nil)then
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
 	
 	if(player:GetObjectType()=="Player")then
-		
 		if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
-			
 			if(GWCOMM["SERVER"].anarchy==1)then
 				player:SetFFA(1)
 				player:SetPvP(1)
+				creature:SetFFA(1)
+				creature:SetPvP(1)
 			else
 			end
 		else
