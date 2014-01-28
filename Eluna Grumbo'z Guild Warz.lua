@@ -782,7 +782,7 @@ local Guildname = ""..player:GetGuildName()..""
 				end
 			end
 			
-			if(ChatCache[2] == GWCOMM[Guildname].sell_guard)then
+			if(ChatCache[2] == GWCOMM[Guildname].guard)then
 
 				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage("Your guild does not own this land.")
