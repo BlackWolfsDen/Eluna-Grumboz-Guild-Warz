@@ -92,15 +92,11 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 			hall_id = Gcsql:GetUInt32(38),
 			pig_id = Gcsql:GetUInt32(39),
 			guard_id = Gcsql:GetUInt32(40),
-			walla_id = Gcsql:GetUInt32(41),
-			wallb_id = Gcsql:GetUInt32(42),
-			wallc_id = Gcsql:GetUInt32(43),
-			trainer1_id = Gcsql:GetUInt32(44),
-			trainer2_id = Gcsql:GetUInt32(45),
-			vendor1_id = Gcsql:GetUInt32(46),
-			vendor2_id = Gcsql:GetUInt32(47),
-			peon_id = Gcsql:GetUInt32(48),
-			command_set = Gcsql:GetString(49)			
+			x1 = Gcsql:GetUInt32(41),
+			x2 = Gcsql:GetUInt32(42),
+			x3 = Gcsql:GetUInt32(43),
+			command_set = Gcsql:GetString(44),
+			anarchy = Gcsql:GetUInt32(45)			
 			};
 		until not Gcsql:NextRow()
 	end
@@ -124,11 +120,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				hall_count = Gwsql:GetUInt32(11),
 				pig_count = Gwsql:GetUInt32(12),
 				guard_count = Gwsql:GetUInt32(13),
-				wall_count = Gwsql:GetUInt32(14),
-				trainer_count = Gwsql:GetUInt32(15),
-				npc_count = Gwsql:GetUInt32(16),
-				peon_count = Gwsql:GetUInt32(17),
-				flag_id = Gwsql:GetUInt32(18)
+				flag_id = Gwsql:GetUInt32(14)
 			};
 		until not Gwsql:NextRow()
 	end
@@ -344,7 +336,8 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00Minimum GM Level Access: "..GWCOMM["SERVER"].GM_minimum..".|r")
 				player:SendBroadcastMessage("|cff00cc00Pig Payz: "..GWCOMM["SERVER"].pig_payz..".|r")
 				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." gifted to newly created guilds.|r")
-				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." require ALL guards dead to take flag::0 = off/no::1 = on/yes.|r")
+				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." require ALL guards dead to take flag.::0 = off/no::1 = on/yes.|r")
+				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." true GvG (flag ignore team id).::0 = off::1 = on.(BETA chaos version.)|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 		return false;
@@ -370,7 +363,12 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 			
 			if(GWARZ[LocId].team==2)then
-				player:SendBroadcastMessage("|cff00cc00Faction: None|r")
+				player:SendBroadcastMessage("|cff00cc00Faction: For Sale.|r")
+				player:SendBroadcastMessage("*************************************")
+			end
+
+			if(GWARZ[LocId].team==3)then
+				player:SendBroadcastMessage("|cff00cc00Faction: LOCKED.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 			return false;
@@ -492,7 +490,7 @@ local Guildname = ""..player:GetGuildName()..""
 				if(player:GetItemCount(GWCOMM["SERVER"].currency) < Zoneprice)then
 					player:SendBroadcastMessage("You do not have enough "..Currencyname.."'s.")
 				else
-					if(GWARZ[LocId].team~=2)then
+					if(GWARZ[LocId].team==3)then
 						player:SendBroadcastMessage("THIS IS OFF LIMITS")
 					else
 						Gflag = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
@@ -685,8 +683,6 @@ local Guildname = ""..player:GetGuildName()..""
 					if(GWARZ[LocId].farm_count == 0)then
 						player:SendBroadcastMessage("Your guild does not own a house at this location.")
 					else
-					print(GWCOMM["SERVER"].pig_L * (GWARZ[LocId].farm_count-1))
-					print(GWARZ[LocId].pig_count)
 						if(GWARZ[LocId].pig_count > ((GWCOMM["SERVER"].pig_L) * (GWARZ[LocId].farm_count-1)))then
 							player:SendBroadcastMessage("You must sell off all the pigs first before removing there housing.")
 						else	
@@ -867,8 +863,8 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz Tables Reloaded.|r")
 			return false;
 			end
-		
-			if(ChatCache[1] == "spawn")and(ChatCache[2] == GWCOMM["SERVER"].flag)then
+
+			if((ChatCache[1]=="spawn")and(ChatCache[2]=="flag"))then
 				GMFlagid = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow() -- no flag spawns +GWARZ[LocId].Team
 				PreparedStatements(1, "flag_id", GMFlagid, LocId)
 				player:SendBroadcastMessage("|cff00cc00New flag spawned for Guild Warz location: "..GWARZ[LocId].entry.."|r")
@@ -985,26 +981,29 @@ function TransferFlag(player, locid, go)
 		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
 		return false;
 	end
-	if(player:GetTeam()==GWARZ[locid].team)then
+	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
 		player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
 		return false;
 	end
-	if(player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true)then
-		if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
-			go:Despawn()
-			Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
-			PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
-			SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
-			PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
-			PreparedStatements(1, "team", player:GetTeam(), locid)
-			PreparedStatements(1, "x", player:GetX(), locid)
-			PreparedStatements(1, "y", player:GetY(), locid)
-			PreparedStatements(1, "z", player:GetZ(), locid)
-			PreparedStatements(1, "flag_id", Nflag, locid)
-		end
+	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
+
 		if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
 			player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
+
+		else
+			if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
+				go:Despawn()
+				Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
+				PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
+				SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
+				PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
+				PreparedStatements(1, "team", player:GetTeam(), locid)
+				PreparedStatements(1, "x", player:GetX(), locid)
+				PreparedStatements(1, "y", player:GetY(), locid)
+				PreparedStatements(1, "z", player:GetZ(), locid)
+				PreparedStatements(1, "flag_id", Nflag, locid)
+			end
 		end
 	end
 	return false;
@@ -1030,18 +1029,37 @@ RegisterGameObjectEvent(187433, 9, Hordeflag)
 
 -- *********** Guild Guard combat actions *************
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
-function Guardcombat(eventid, creature, player)
 
-	if(player == 0)then
+function Guardffa(eventid, creature, player)
+	local locid = GetLocationId(creature)
+	
+	if(locid == nil)then
+		locid = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
 	
-	local LocId = GetLocationId(creature)
+	if(player:GetObjectType()=="Player")then
+		if(GWCOMM["SERVER"].anarchy==1)then
+			player:SetFFA(1)
+			player:SetPvP(1)
+		else
+		end
+	else
+	end
+end
 
+RegisterCreatureEvent(49001, 27, Guardffa)
+RegisterCreatureEvent(49002, 27, Guardffa)
+
+function Guardcombat(eventid, creature, player)
+
+	local LocId = GetLocationId(creature)
+	
 	if(LocId == nil)then
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
-
+	
 	for _, v in ipairs(GetPlayersInWorld()) do
+
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cffff0000!!LOCATION "..GWARZ[LocId].entry.." IS UNDER ATTACK!!|r")
 		end
@@ -1053,11 +1071,6 @@ RegisterCreatureEvent(49002, 1, Guardcombat)
 
 function Guarddied(eventid, creature, player)
 	local LocId = GetLocationId(creature)
-
-	if(LocId == nil)then
-		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
-	end
-
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
 	PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)	
 	local Drop = (math.random(1, 4))
@@ -1080,12 +1093,13 @@ RegisterCreatureEvent(49002, 4, Guarddied)
 
 function Guardhit(eventid, creature, attacker, damage)
 	local LocId = GetLocationId(creature)
-		
+
 	if(LocId == nil)then
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
-		
+
 	if(attacker:GetObjectType()=="Player")then
+	
 		local a = (math.random(1, 4))
 		if(a==4)then
 			for _, v in ipairs(GetPlayersInWorld()) do
@@ -1094,7 +1108,6 @@ function Guardhit(eventid, creature, attacker, damage)
 				end
 			end
 		end
-	else
 	end
 end
 
@@ -1103,11 +1116,6 @@ RegisterCreatureEvent(49002, 9, Guardhit)
 
 function Guardkill(eventid, creature, victim)
 	local LocId = GetLocationId(creature)
-
-	if(LocId == nil)then
-		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
-	end
-
 	for _, v in ipairs(GetPlayersInWorld()) do
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			v:SendBroadcastMessage("|cff00cc00!! I HAVE KILLED AN INTRUDER AT LOCATION "..GWARZ[LocId].entry.." !!|r")
