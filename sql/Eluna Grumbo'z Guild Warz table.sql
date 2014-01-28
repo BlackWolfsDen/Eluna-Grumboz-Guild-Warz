@@ -3,7 +3,7 @@
 -- Server version:               5.5.9-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-01-25 01:13:15
+-- Date/time:                    2014-01-27 19:55:27
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -60,15 +60,11 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `hall_id` mediumint(8) NOT NULL DEFAULT '500004' COMMENT 'Do Not Touch',
   `pig_id` mediumint(8) NOT NULL DEFAULT '49000' COMMENT 'Do Not Touch',
   `guard_id` mediumint(8) NOT NULL DEFAULT '49001' COMMENT 'Do Not Touch',
-  `walla_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `wallb_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `wallc_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `trainer1_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `trainer2_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `vendor1_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `vendor2_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
-  `peon_id` mediumint(8) NOT NULL DEFAULT '111111' COMMENT 'Do Not Touch',
+  `x1` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
+  `x2` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
+  `x3` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
+  `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -76,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `commands` (
 -- Dumping data for table guild_warz.commands: ~1 rows (approximately)
 DELETE FROM `commands`;
 /*!40000 ALTER TABLE `commands` DISABLE KEYS */;
-INSERT INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `walla_id`, `wallb_id`, `wallc_id`, `trainer1_id`, `trainer2_id`, `vendor1_id`, `vendor2_id`, `peon_id`, `command_set`) VALUES
-	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49001, 111111, 111111, 111111, 111111, 111111, 111111, 111111, 111111, 'set');
+INSERT INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `x1`, `x2`, `x3`, `command_set`, `anarchy`) VALUES
+	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49001, 1, 1, 1, 'set', 1);
 /*!40000 ALTER TABLE `commands` ENABLE KEYS */;
 
 
@@ -92,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `help` (
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz.help: ~59 rows (approximately)
+-- Dumping data for table guild_warz.help: ~55 rows (approximately)
 DELETE FROM `help`;
 /*!40000 ALTER TABLE `help` DISABLE KEYS */;
 INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
@@ -112,15 +108,15 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(14, 'sell', 'allows guild member to sell.', 'LOCKED', '4'),
 	(15, 'GLD_lvlb', 'allows rank x access to guild master buy commands. guildmaster==0 any number above 0 is a lower guild rank i.e. officer==1.', 'set GLD_lvlb 2', '4'),
 	(16, 'GLD_lvls', 'allows rank x access to guild master sell commands. same as LGD_lvlb guild master == 0 officer == 1 etc.. etc..etc...', 'set GLD_lvls 1', '4'),
-	(17, 'reset_loc', 'allows GM of minimum rank to reset a location onwner to "SERVER" and able to be purchased.', 'LOCKED', '5'),
-	(18, 'reset_farm', 'allows GM of minimum rank to reset house count of a location to 0', 'LOCKED', '5'),
-	(19, 'reset_barrack', 'allows GM of minimum rank to reset barrack count of a location to 0', 'LOCKED', '5'),
-	(20, 'reset_hall', 'allows GM of minimum rank to reset hall count of a location to 0', 'LOCKED', '5'),
-	(21, 'reset_pig', 'allows GM of minimum rank to reset pig countof a location to 0', 'LOCKED', '5'),
-	(22, 'reset_guard', 'allows GM of minimum rank to reset guard count of a location to 0', 'LOCKED', '5'),
-	(23, 'respawn_flag', 'allows GM of minimum rank to spawn a missing flag and bind it to current location. if location owned by "SERVER" then an error WILL happen.', 'LOCKED', '5'),
+	(17, 'reset loc', 'allows GM of minimum rank to reset a location onwner to "SERVER" and able to be purchased.', 'LOCKED', '5'),
+	(18, 'reset farm', 'allows GM of minimum rank to reset house count of a location to 0', 'LOCKED', '5'),
+	(19, 'reset barrack', 'allows GM of minimum rank to reset barrack count of a location to 0', 'LOCKED', '5'),
+	(20, 'reset hall', 'allows GM of minimum rank to reset hall count of a location to 0', 'LOCKED', '5'),
+	(21, 'reset pig', 'allows GM of minimum rank to reset pig countof a location to 0', 'LOCKED', '5'),
+	(22, 'reset guard', 'allows GM of minimum rank to reset guard count of a location to 0', 'LOCKED', '5'),
+	(23, 'respawn flag', 'allows GM of minimum rank to spawn a missing flag and bind it to current location. if location owned by "SERVER" then an error WILL happen.', 'LOCKED', '5'),
 	(24, 'details_loc', 'allows a GM of minimum rank to list detailed information about current location.', 'set details_loc sniff', '5'),
-	(25, 'load_table', 'allows a GM of minimum rank to re-load all the guild warrz tables', 'set load_table re_think', '5'),
+	(25, 'table', 'allows a GM of minimum rank to re-load all the guild warrz tables', 'set table brain', '5'),
 	(26, 'GM_admin', 'system setting for GM rank of ADMIN acct.', 'set GM_admin 5', '6'),
 	(27, 'GM_minimum', 'system setting for GM required minimum rank to access GM commands.', 'set GM_minimum 3', '6'),
 	(28, 'currency', 'system setting>>CANNOT BE CHANGED<<', 'LOCKED', '7'),
@@ -145,17 +141,12 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(47, 'hall_id', 'game core ID for guild hall id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
 	(48, 'pig_id', 'game core ID for guild pig id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
 	(49, 'guard_id', 'game core ID for guild guard id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(50, 'walla_id', 'game core ID for wall #a >>>>>>DO NOT CHANGE<<<<<<<<', 'LOCKED', '7'),
-	(51, 'wallb_id', 'game core ID for wall #b >>>>>>DO NOT CHANGE<<<<<<<<', 'LOCKED', '7'),
-	(52, 'wallc_id', 'game core ID for wall #c >>>>>>DO NOT CHANGE<<<<<<<<', 'LOCKED', '7'),
-	(53, 'barrack_id', 'game core ID for barracks ID >>>>>>DO NOT CHANGE<<<<<<<<', 'LOCKED', '7'),
-	(54, 'trainer1_id', 'game core ID for trainer npc id ', 'LOCKED', '7'),
-	(55, 'trainer2_id', 'game core ID for trainer npc id ', 'LOCKED', '7'),
-	(56, 'vendor1_id', 'game core ID for vendor npc id', 'LOCKED', '7'),
-	(57, 'vendor2_id', 'game core ID for vendor npc id', 'LOCKED', '7'),
-	(58, 'peon_id', 'game core ID for ally peon npc', 'LOCKED', '7'),
-	(59, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(60, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6');
+	(50, 'x1', 'game core ID for x1 ', 'LOCKED', '7'),
+	(51, 'x2', 'game core ID for x2 ', 'LOCKED', '7'),
+	(52, 'x3', 'game core ID for x3', 'LOCKED', '7'),
+	(53, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(54, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
+	(55, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
@@ -171,15 +162,11 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `x` float NOT NULL DEFAULT '0',
   `y` float NOT NULL DEFAULT '0',
   `z` float NOT NULL DEFAULT '0',
-  `farm_count` tinyint(10) NOT NULL DEFAULT '0',
-  `barrack_count` tinyint(10) NOT NULL DEFAULT '0',
-  `hall_count` tinyint(10) NOT NULL DEFAULT '0',
-  `pig_count` tinyint(10) NOT NULL DEFAULT '0',
-  `guard_count` tinyint(10) NOT NULL DEFAULT '0',
-  `wall_count` tinyint(10) NOT NULL DEFAULT '0',
-  `trainer_count` tinyint(10) NOT NULL DEFAULT '0',
-  `npc_count` tinyint(10) NOT NULL DEFAULT '0',
-  `peon_count` tinyint(10) NOT NULL DEFAULT '0',
+  `farm_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
+  `barrack_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
+  `hall_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
+  `pig_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
+  `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
@@ -188,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `zones` (
 -- Dumping data for table guild_warz.zones: ~1 rows (approximately)
 DELETE FROM `zones`;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `wall_count`, `trainer_count`, `npc_count`, `peon_count`, `flag_id`) VALUES
-	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `flag_id`) VALUES
+	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
