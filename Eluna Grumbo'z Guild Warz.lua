@@ -1085,28 +1085,25 @@ RegisterCreatureEvent(49002, 1, Guardcombat)
 
 function Guarddied(eventid, creature, player)
 	
-	if(player:GetObjectType()=="Player")then
-
-		local LocId = GetLocationId(creature)
+	local LocId = GetLocationId(creature)
+	
+	PreparedStatements(2, "creature", creature:GetGUIDLow())
+	PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)
+	
+	local Drop = (math.random(1, 4))
+	
+	for _, v in ipairs(GetPlayersInWorld()) do
 		
-		PreparedStatements(2, "creature", creature:GetGUIDLow())
-		PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)
-		
-		local Drop = (math.random(1, 4))
-		
-		for _, v in ipairs(GetPlayersInWorld()) do
-			
-			if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
-				v:SendBroadcastMessage("|cffcc0000!! I HAVE FAILED AT DEFENDING LOCATION "..LocId.." !!|r")
-			end
+		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
+			v:SendBroadcastMessage("|cffcc0000!! I HAVE FAILED AT DEFENDING LOCATION "..LocId.." !!|r")
 		end
-		
-		if(Drop==4)then
-			player:AddItem(20558, math.random(1, 4))
-		end
-		
-		creature:DespawnOrUnsummon()
 	end
+	
+	if(Drop==4)then
+		player:AddItem(20558, math.random(1, 4))
+	end
+	
+	creature:DespawnOrUnsummon()
 end
 
 RegisterCreatureEvent(49001, 4, Guarddied)
@@ -1149,7 +1146,7 @@ function Guardkill(eventid, creature, victim)
 		
 		if(v and v:GetGuildName()==GWARZ[LocId].guild_name) then
 			
-			v:SendBroadcastMessage("|cff00cc00!! I HAVE KILLED AN INTRUDER AT LOCATION "..GWARZ[LocId].entry.." !!|r")
+			v:SendBroadcastMessage("|cff00cc00!! I HAVE KILLED A "..victim:GetObjectType().." INTRUDEING AT LOCATION "..GWARZ[LocId].entry.." !!|r")
 			v:SendBroadcastMessage("|cff00cc00I found some gold on him.|r")
 			v:ModifyMoney(math.random(100000, 1000000))
 		end
