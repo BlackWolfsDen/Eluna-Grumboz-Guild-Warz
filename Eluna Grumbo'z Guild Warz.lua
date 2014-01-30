@@ -1031,20 +1031,26 @@ RegisterGameObjectEvent(187433, 9, Hordeflag)
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
 
 function Guardffa(eventid, creature, player)
-	local locid = GetLocationId(creature)
+	local LocId = GetLocationId(creature)
 	
 	if(LocId == nil)then
 		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
 	end
 	
 	if(player:GetObjectType()=="Player")then
+		
 		if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+			
 			if(GWCOMM["SERVER"].anarchy==1)then
 				player:SetFFA(1)
 				player:SetPvP(1)
 				creature:SetFFA(1)
 				creature:SetPvP(1)
 			else
+				player:SetFFA(0)
+				player:SetPvP(0)
+				creature:SetFFA(0)
+				creature:SetPvP(0)
 			end
 		else
 		end
