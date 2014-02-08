@@ -388,7 +388,7 @@ local Guildname = ""..player:GetGuildName()..""
 				repeat
 					local Gloc = Glocdb:GetUInt32(0)
 					local Xzoneprice=(GWCOMM["SERVER"].loc_cost)+(GWCOMM["SERVER"].farm_cost*GWARZ[Gloc].farm_count)+(GWCOMM["SERVER"].barrack_cost*GWARZ[Gloc].barrack_count)+(GWCOMM["SERVER"].hall_cost*GWARZ[Gloc].hall_count)+(GWCOMM["SERVER"].pig_cost*GWARZ[Gloc].pig_count)
-					player:SendBroadcastMessage("|cff00cc00"..Gloc.."     "..GWARZ[Gloc].farm_count.."     "..GWARZ[Gloc].barrack_count.."     "..GWARZ[Gloc].hall_count.."     "..GWARZ[Gloc].guard_count.."     "..GWARZ[Gloc].pig_count.."          "..Xzoneprice.."|r")
+					player:SendBroadcastMessage("|cff00cc00"..Gloc.."            "..GWARZ[Gloc].farm_count.."            "..GWARZ[Gloc].barrack_count.."            "..GWARZ[Gloc].hall_count.."            "..GWARZ[Gloc].guard_count.."            "..GWARZ[Gloc].pig_count.."                 "..Xzoneprice.."|r")
 					yentry = yentry+1
 					ypigcnt = ypigcnt+GWARZ[Gloc].pig_count
 					yvalue = yvalue+Xzoneprice
