@@ -1061,10 +1061,18 @@ function Guardffa(eventid, creature, player)
 						player:SetFaction(2)
 						player:SetFFA(1)
 						player:SetPvP(1)
+							if(creature:IsWithinDistInMap(player, 45))then
+								creature:AttackStart(player)
+							else
+							end
 					else
 						player:SetFaction(1)
 						player:SetFFA(1)
 						player:SetPvP(1)
+							if(creature:IsWithinDistInMap(player, 45))then
+								creature:AttackStart(player)
+							else
+							end
 					end
 				else
 					player:SetFaction(GGW[player:GetAccountId()].faction)
