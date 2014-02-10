@@ -1061,16 +1061,15 @@ function Guardffa(eventid, creature, player)
 						player:SetFaction(2)
 						player:SetFFA(1)
 						player:SetPvP(1)
-						creature:SetFFA(1)
 						creature:SetPvP(1)
 					else
 						player:SetFaction(1)
 						player:SetFFA(1)
 						player:SetPvP(1)
-						creature:SetFFA(1)
 						creature:SetPvP(1)
 					end
 				else
+					player:SetFaction(GGW[player:GetAccountId()].faction)
 				end
 			else
 				player:SetFaction(GGW[player:GetAccountId()].faction)
