@@ -223,6 +223,17 @@ end
 
 RegisterGuildEvent(5, Newguildgift)
 
+function PlrFaction(eventId, player)
+
+	local xFaction = player:GetFaction()
+	
+	GGW[player:GetAccountId()] = {
+					faction = xFaction
+								};
+end
+								
+RegisterPlayerEvent(3, PlrFaction)
+
 function GWcommands(event, player, msg, type, language)
 local k = 0
 local ChatCache = {}
