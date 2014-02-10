@@ -32,6 +32,7 @@ local Server = "SERVER"
 GWCOMM = {};
 GWARZ = {};
 GWHELP = {};
+GGW = {};
 local function LoadGWtable()
 
 local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
