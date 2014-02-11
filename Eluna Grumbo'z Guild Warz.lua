@@ -1043,50 +1043,53 @@ RegisterGameObjectEvent(187433, 9, Hordeflag)
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
 
 function Guardffa(eventid, creature, player)
-	local LocId = GetLocationId(player)
+local LocId = GetLocationId(player)
 	
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
 	
 	if(player:GetObjectType()=="Player")then
+
+		if(player:IsInGuild()==true)then
 		
-		if(GWCOMM["SERVER"].anarchy==1)then
-			
-			if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
-
-				if(GWARZ[LocId].team < 2)then
-
-					if(GWARZ[LocId].team==0)then
-						player:SetFaction(2)
-						player:SetFFA(1)
-						player:SetPvP(1)
-							if(creature:IsWithinDistInMap(player, 45))then
+			if(GWCOMM["SERVER"].anarchy==1)then
+				
+				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+	
+					if(GWARZ[LocId].team < 2)then
+	
+						if(creature:IsWithinDistInMap(player, 45))then
+							if(GWARZ[LocId].team==0)then -- faction 57
+								player:SetFaction(2)
+								player:SetFFA(1)
+								player:SetPvP(1)
 								creature:AttackStart(player)
-							else
 							end
+							if(GWARZ[LocId].team==1)then -- faction 85
+								player:SetFaction(1)
+								player:SetFFA(1)
+								player:SetPvP(1)
+								creature:AttackStart(player)
+							end
+						end
 					else
-						player:SetFaction(1)
-						player:SetFFA(1)
-						player:SetPvP(1)
-							if(creature:IsWithinDistInMap(player, 45))then
-								creature:AttackStart(player)
-							else
-							end
+						player:SetFaction(GGW[player:GetAccountId()].faction)
 					end
 				else
 					player:SetFaction(GGW[player:GetAccountId()].faction)
+					player:SetFFA(1)
+					player:SetPvP(1)
 				end
 			else
 				player:SetFaction(GGW[player:GetAccountId()].faction)
-				player:SetFFA(1)
-				player:SetPvP(1)
 			end
 		else
 		end
 	else
 	end
 end
+
 
 RegisterCreatureEvent(49001, 27, Guardffa)
 RegisterCreatureEvent(49002, 27, Guardffa)
