@@ -344,12 +344,12 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00lock "..GWCOMM["SERVER"].loc.."         -locks a location from purchase.|r")
 				player:SendBroadcastMessage("*************************************")
 				player:SendBroadcastMessage("ADMIN settings")
-				player:SendBroadcastMessage("|cff00cc00ADMIN ACCESS LEVEL: "..GWCOMM["SERVER"].GM_admin.." .|r")
+				player:SendBroadcastMessage("|cff00cc00ADMIN Level Access: "..GWCOMM["SERVER"].GM_admin.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Minimum GM Level Access: "..GWCOMM["SERVER"].GM_minimum.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Pig Payz: "..GWCOMM["SERVER"].pig_payz.." copper.|r")
 				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." GvG.|r")
+				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." .|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 		return false;
