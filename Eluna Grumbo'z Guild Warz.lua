@@ -193,23 +193,6 @@ function CreateGcommands(guild)
 	local CLentry = guild --(#GWCOMM+1) -- should create varchar entry of guild name
 	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
 	print("commands for: "..CLentry.." : created.")	
-	
---[[
-	-- Push values to Table Update after creation
-	PreparedStatements(3, "commands", "commands", CLentry)
-	PreparedStatements(3, "info_loc", "info", CLentry)
-	PreparedStatements(3, "list_loc", "list", CLentry)
-	PreparedStatements(3, "loc", "area", CLentry)
-	PreparedStatements(3, "farm", "farm", CLentry)
-	PreparedStatements(3, "barrack", "barrack", CLentry)
-	PreparedStatements(3, "hall", "hall", CLentry)
-	PreparedStatements(3, "pig", "pig", CLentry)
-	PreparedStatements(3, "guard", "guard", CLentry)
-	PreparedStatements(3, "version", "ver", CLentry)
-	PreparedStatements(3, "GLD_lvlb", 0, CLentry)
-	PreparedStatements(3, "GLD_lvls", 0, CLentry)
-	PreparedStatements(3, "tele", "gtele", CLentry)
-]]--
 	LoadGWtable()
 	return CLentry;
 end
