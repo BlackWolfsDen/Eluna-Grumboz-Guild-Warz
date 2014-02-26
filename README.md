@@ -40,13 +40,14 @@ the GM_admin is the GM rank of the admin. this sets what rank is required to acc
 The "reload table" command will reload all the tables for the system in case something goes out of sync
 
 the teleporter:
-to teleport just type "/guild gtele x" where x == location id
-??id??
-ok each location has a unique location id. so when you use the "info" command it will say loc ID: xxxxx
+
+     to teleport just type "/guild gtele x" where x == location id
+
+     ??id??
+     ok each location has a unique location id. so when you use the "info" command it will say loc ID: xxxxx
      the xxxx is the location id. yes it can get up into the 4 digits. I don't know how many unique combinations
      there are for (map, area, zone) but so far I have seen up to 889 individual locations.
-     to teleport from location to location you can type "/guild list" this will list all lands owned by your guild by 
-     location id with basic info and totals at the bottom.
+     to teleport from location to location you can type "/guild list" this will list all lands owned by your guild by      location id with basic info and totals at the bottom.
 
 I have added an "OPTIONAL" feature ::: flag_require
 
