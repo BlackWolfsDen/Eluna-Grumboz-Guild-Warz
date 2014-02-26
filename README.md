@@ -49,12 +49,12 @@ ok each location has a unique location id. so when you use the "info" command it
      location id with basic info and totals at the bottom.
 
 I have added an "OPTIONAL" feature ::: flag_require
-this will set the system to require that the invading force MUST clear ALL guards before they can take a flag.
-to turn this feature on :
-     as ADMIN type "/guild set flag_require 1"  turns it on
-     as ADMIN type "/guild set flag_require 0"  turns it off
+     this will set the system to require that the invading force MUST clear ALL guards before they can take a flag.
+     to turn this feature on :
+          as ADMIN type "/guild set flag_require 1"  turns it on
+          as ADMIN type "/guild set flag_require 0"  turns it off
 
-I have added a new "OTIONAL" feature ::: Anarchy
+I have added a new "OPTIONAL" feature ::: Anarchy
      this will allow guilds of EITHER team to invade ANY other guild location and claim it for their own.
      True GvG ally can invade ally/horde and horde can invade horde/ally.
           as ADMIN type "/guild set anarchy 1" turns it on
