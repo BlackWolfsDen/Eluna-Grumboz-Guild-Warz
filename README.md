@@ -53,3 +53,12 @@ this will set the system to require that the invading force MUST clear ALL guard
 to turn this feature on :
      as ADMIN type "/guild set flag_require 1"  turns it on
      as ADMIN type "/guild set flag_require 0"  turns it off
+
+I have added a new "OTIONAL" feature ::: Anarchy
+     this will allow guilds of EITHER team to invade ANY other guild location and claim it for their own.
+     True GvG ally can invade ally/horde and horde can invade horde/ally.
+          as ADMIN type "/guild set anarchy 1" turns it on
+          as ADMIN type "/guild set anarchy 0" turns it off
+
+All commands and settings happen LIVE in game so becareful of who's location your in when you turn it on.
+
