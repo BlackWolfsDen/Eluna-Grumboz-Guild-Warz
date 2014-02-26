@@ -15,15 +15,38 @@ ok now how to basics:
 basic commands are:
 
      type "/guild commands" for a complete list of commands available to you.
-     the buy commands are accessible by guild members of a certain level chosen by the guild master
-     the sell commands are accessible by guild members of a certain level chosen by the guild master
+     the buy commands are accessible by guild members of a certain level chosen by the guild master. -Default GUildMaster only.
+     the sell commands are accessible by guild members of a certain level chosen by the guild master. -Default GuildMaster only.
      the guild master can change what ranks can access buy/sell commands by using the set command.
 
+to buy an area not owned by another guild:
+
+     type "/guild buy area". A flag will appear at your location based on your team.
+     
 to purchase a farm:
 
-     just type /guild buy farm
+     just type "/guild buy farm". A farm thingy will appear at your x,y,z.
 
-to purchase a location not owned by another guild other than "SERVER" just type /guild buy area
+to purchas a barrack:
+
+     just type "/guild buy barrack".A barrack will appear at your x,y,z.
+
+to purchase a hall:
+
+     just type "/guild buy hall". And now you have a big 'o' hall buried in the mountain side lol.
+
+to sell a building:
+     
+     just type "/guild sell hall". or farm or barrack. but you must get close to it to sell it.
+     halls you have to be at the center bottom level.
+
+to sell an npc:
+     
+     just select a pig and type "/guild sell pig". you can do this for all GGW npc's.
+     
+to purchase a location not owned by another guild other than "SERVER":
+
+     just type "/guild buy area"
 
 to adjust the buy/sell access level:
 
@@ -32,7 +55,9 @@ to adjust the buy/sell access level:
           - the Guild Master is Rank 0 . each rank +1 is 1 rank below Guild Master. i.e.(Rank 1 = officer, Rank 2 = veteran,
        Rank 3 = member, rank 4 = initiate).
        
-to set the sell command type "/guild set sell 1" 1 level below guild master can now use the sell command.
+to set the sell command:
+
+     type "/guild set sell 1". now 1 level below guild master can now use the sell command.(officer)
 
 Adminz can change system settings, amounts, and values using the set command.
 
@@ -43,13 +68,14 @@ to change settings as the Admin:
      use "/guild help set" to list available settings you may change with a basic description and example
      use "/guild help farm_L" to get specific help with changing something rather than a full screen from "help set".
      the GM_minimum setting is the minimum level a gm must be to acces gm commands.
-     the GM_admin is the GM rank of the admin. this sets what rank is required to access admin settings. can only be      changed manually in the sql.
+     the GM_admin is the GM rank of the admin. this sets what rank is required to access admin settings. can only be
+     changed manually in the sql.
      The "reload table" command will reload all the tables for the system in case something goes out of sync.
 
 the teleporter:
 
      to teleport just type "/guild gtele x" where x == location id
-
+     
      ??id??
      ok each location has a unique location id. so when you use the "info" command it will say loc ID: xxxxx
      the xxxx is the location id. yes it can get up into the 4 digits. I don't know how many unique combinations
