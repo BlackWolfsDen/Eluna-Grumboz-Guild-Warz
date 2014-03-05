@@ -17,7 +17,7 @@ print("\nGrumbo'z Guild Warz System Loading:\n")
 
 if(GetLuaEngine()~="ElunaEngine")then
 	print("err: "..GetLuaEngine().." Detected.\n")
-	print("LOAD HALTED..?.really..??..")
+	print("!!..LOAD HALTED..?!!")
 	return false;
 else
 	print("Approved: Eluna Detected.\n")
