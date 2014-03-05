@@ -629,7 +629,7 @@ local Guildname = ""..player:GetGuildName()..""
 					else
 						if(GWARZ[LocId].guard_count >= (GWCOMM["SERVER"].guard_L * (GWCOMM["SERVER"].barrack_L * GWCOMM["SERVER"].farm_L)))then
 							player:SendBroadcastMessage("You have "..GWARZ[LocId].guard_count.." guards at this location.")
-							player:SendBroadcastMessage("You can only have "..(GWCOMM["SERVER"].guard_L*GWARZ[LocId].barrack_count).." per location.")
+							player:SendBroadcastMessage("You can only have "..(GWCOMM["SERVER"].guard_L*GWCOMM["SERVER"].farm_L).." per location.")
 						else
 							if(GWARZ[LocId].guard_count >= (GWARZ[LocId].barrack_count * GWCOMM["SERVER"].guard_L))then
 								player:SendBroadcastMessage("You must have another barracks to produce more guards.")
