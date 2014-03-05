@@ -13,6 +13,7 @@
 -- *b* Please Do Not Remove any of the credits ***
 -- ****** or attempt to repost as your own **2****
 -- ***o********************************0**********
+
 print("\nGrumbo'z Guild Warz System Loading:\n")
 
 if(GetLuaEngine()~="ElunaEngine")then
