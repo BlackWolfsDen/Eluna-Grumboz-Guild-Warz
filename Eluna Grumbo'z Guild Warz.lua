@@ -966,7 +966,7 @@ print("Teleporter version: "..tele_version.."")
 -- ************* Guild Warz Flag actions **************
 function TransferFlag(player, locid, go)
 	if(go:GetGUIDLow()~=GWARZ[locid].flag_id)then
-		player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
+		go:Despawn()
 		player:SendBroadcastMessage("|cffcc0000error.... Phantom flag removed.|r")
 		PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
 		return false;
