@@ -455,13 +455,15 @@ local Guildname = ""..player:GetGuildName()..""
 				
 					if(player:GetGuildRank()==0)and(GWHELP[i].command_level<=4)then
 						player:SendBroadcastMessage(GWHELP[i].command.."      -      |cff00cc00"..GWHELP[i].description.."|r")
-						player:SendBroadcastMessage("|cff00cc00Example|r /g "..GWHELP[i].example.."")
+						player:SendBroadcastMessage("|cff00cc00Example:|r /g "..GWHELP[i].example.."")
+						player:SendBroadcastMessage("|cff00cc00Current:|r "..GWCOMM[Guildname][GWHELP[i].command].."")
 						return false;
 					end
 					
 					if(player:GetGMRank()==GWCOMM["SERVER"].GM_admin)and(GWHELP[i].command_level>=5)and(GWHELP[i].command_level<=6)then
 						player:SendBroadcastMessage(GWHELP[i].command.."      -      |cff00cc00"..GWHELP[i].description.."|r")
-						player:SendBroadcastMessage("|cff00cc00Example|r /g "..GWHELP[i].example.."")
+						player:SendBroadcastMessage("|cff00cc00Example:|r /g "..GWHELP[i].example.."")
+						player:SendBroadcastMessage("|cff00cc00Current:|r "..GWCOMM[Guildname][GWHELP[i].command].."")
 						return false;
 					end
 				end
