@@ -234,7 +234,7 @@ local LocId = GetLocationId(player)
 	end
 local Guildname = ""..player:GetGuildName()..""
 	if(GWCOMM[Guildname]==nil)then
-		Gcommands = CreateGcommands( player:GetGuildName() )
+		Gcommands = CreateGcommands(player:GetGuildName())
 	end
 			
 	local Zoneprice=(GWCOMM["SERVER"].loc_cost)+(GWCOMM["SERVER"].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM["SERVER"].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM["SERVER"].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM["SERVER"].pig_cost*GWARZ[LocId].pig_count)
