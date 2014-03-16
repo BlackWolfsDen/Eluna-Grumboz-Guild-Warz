@@ -191,11 +191,11 @@ function CreateLocation(map, area, zone)
 end
 
 function CreateGcommands(guild)
-	local CLentry = guild --(#GWCOMM+1) -- should create varchar entry of guild name
+	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
 	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
-	print("commands for: "..CLentry.." : created.")	
+	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
-	return CLentry;
+	return guild;
 end
 
 local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version)/4)
