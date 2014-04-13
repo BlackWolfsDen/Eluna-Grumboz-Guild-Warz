@@ -24,11 +24,11 @@ else
 	print("Approved: Eluna Detected.\n")
 end
 
-local table_version = 1.60
-local core_version = 5.95
+local table_version = 1.65
+local core_version = 6.0
 local pigpayz_version = 1.75
 local tele_version = 1.50
-local pvp_version = 4.00
+local pvp_version = 4.05
 local Server = "SERVER"
 GWCOMM = {};
 GWARZ = {};
@@ -98,7 +98,9 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 			x2 = Gcsql:GetUInt32(42),
 			x3 = Gcsql:GetUInt32(43),
 			command_set = Gcsql:GetString(44),
-			anarchy = Gcsql:GetUInt32(45)			
+			anarchy = Gcsql:GetUInt32(45),			
+			flag_timer = Gcsql:GetUInt32(46),
+			spawn_timer = Gcsql:GetUInt32(47)			
 			};
 		until not Gcsql:NextRow()
 	end
@@ -122,7 +124,8 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				hall_count = Gwsql:GetUInt32(11),
 				pig_count = Gwsql:GetUInt32(12),
 				guard_count = Gwsql:GetUInt32(13),
-				flag_id = Gwsql:GetUInt32(14)
+				flag_id = Gwsql:GetUInt32(14),
+				spawn_time = Gwsql:GetUInt32(15)
 			};
 		until not Gwsql:NextRow()
 	end
@@ -334,6 +337,8 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." .|r")
+				player:SendBroadcastMessage("|cff00cc00Flag No-Tag = "..GWCOMM["SERVER"].flag_timer.." .|r")
+				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag-Timer = "..GWCOMM["SERVER"].spawn_timer.." .|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 		return false;
@@ -498,6 +503,7 @@ local Guildname = ""..player:GetGuildName()..""
 							PreparedStatements(1, "y", player:GetY(), LocId)
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
+							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
 							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
@@ -666,6 +672,7 @@ local Guildname = ""..player:GetGuildName()..""
 						PreparedStatements(1, "guild_name", Server, LocId)
 						PreparedStatements(1, "team", 2, LocId)
 						PreparedStatements(1, "flag_id", 0, LocId)
+						PreparedStatements(1, "fs_time", 0, LocId)
 						player:AddItem(GWCOMM["SERVER"].currency, Zoneprice)
 						player:SendBroadcastMessage("|cff00cc00!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r")
 					end
@@ -814,6 +821,7 @@ local Guildname = ""..player:GetGuildName()..""
 				PreparedStatements(1, "guild_name", Server, LocId)
 				PreparedStatements(1, "team", 3, LocId)
 				PreparedStatements(1, "flag_id", 0, LocId)
+				PreparedStatements(1, "fs_time", 0, LocId)
 				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." succesfully |r|cffcc0000LOCKED.|r")
 			return false;
 			end
@@ -821,6 +829,7 @@ local Guildname = ""..player:GetGuildName()..""
 				PreparedStatements(1, "guild_name", Server, LocId)
 				PreparedStatements(1, "team", 2, LocId)
 				PreparedStatements(1, "flag_id", 0, LocId)
+				PreparedStatements(1, "fs_time", 0, LocId)
 				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." succesfully reset.|r")
 			return false;
 			end
@@ -865,6 +874,7 @@ local Guildname = ""..player:GetGuildName()..""
 			if((ChatCache[1]=="spawn")and(ChatCache[2]=="flag"))then
 				GMFlagid = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow() -- no flag spawns +GWARZ[LocId].Team
 				PreparedStatements(1, "flag_id", GMFlagid, LocId)
+				PreparedStatements(1, "fs_time", GMFlagid, LocId)
 				player:SendBroadcastMessage("|cff00cc00New flag spawned for Guild Warz location: "..GWARZ[LocId].entry.."|r")
 			return false;
 			end
@@ -880,6 +890,7 @@ local Guildname = ""..player:GetGuildName()..""
 	            player:SendBroadcastMessage("|cff00cc00Pig count: "..GWARZ[LocId].pig_count..".")
 	            player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
 	            player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
+	            player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
 	            player:SendBroadcastMessage("*************************************")
             return false;
             end
@@ -986,21 +997,28 @@ function TransferFlag(player, locid, go)
 	end
 	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
 
-		if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
-			player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
-
+		if(GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer > GetGameTime())and(GWCOMM["SERVER"].flag_timer==1)then
+			player:SendBroadcastMessage("|cffff0000!!..Cooldown Timer in Affect..!!|r")
+			
 		else
-			if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
-				player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
-				Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
-				PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
-				SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
-				PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
-				PreparedStatements(1, "team", player:GetTeam(), locid)
-				PreparedStatements(1, "x", player:GetX(), locid)
-				PreparedStatements(1, "y", player:GetY(), locid)
-				PreparedStatements(1, "z", player:GetZ(), locid)
-				PreparedStatements(1, "flag_id", Nflag, locid)
+			if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
+				player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
+	
+			else
+				if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
+					player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
+					Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
+					PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
+					SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
+					PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
+					PreparedStatements(1, "team", player:GetTeam(), locid)
+					PreparedStatements(1, "x", player:GetX(), locid)
+					PreparedStatements(1, "y", player:GetY(), locid)
+					PreparedStatements(1, "z", player:GetZ(), locid)
+					PreparedStatements(1, "flag_id", Nflag, locid)
+					PreparedStatements(1, "flag_id", Nflag, locid)
+					PreparedStatements(1, "fs_time", GetGameTime(), locid)
+				end
 			end
 		end
 	end
