@@ -337,7 +337,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Flag No-Tag = "..GWCOMM["SERVER"].flag_timer.." .|r")
+				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag = "..GWCOMM["SERVER"].flag_timer.." .|r")
 				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag-Timer = "..GWCOMM["SERVER"].spawn_timer.." .|r")
 				player:SendBroadcastMessage("*************************************")
 			end
