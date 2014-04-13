@@ -65,6 +65,8 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `x3` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
   `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
+  `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'when a flag spawns there is a no-tag timer if set to 1 based on s_timer.',
+  `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'timer length for no-tag flag timer in seconds. 5 minutes = 300.',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -72,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `commands` (
 -- Dumping data for table guild_warz.commands: ~1 rows (approximately)
 DELETE FROM `commands`;
 /*!40000 ALTER TABLE `commands` DISABLE KEYS */;
-INSERT INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `x1`, `x2`, `x3`, `command_set`, `anarchy`) VALUES
-	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49001, 1, 1, 1, 'set', 1);
+INSERT INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `x1`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`) VALUES
+	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49001, 1, 1, 1, 'set', 1, 1, 300);
 /*!40000 ALTER TABLE `commands` ENABLE KEYS */;
 
 
@@ -147,6 +149,8 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(53, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
 	(54, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
 	(55, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
+	(56, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
+	(57, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
@@ -168,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `pig_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) NOT NULL DEFAULT '0',
+  `fs_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -175,8 +180,8 @@ CREATE TABLE IF NOT EXISTS `zones` (
 -- Dumping data for table guild_warz.zones: ~1 rows (approximately)
 DELETE FROM `zones`;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `flag_id`) VALUES
-	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `flag_id`, `fs_time`) VALUES
+	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
