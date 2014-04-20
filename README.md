@@ -116,4 +116,4 @@ All commands and settings happen LIVE in game so becareful of who's location you
 
 Tutorial Video's: https://www.youtube.com/user/TheBlackwolfsden
 
-So have fun and remember to !! RAPE PLUNDER and PILIAGE !!.
+So have fun and remember to !! RAPE PLUNDER and PILLAGE !!.
