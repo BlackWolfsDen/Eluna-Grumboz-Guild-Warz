@@ -100,6 +100,18 @@ I have added a new "OPTIONAL" feature ::: Anarchy
           as ADMIN type "/guild set anarchy 1" turns it on
           as ADMIN type "/guild set anarchy 0" turns it off
 
+I have added a new "OPTIONAL" Feature ::: No-Tag-Flag
+
+     This will place an adjustable timer on a newly spawned flag.
+     this timer wont allow the flag to be tagged and taken by another Guild.
+     when the timer expires the flag becomes active.
+          
+          as ADMIN type "/guild set f_timer 1" turns it on
+          as ADMIN type "/guild set f_timer 0" turns it off
+     
+          the time length is in seconds. i.e. 5 minutes is 300 seconds.
+          as ADMIN type "/guild set s_timer 300" sets the timer to 5 minutes
+          
 All commands and settings happen LIVE in game so becareful of who's location your in when you turn it on.
 
 Tutorial Video's: https://www.youtube.com/user/TheBlackwolfsden
