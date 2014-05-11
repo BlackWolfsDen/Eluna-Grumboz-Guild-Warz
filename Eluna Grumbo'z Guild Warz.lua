@@ -3,7 +3,7 @@
 -- **** Brought to you by Grumbo of BloodyWoW *l**
 -- **r*************** slp13at420 ****p************
 -- ***Foereaper***  Ty Eluna guyz  ****Rochet2****
--- ***************  Ty AC-web.org  *********1*****
+-- *************** Ty Emudevs.com  *********1*****
 -- **u******************♠*********3***************
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
@@ -14,7 +14,8 @@
 -- ****** or attempt to repost as your own **2****
 -- ***o********************************0**********
 
-print("\nGrumbo'z Guild Warz System Loading:\n")
+print("\n-----------------------------------")
+print("Grumbo'z Guild Warz System Loading:\n")
 
 if(GetLuaEngine()~="ElunaEngine")then
 	print("err: "..GetLuaEngine().." Detected.\n")
@@ -1196,3 +1197,4 @@ RegisterCreatureEvent(49002, 3, Guardkill)
 -- ****************************************************
 print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
+print("-----------------------------------\n")
