@@ -126,7 +126,8 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				pig_count = Gwsql:GetUInt32(12),
 				guard_count = Gwsql:GetUInt32(13),
 				flag_id = Gwsql:GetUInt32(14),
-				spawn_time = Gwsql:GetUInt32(15)
+				spawn_time = Gwsql:GetUInt32(15),
+				guild_id = Gwsql:GetUInt32(16)
 			};
 		until not Gwsql:NextRow()
 	end
