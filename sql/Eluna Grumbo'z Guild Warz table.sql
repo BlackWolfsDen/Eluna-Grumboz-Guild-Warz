@@ -173,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) NOT NULL DEFAULT '0',
   `fs_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `guild_id` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
