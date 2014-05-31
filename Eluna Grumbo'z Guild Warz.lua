@@ -25,7 +25,7 @@ else
 	print("Approved: Eluna Detected.\n")
 end
 
-local table_version = 1.65
+local table_version = 1.70
 local core_version = 6.0
 local pigpayz_version = 1.75
 local tele_version = 1.50
