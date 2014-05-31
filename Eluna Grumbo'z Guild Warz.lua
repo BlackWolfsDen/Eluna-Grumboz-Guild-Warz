@@ -161,11 +161,13 @@ local function PreparedStatements(key, ...)
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
 		GWARZ[loc][subtable] = value;
-	elseif(key == 2) then
+	end
+	if(key == 2) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
 		LoadGWtable()
-	elseif(key == 3) then
+	end
+	if(key == 3) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
 		LoadGWtable()
@@ -200,6 +202,9 @@ function CreateGcommands(guild)
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
 	return guild;
+end
+
+local function SendGuildInvite(player, guild_name, guild_id)
 end
 
 local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version)/4)
@@ -505,6 +510,7 @@ local Guildname = ""..player:GetGuildName()..""
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
 							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
+							PreparedStatements(1, "guild_id", player:GetGuildId(), LocId)							
 							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
@@ -674,6 +680,7 @@ local Guildname = ""..player:GetGuildName()..""
 						PreparedStatements(1, "team", 2, LocId)
 						PreparedStatements(1, "flag_id", 0, LocId)
 						PreparedStatements(1, "fs_time", 0, LocId)
+						PreparedStatements(1, "guild_id", 0, LocId)							
 						player:AddItem(GWCOMM["SERVER"].currency, Zoneprice)
 						player:SendBroadcastMessage("|cff00cc00!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r")
 					end
@@ -986,6 +993,7 @@ function TransferFlag(player, locid, go)
 		return false;
 	end
 	if(player:IsInGuild()==false)then
+		SendGuildInvite(player, GWARZ[locid].guild_name, GWARZ[locid].guild_id)
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 		player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
@@ -1019,6 +1027,7 @@ function TransferFlag(player, locid, go)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "fs_time", GetGameTime(), locid)
+					PreparedStatements(1, "guild_id", player:GetGuildId(), LocId)							
 				end
 			end
 		end
