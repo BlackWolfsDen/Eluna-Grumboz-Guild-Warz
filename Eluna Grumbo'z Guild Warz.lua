@@ -127,7 +127,6 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				guard_count = Gwsql:GetUInt32(13),
 				flag_id = Gwsql:GetUInt32(14),
 				spawn_time = Gwsql:GetUInt32(15),
-				guild_id = Gwsql:GetUInt32(16)
 			};
 		until not Gwsql:NextRow()
 	end
@@ -511,7 +510,6 @@ local Guildname = ""..player:GetGuildName()..""
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
 							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
-							PreparedStatements(1, "guild_id", player:GetGuildId(), LocId)							
 							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
@@ -681,7 +679,6 @@ local Guildname = ""..player:GetGuildName()..""
 						PreparedStatements(1, "team", 2, LocId)
 						PreparedStatements(1, "flag_id", 0, LocId)
 						PreparedStatements(1, "fs_time", 0, LocId)
-						PreparedStatements(1, "guild_id", 0, LocId)							
 						player:AddItem(GWCOMM["SERVER"].currency, Zoneprice)
 						player:SendBroadcastMessage("|cff00cc00!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r")
 					end
@@ -1029,7 +1026,6 @@ function TransferFlag(player, locid, go)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "fs_time", GetGameTime(), locid)
-					PreparedStatements(1, "guild_id", player:GetGuildId(), LocId)							
 				end
 			end
 		end
@@ -1064,7 +1060,6 @@ function Gwarz_Guild_Flag_Hello(eventid, player, object)
 end
 function Gwarz_Guild_Flag_Select(eventid, player, object, sender, intid, code)
 local locid = GetLocationId(player)
-local guild = GetGuildByName(GWARZ[locid].guild_name)
 	if (intid == 10) then
 		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255)
 	end
