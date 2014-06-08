@@ -998,6 +998,7 @@ function TransferFlag(player, locid, go)
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 		player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
+		Gwarz_Guild_Flag_Hello(1, player, go)
 		return false;
 	end
 	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
@@ -1053,6 +1054,27 @@ function Hordeflag(event, go, _, player)
 end
 
 RegisterGameObjectEvent(187433, 9, Hordeflag)
+
+function Gwarz_Guild_Flag_Hello(eventid, player, object)
+	local locid = GetLocationId(player)
+	player:GossipClearMenu()
+	player:GossipMenuAddItem(1,"Join "..GWARZ[locid].guild_name..".",0,10)
+	player:GossipMenuAddItem(1,"Nevermind.",0,11)
+	player:GossipSendMenu(1, object)
+end
+function Gwarz_Guild_Flag_Select(eventid, player, object, sender, intid, code)
+local locid = GetLocationId(player)
+local guild = GetGuildByName(GWARZ[locid].guild_name)
+	if (intid == 10) then
+		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255)
+	end
+	if (intid == 11) then
+		player:GossipComplete()
+	end
+end
+
+RegisterGameObjectGossipEvent(187432, 2, Gwarz_Guild_Flag_Select)
+RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
 
 -- *********** Guild Guard combat actions *************
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
