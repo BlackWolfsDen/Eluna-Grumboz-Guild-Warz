@@ -1064,8 +1064,8 @@ local locid = GetLocationId(player)
 		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255)
 	end
 	if (intid == 11) then
-		player:GossipComplete()
 	end
+player:GossipComplete()
 end
 
 RegisterGameObjectGossipEvent(187432, 2, Gwarz_Guild_Flag_Select)
