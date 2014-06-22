@@ -927,7 +927,7 @@ local function Payout(player)
 		until Glocdb:NextRow()~=true;
 		Pigpayz=(GWCOMM["SERVER"].pig_payz*pig)
 		player:ModifyMoney(Pigpayz)
-		player:SendBroadcastMessage("DemiiGods |cff00cc00whispers:Your Guild\'s hard work pays off.|r")
+		player:SendBroadcastMessage("DemiiGods whispers:|cff00cc00Your Guild\'s hard work pays off.|r")
 		player:SendBroadcastMessage("|cff00cc00PigPayz: "..Pigpayz / '10000'.." gold.|r")
 	end
 	return false;
@@ -939,7 +939,7 @@ function Pigpay(event, player)
 			Payout(v)
 		end
 		if(v:IsInWorld()==true)and(v:IsInGuild()~=true)then
-			v:SendBroadcastMessage("Requin |cffff0000shouts:Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
+			v:SendBroadcastMessage("Requin shouts:|cffff0000Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
 		end
 	end
 end
