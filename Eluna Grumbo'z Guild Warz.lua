@@ -960,14 +960,14 @@ function Guildteleport(event, player, message, type, language)
 		if(player:IsInGuild()==true)then
 			local Loc = tonumber(text)
 			if(GWARZ[Loc]==nil)then
-				player:SendBroadcastMessage("|cffcc0000error.... teleport entry doesn't exsist.|r")
+				player:SendBroadcastMessage("Grumbo says:|cffcc0000error.... teleport entry doesn't exsist.|r")
 			else
 				if(GWARZ[Loc].guild_name~=player:GetGuildName())then
-					player:SendBroadcastMessage("Your guild doesn't own that area.")
-					player:SendBroadcastMessage("You cannot teleport there.")
+					player:SendBroadcastMessage("Raider says:Your guild doesn't own that area.")
+					player:SendBroadcastMessage("Raider says:You cannot teleport there.")
 				else
 					player:Teleport(GWARZ[Loc].map_id, GWARZ[Loc].x, GWARZ[Loc].y, GWARZ[Loc].z, 1.0)
-					player:SendBroadcastMessage("|cff00cc00Teleport complete.|r")
+					player:SendBroadcastMessage("DeadByDawn says:|cff00cc00Teleport complete.|r")
 				end
 			end
 		end
