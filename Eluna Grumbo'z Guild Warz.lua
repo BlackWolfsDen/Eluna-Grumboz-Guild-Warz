@@ -917,8 +917,8 @@ local function Payout(player)
 	local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
 	if(Glocdb==nil)then
 		player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
-		player:SendBroadcastMessage("Your guild does not own any pigs.", 0)
-		player:SendBroadcastMessage("Inform Your guild master to start some farms.", 0)
+		player:SendBroadcastMessage("Zorkster says:Your guild does not own any pigs.", 0)
+		player:SendBroadcastMessage("Zorkster says:Inform Your guild master to start some farms.", 0)
 	else
 		repeat
 			local Gloc = Glocdb:GetUInt32(0)
@@ -927,6 +927,7 @@ local function Payout(player)
 		until Glocdb:NextRow()~=true;
 		Pigpayz=(GWCOMM["SERVER"].pig_payz*pig)
 		player:ModifyMoney(Pigpayz)
+		player:SendBroadcastMessage("DemiiGods |cff00cc00whispers:Your Guild\'s hard work pays off.|r")
 		player:SendBroadcastMessage("|cff00cc00PigPayz: "..Pigpayz / '10000'.." gold.|r")
 	end
 	return false;
@@ -938,7 +939,7 @@ function Pigpay(event, player)
 			Payout(v)
 		end
 		if(v:IsInWorld()==true)and(v:IsInGuild()~=true)then
-			v:SendBroadcastMessage("|cff00cc00Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
+			v:SendBroadcastMessage("Requin |cffff0000shouts:Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
 		end
 	end
 end
