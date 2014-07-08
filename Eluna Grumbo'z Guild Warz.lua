@@ -992,7 +992,6 @@ function TransferFlag(player, locid, go)
 		return false;
 	end
 	if(player:IsInGuild()==false)then
-		SendGuildInvite(player, GWARZ[locid].guild_name, GWARZ[locid].guild_id)
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 		player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
@@ -1052,6 +1051,7 @@ end
 
 RegisterGameObjectEvent(187433, 9, Hordeflag)
 
+-- *********** Guild Invite Flag Action ***********
 function Gwarz_Guild_Flag_Hello(eventid, player, object)
 	local locid = GetLocationId(player)
 	player:GossipClearMenu()
