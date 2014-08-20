@@ -236,7 +236,9 @@ local ChatCache = {}
 	        k = k+1
 	        ChatCache[k] = word
 	end
--- math.randomseed(tonumber(tostring(os.time()*os.time()):reverse():sub(1,6))); -- err. bad argument #1 to randomseed (number expected, got nil)
+
+math.randomseed(tonumber(os.time()*os.time()))
+
 local LocId = GetLocationId(player)
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
