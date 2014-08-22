@@ -300,7 +300,7 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 			
 			if(player:GetGuildRank()==0)or(player:GetGMRank()==GWCOMM["SERVER"].GM_admin)then
-				player:SendBroadcastMessage("Game/Guild Master special Commands:")
+				player:SendBroadcastMessage("Guild Master/Game Master/Admin special Commands:")
 				player:SendBroadcastMessage("|cff00cc00"..GWCOMM["SERVER"].command_set.."      used to modify commands and settings.|r")
 				player:SendBroadcastMessage("|cff00cc00help "..GWCOMM["SERVER"].command_set.."    lists commands and settings you may change.|r")
 				player:SendBroadcastMessage("*************************************")
