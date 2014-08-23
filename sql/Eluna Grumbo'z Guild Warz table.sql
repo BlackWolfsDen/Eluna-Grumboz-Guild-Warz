@@ -102,7 +102,7 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(6, 'version', 'allows player to view the system versions.', 'set version intelect', '1'),
 	(7, 'loc', 'allows guild members to purchase locations based on its value.', 'LOCKED', '4'),
 	(8, 'farm', 'allows guild members to purchase houses for guild locations.', 'set farm mudhole', '4'),
-	(9, 'barracks', 'allows guild members to purchasebarracks to produce guards for guild locations.', 'LOCKED', '4'),
+	(9, 'barrack', 'allows guild members to purchasebarracks to produce guards for guild locations.', 'LOCKED', '4'),
 	(10, 'hall', 'allows guild members to purchase a guild hall for guild locations.', 'LOCKED', '4'),
 	(11, 'pig', 'allows guild members to purchase guild pigs for guild locations.', 'LOCKED', '4'),
 	(12, 'guard', 'allows guildmembers to purchase guards for locations', 'LOCKED', '4'),
