@@ -212,7 +212,7 @@ local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pv
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
 	CreateGcommands(name)
 	leader:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].gift_count)
-	SendWorldMessage("The Guild "..name.." lead by "..leader:GetName().." has entered exsistance..!! NOW Prepair to hold your lands!!")
+	SendWorldMessage("|cffFF0000The Guild "..name.." lead by "..leader:GetName().." has entered exsistance..!! NOW Prepair to hold your lands!!|r")
 end
 
 RegisterGuildEvent(5, Newguildgift)
@@ -227,7 +227,7 @@ function PlrFaction(eventId, player)
 			
 	if(player:GetGuildName())then
 		local Guildname = ""..player:GetGuildName()..""
-		player:SendBroadcastMessage("use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+		player:SendBroadcastMessage("|cff00cc00Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
 	end
 end
 								
