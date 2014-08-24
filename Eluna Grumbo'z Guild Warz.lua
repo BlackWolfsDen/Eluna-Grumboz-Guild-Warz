@@ -222,8 +222,13 @@ function PlrFaction(eventId, player)
 	local xFaction = player:GetFaction()
 	
 	GGW[player:GetAccountId()] = {
-					faction = xFaction
-								};
+			faction = xFaction
+				};
+			
+	if(player:GetGuildName())then
+		local Guildname = ""..player:GetGuildName()..""
+		player:SendBroadcastMessage("use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+	end
 end
 								
 RegisterPlayerEvent(3, PlrFaction)
