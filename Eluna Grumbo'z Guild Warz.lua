@@ -508,7 +508,7 @@ local Guildname = ""..player:GetGuildName()..""
 						player:SendBroadcastMessage("You do not have enough "..Currencyname.."'s.")
 					else
 						if(GWARZ[LocId].team==3)then
-							player:SendBroadcastMessage("THIS IS OFF LIMITS")
+							player:SendBroadcastMessage("THIS AREA IS OFF LIMITS")
 						else
 							Gflag = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
 							PreparedStatements(1, "guild_name", player:GetGuildName(), LocId)
@@ -999,7 +999,7 @@ function TransferFlag(player, locid, go)
 	if(go:GetGUIDLow()~=GWARZ[locid].flag_id)then
 		go:Despawn()
 		player:SendBroadcastMessage("|cffcc0000error.... Phantom flag removed.|r")
-		PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
+		PreparedStatements(2, "gameobject", go:GetGUIDLow())
 		return false;
 	end
 	if(player:IsInGuild()==false)then
@@ -1027,7 +1027,7 @@ function TransferFlag(player, locid, go)
 				if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
 					player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
 					Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
-					PreparedStatements(2, "world.gameobject", go:GetGUIDLow())
+					PreparedStatements(2, "gameobject", go:GetGUIDLow())
 					SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
 					PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
 					PreparedStatements(1, "team", player:GetTeam(), locid)
@@ -1073,7 +1073,7 @@ end
 function Gwarz_Guild_Flag_Select(eventid, player, object, sender, intid, code)
 local locid = GetLocationId(player)
 	if (intid == 10) then
-		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255)
+		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255) -- attempts to add the new member at lowest(255) guild level.
 	end
 	if (intid == 11) then
 	end
