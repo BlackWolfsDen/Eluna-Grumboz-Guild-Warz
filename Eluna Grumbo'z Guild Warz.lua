@@ -258,8 +258,10 @@ local Guildname = ""..player:GetGuildName()..""
 	local yentry = 0
 	local ypigcnt = 0
 	local yvalue = 0
+	
 -- *********** CORE : Guild Member Commands ***********
 -- ****************************************************
+
 	if(player:IsInGuild()==true)then
 	
 		if(ChatCache[1]==GWCOMM[player:GetGuildName()].commands)then
@@ -705,11 +707,11 @@ local Guildname = ""..player:GetGuildName()..""
 						if(GWARZ[LocId].pig_count > ((GWCOMM["SERVER"].pig_L) * (GWARZ[LocId].farm_count-1)))then
 							player:SendBroadcastMessage("You must sell off all the pigs first before removing there housing.")
 						else	
-							if(player:GetNearestGameObject(6, GWCOMM["SERVER"].farm_id) == nil)then
+							if(player:GetNearestGameObject(10, GWCOMM["SERVER"].farm_id+GWARZ[LocId].team) == nil)then
 								player:SendBroadcastMessage("You must be closer.")
 							else
-								local farmspawnid = player:GetNearestGameObject(6, GWCOMM["SERVER"].farm_id):GetGUIDLow() -- use this to avoid ghost respawns						
-								player:GetNearestGameObject(10, (GWCOMM["SERVER"].farm_id)):Despawn()
+								local farmspawnid = player:GetNearestGameObject(10, GWCOMM["SERVER"].farm_id+GWARZ[LocId].team):GetGUIDLow() -- use this to avoid ghost respawns						
+								player:GetNearestGameObject(10, (GWCOMM["SERVER"].farm_id+GWARZ[LocId].team)):Despawn()
 								PreparedStatements(2, "gameobject", farmspawnid)
 								PreparedStatements(1, "farm_count", GWARZ[LocId].farm_count-1, LocId)
 								player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].farm_cost)
@@ -732,11 +734,11 @@ local Guildname = ""..player:GetGuildName()..""
 						if(GWARZ[LocId].guard_count > ((GWCOMM["SERVER"].guard_L) * (GWARZ[LocId].barrack_count-1)))then
 							player:SendBroadcastMessage("You must remove more guards before removing there housing.")
 						else	
-							if(player:GetNearestGameObject(6, GWCOMM["SERVER"].barrack_id) == nil)then
+							if(player:GetNearestGameObject(10, GWCOMM["SERVER"].barrack_id+GWARZ[LocId].team) == nil)then
 								player:SendBroadcastMessage("You must be closer.")
 							else
-								local barrackspawnid = player:GetNearestGameObject(6, GWCOMM["SERVER"].barrack_id):GetGUIDLow() -- use this to avoid ghost respawns						
-								player:GetNearestGameObject(10, GWCOMM["SERVER"].barrack_id):Despawn()
+								local barrackspawnid = player:GetNearestGameObject(10, GWCOMM["SERVER"].barrack_id+GWARZ[LocId].team):GetGUIDLow() -- use this to avoid ghost respawns						
+								player:GetNearestGameObject(10, GWCOMM["SERVER"].barrack_id+GWARZ[LocId].team):Despawn()
 								PreparedStatements(2, "gameobject", barrackspawnid)
 								PreparedStatements(1, "barrack_count", GWARZ[LocId].barrack_count-1, LocId)
 								player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].barrack_cost)
@@ -756,11 +758,11 @@ local Guildname = ""..player:GetGuildName()..""
 					if(GWARZ[LocId].hall_count <= 0)then
 						player:SendBroadcastMessage("Your guild does not own a hall at this location.")
 					else
-						if(player:GetNearestGameObject(6, GWCOMM["SERVER"].hall_id) == nil)then
+						if(player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team) == nil)then
 							player:SendBroadcastMessage("You must be on the 1st floor in the center of the Hall.")
 						else
-							local hallspawnid = player:GetNearestGameObject(6, GWCOMM["SERVER"].hall_id):GetGUIDLow() -- use this to avoid ghost respawns						
-							player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id):Despawn()
+							local hallspawnid = player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):GetGUIDLow() -- use this to avoid ghost respawns						
+							player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):Despawn()
 							PreparedStatements(2, "gameobject", hallspawnid)
 							PreparedStatements(1, "hall_count", GWARZ[LocId].hall_count-1, LocId)
 							player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].hall_cost)
@@ -781,7 +783,7 @@ local Guildname = ""..player:GetGuildName()..""
 						if(player:GetSelection() == nil)then
 							player:SendBroadcastMessage("You must select a pig.")
 						else
-							if(player:GetSelection():GetEntry() ~= GWCOMM["SERVER"].pig_id)then
+							if(player:GetSelection():GetEntry() ~= GWCOMM["SERVER"].pig_id+GWARZ[LocId].team)then
 								player:SendBroadcastMessage("you must select a guild pig.")
 							else
 								local pigspawnid = player:GetSelection():GetGUIDLow()
