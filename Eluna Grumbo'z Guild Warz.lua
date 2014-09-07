@@ -220,8 +220,6 @@ RegisterGuildEvent(5, Newguildgift)
 
 function PlrFaction(eventId, player)
 
-	player:RegisterEvent(pig_payz, GWCOMM["SERVER"].pig_payz_timer, 0) 
-
 	local xFaction = player:GetFaction()
 	
 	GGW[player:GetAccountId()] = {
@@ -950,6 +948,14 @@ local function pig_payz(timer, cycles, player)
 		player:SendBroadcastMessage("Requin shouts:|cffff0000Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
 	end
 end
+
+local function pig_payz_timer(eventid, player)
+
+	player:RegisterEvent(pig_payz, GWCOMM["SERVER"].pig_payz_timer, 0) 
+
+end
+
+RegisterPlayerEvent(3, pig_payz_timer)
 
 print ("Pig Payz version: "..pigpayz_version.."")
 
