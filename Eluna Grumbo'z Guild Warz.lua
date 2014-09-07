@@ -545,7 +545,7 @@ local Guildname = ""..player:GetGuildName()..""
 							if(GWARZ[LocId].pig_count < (GWARZ[LocId].farm_count * GWCOMM["SERVER"].pig_L))then
 								player:SendBroadcastMessage("you still need to finish populating your other farm.")
 							else
-								PerformIngameSpawn(2, GWCOMM["SERVER"].farm_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+								PerformIngameSpawn(2, GWCOMM["SERVER"].farm_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "farm_count", GWARZ[LocId].farm_count+1, LocId)
 								player:RemoveItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].farm_cost)
 								player:SendBroadcastMessage("|cff00cc00Congratulations Grunt "..player:GetName()..".|r")
@@ -572,7 +572,7 @@ local Guildname = ""..player:GetGuildName()..""
 							if(GWARZ[LocId].barrack_count >= GWARZ[LocId].farm_count)then
 								player:SendBroadcastMessage("You need at least 1 farm to support a single barracks.")
 							else
-								PerformIngameSpawn(2, GWCOMM["SERVER"].barrack_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+								PerformIngameSpawn(2, GWCOMM["SERVER"].barrack_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "barrack_count", GWARZ[LocId].barrack_count+1, LocId)
 								player:RemoveItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].barrack_cost)
 								player:SendBroadcastMessage("|cff00cc00Congratulations Commander "..player:GetName()..".|r")
