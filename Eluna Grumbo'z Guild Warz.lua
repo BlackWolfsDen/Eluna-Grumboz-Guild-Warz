@@ -951,8 +951,6 @@ local function pig_payz(timer, cycles, player)
 	end
 end
 
-CreateLuaEvent(Pigpay, 1800000, 0) -- fires every 30 mins.1800000
-
 print ("Pig Payz version: "..pigpayz_version.."")
 
 -- ****************************************************
