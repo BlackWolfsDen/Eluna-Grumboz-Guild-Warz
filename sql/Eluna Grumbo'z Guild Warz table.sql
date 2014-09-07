@@ -134,24 +134,24 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(38, 'pig_L', 'system setting limit how may pigs per location.', 'set pig_L 20', '6'),
 	(39, 'guard_L', 'system setting limit how many guards per location.', 'set guard_L 10', '6'),
 	(40, 'pig_payz', 'system setting how much each pig payz in copper per half hour. 10g == 100000', 'set pig_payz 100000', '6'),
-	(40, 'pig_payz_timer', 'system setting timer for pig payz.', 'set pig_payz 1800000', '6'),
-	(41, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
-	(42, 'flag_require', 'system setting switch does system require all guards dead to capture flag? default == 0 no; 1 == yes', 'set flag_require 1', '6'),
-	(43, 'Server', 'game core ID for guild ID storage of game master level commands  >>>>> DO NOT CHANGE  <<<<<', 'LOCKED', '7'),
-	(44, 'flag_id', 'game core ID for ally flag id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(45, 'farm_id', 'game core ID for guild house id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(46, 'barrack_id', 'game core ID for guild barrack id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(47, 'hall_id', 'game core ID for guild hall id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(48, 'pig_id', 'game core ID for guild pig id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(49, 'guard_id', 'game core ID for guild guard id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(50, 'x1', 'game core ID for x1 ', 'LOCKED', '7'),
-	(51, 'x2', 'game core ID for x2 ', 'LOCKED', '7'),
-	(52, 'x3', 'game core ID for x3', 'LOCKED', '7'),
-	(53, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(54, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
-	(55, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
-	(56, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
-	(57, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6');
+	(41, 'pig_payz_timer', 'system setting timer for pig payz.', 'set pig_payz 1800000', '6'),
+	(42, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
+	(43, 'flag_require', 'system setting switch does system require all guards dead to capture flag? default == 0 no; 1 == yes', 'set flag_require 1', '6'),
+	(44, 'Server', 'game core ID for guild ID storage of game master level commands  >>>>> DO NOT CHANGE  <<<<<', 'LOCKED', '7'),
+	(45, 'flag_id', 'game core ID for ally flag id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(46, 'farm_id', 'game core ID for guild house id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(47, 'barrack_id', 'game core ID for guild barrack id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(48, 'hall_id', 'game core ID for guild hall id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(49, 'pig_id', 'game core ID for guild pig id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(50, 'guard_id', 'game core ID for guild guard id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(51, 'x1', 'game core ID for x1 ', 'LOCKED', '7'),
+	(52, 'x2', 'game core ID for x2 ', 'LOCKED', '7'),
+	(53, 'x3', 'game core ID for x3', 'LOCKED', '7'),
+	(54, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(55, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
+	(56, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
+	(57, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
+	(58, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
