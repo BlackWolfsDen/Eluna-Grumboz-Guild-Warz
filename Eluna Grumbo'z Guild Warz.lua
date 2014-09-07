@@ -27,7 +27,7 @@ end
 
 local table_version = 1.70
 local core_version = 6.0
-local pigpayz_version = 1.75
+local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.05
 local Server = "SERVER"
@@ -219,6 +219,8 @@ end
 RegisterGuildEvent(5, Newguildgift)
 
 function PlrFaction(eventId, player)
+
+	player:RegisterEvent(pig_payz, GWCOMM["SERVER"].pig_payz_timer, 0) 
 
 	local xFaction = player:GetFaction()
 	
@@ -920,35 +922,32 @@ print ("Guild Warz core version: "..core_version.."")
 -- Pig Payz System -- Ty rochet2 of ac-web
 -- ****************************************************
 
-local function Payout(player)
-	local pig = 0
-	local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
-	if(Glocdb==nil)then
-		player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
-		player:SendBroadcastMessage("Zorkster says:Your guild does not own any pigs.", 0)
-		player:SendBroadcastMessage("Zorkster says:Inform Your guild master to start some farms.", 0)
-	else
-		repeat
-			local Gloc = Glocdb:GetUInt32(0)
-			local Pigcnt = GWARZ[Gloc].pig_count
-			pig = (pig+Pigcnt)
-		until Glocdb:NextRow()~=true;
-		Pigpayz=(GWCOMM["SERVER"].pig_payz*pig)
-		player:ModifyMoney(Pigpayz)
-		player:SendBroadcastMessage("DemiiGods whispers:|cff00cc00Your Guild\'s hard work pays off.|r")
-		player:SendBroadcastMessage("|cff00cc00PigPayz: "..Pigpayz / '10000'.." gold.|r")
-	end
-	return false;
-end
+local function pig_payz(timer, cycles, player)
 
-function Pigpay(event, player)
-	for _,v in ipairs(GetPlayersInWorld()) do
-		if(v:IsInWorld()==true)and(v:IsInGuild()==true)then
-			Payout(v)
+	if(player:IsInGuild() == true)then
+		local pig = 0
+		local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+
+		if(Glocdb==nil)then
+			player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
+			player:SendBroadcastMessage("Zorkster says:Your guild does not own any pigs.", 0)
+			player:SendBroadcastMessage("Zorkster says:Inform Your guild master to start some farms.", 0)
+		else
+			repeat
+				local Gloc = Glocdb:GetUInt32(0)
+				local Pigcnt = GWARZ[Gloc].pig_count
+				pig = (pig+Pigcnt)
+
+			until Glocdb:NextRow()~=true;
+
+			Pigpayz=(GWCOMM["SERVER"].pig_payz*pig)
+			player:ModifyMoney(Pigpayz)
+			player:SendBroadcastMessage("DemiiGods whispers:|cff00cc00Your Guild\'s hard work pays off.|r")
+			player:SendBroadcastMessage("|cff00cc00PigPayz: "..Pigpayz / '10000'.." gold.|r")
 		end
-		if(v:IsInWorld()==true)and(v:IsInGuild()~=true)then
-			v:SendBroadcastMessage("Requin shouts:|cffff0000Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
-		end
+		return false;
+	else
+		player:SendBroadcastMessage("Requin shouts:|cffff0000Join a guild to earn hourly rewards from Grumbo\'z Guild Warz.|r")
 	end
 end
 
