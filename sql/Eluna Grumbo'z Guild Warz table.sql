@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `pig_L` smallint(5) NOT NULL DEFAULT '20' COMMENT 'how many pigs per location.',
   `guard_L` smallint(5) NOT NULL DEFAULT '10' COMMENT 'how many guards per location.',
   `pig_payz` bigint(20) NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
+  `pig_payz_timer` bigint(20) NOT NULL DEFAULT '1800000' COMMENT 'Timer for Pig_Payz". default 1800000',
   `gift_count` tinyint(3) NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
   `flag_require` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'does capturing a flag require killing all guards? default  == 0 no ; 1 == yes',
   `Server` varchar(6) NOT NULL DEFAULT 'SERVER' COMMENT 'Do Not Touch',
