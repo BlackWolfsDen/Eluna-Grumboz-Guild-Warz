@@ -924,7 +924,7 @@ local function pig_payz(eventid, timer, cycles, player)
 
 	if(player:IsInGuild() == true)then
 		local pig = 0
-		local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+		local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."' AND `pig_count` > '0';");
 
 		if(Glocdb==nil)then
 			player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
