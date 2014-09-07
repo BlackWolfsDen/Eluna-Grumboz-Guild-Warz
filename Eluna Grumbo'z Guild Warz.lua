@@ -630,7 +630,7 @@ local Guildname = ""..player:GetGuildName()..""
 								if(GWARZ[LocId].pig_count >= (GWARZ[LocId].farm_count * GWCOMM["SERVER"].pig_L))then
 									player:SendBroadcastMessage("You require another farm before you can add any more pigs.")
 								else								
-									PerformIngameSpawn(1, GWCOMM["SERVER"].pig_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+									PerformIngameSpawn(1, GWCOMM["SERVER"].pig_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 									PreparedStatements(1, "pig_count", GWARZ[LocId].pig_count+1, LocId)
 									player:RemoveItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].pig_cost)
 									player:SendBroadcastMessage("|cff00cc00Congradulations!.|r")
