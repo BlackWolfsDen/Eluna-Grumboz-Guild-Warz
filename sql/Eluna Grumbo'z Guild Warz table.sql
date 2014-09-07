@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `barrack_id` mediumint(8) NOT NULL DEFAULT '500002' COMMENT 'Do Not Touch',
   `hall_id` mediumint(8) NOT NULL DEFAULT '500004' COMMENT 'Do Not Touch',
   `pig_id` mediumint(8) NOT NULL DEFAULT '49000' COMMENT 'Do Not Touch',
-  `guard_id` mediumint(8) NOT NULL DEFAULT '49001' COMMENT 'Do Not Touch',
+  `guard_id` mediumint(8) NOT NULL DEFAULT '49002' COMMENT 'Do Not Touch',
   `x1` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `x2` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `x3` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
