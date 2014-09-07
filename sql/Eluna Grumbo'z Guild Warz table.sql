@@ -134,6 +134,7 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(38, 'pig_L', 'system setting limit how may pigs per location.', 'set pig_L 20', '6'),
 	(39, 'guard_L', 'system setting limit how many guards per location.', 'set guard_L 10', '6'),
 	(40, 'pig_payz', 'system setting how much each pig payz in copper per half hour. 10g == 100000', 'set pig_payz 100000', '6'),
+	(40, 'pig_payz_timer', 'system setting timer for pig payz.', 'set pig_payz 1800000', '6'),
 	(41, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
 	(42, 'flag_require', 'system setting switch does system require all guards dead to capture flag? default == 0 no; 1 == yes', 'set flag_require 1', '6'),
 	(43, 'Server', 'game core ID for guild ID storage of game master level commands  >>>>> DO NOT CHANGE  <<<<<', 'LOCKED', '7'),
