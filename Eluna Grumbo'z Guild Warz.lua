@@ -920,7 +920,7 @@ print ("Guild Warz core version: "..core_version.."")
 -- Pig Payz System -- Ty rochet2 of ac-web
 -- ****************************************************
 
-local function pig_payz(timer, cycles, player)
+local function pig_payz(event, timer, cycles, player)
 
 	if(player:IsInGuild() == true)then
 		local pig = 0
