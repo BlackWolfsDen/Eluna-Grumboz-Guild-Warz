@@ -599,7 +599,7 @@ local Guildname = ""..player:GetGuildName()..""
 								player:SendBroadcastMessage("Each Hall require's 1 barracks per Hall to provide guards for defensive support.")
 								player:SendBroadcastMessage("Gotta protect your HQ.")
 							else
-								PerformIngameSpawn(2, GWCOMM["SERVER"].hall_id, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+								PerformIngameSpawn(2, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "hall_count", GWARZ[LocId].hall_count+1, LocId)
 								player:RemoveItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].hall_cost)
 								player:SendBroadcastMessage("|cff00cc00Congradulations!.|r")
