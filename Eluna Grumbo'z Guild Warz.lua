@@ -758,11 +758,11 @@ local Guildname = ""..player:GetGuildName()..""
 					if(GWARZ[LocId].hall_count <= 0)then
 						player:SendBroadcastMessage("Your guild does not own a hall at this location.")
 					else
-						if(player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team) == nil)then
-							player:SendBroadcastMessage("You must be on the 1st floor in the center of the Hall.")
+						if(player:GetNearestGameObject(45, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team) == nil)then
+							player:SendBroadcastMessage("You must be near to your hall to sell it.")
 						else
-							local hallspawnid = player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):GetGUIDLow() -- use this to avoid ghost respawns						
-							player:GetNearestGameObject(10, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):Despawn()
+							local hallspawnid = player:GetNearestGameObject(45, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):GetGUIDLow() -- use this to avoid ghost respawns						
+							player:GetNearestGameObject(45, GWCOMM["SERVER"].hall_id+GWARZ[LocId].team):RemoveFromWorld() -- :Despawn()
 							PreparedStatements(2, "gameobject", hallspawnid)
 							PreparedStatements(1, "hall_count", GWARZ[LocId].hall_count-1, LocId)
 							player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].hall_cost)
