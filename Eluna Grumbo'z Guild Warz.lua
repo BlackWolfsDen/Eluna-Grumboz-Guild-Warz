@@ -1137,8 +1137,8 @@ local LocId = GetLocationId(player)
 end
 
 
-RegisterCreatureEvent(49001, 27, Guardffa)
 RegisterCreatureEvent(49002, 27, Guardffa)
+RegisterCreatureEvent(49003, 27, Guardffa)
 
 function Guardcombat(eventid, creature, player)
 
@@ -1159,8 +1159,8 @@ function Guardcombat(eventid, creature, player)
 	end
 end
 
-RegisterCreatureEvent(49001, 1, Guardcombat)
 RegisterCreatureEvent(49002, 1, Guardcombat)
+RegisterCreatureEvent(49003, 1, Guardcombat)
 
 function Guarddied(eventid, creature, player)
 	
@@ -1185,8 +1185,8 @@ function Guarddied(eventid, creature, player)
 	creature:DespawnOrUnsummon()
 end
 
-RegisterCreatureEvent(49001, 4, Guarddied)
 RegisterCreatureEvent(49002, 4, Guarddied)
+RegisterCreatureEvent(49003, 4, Guarddied)
 
 function Guardhit(eventid, creature, attacker, damage)
 
@@ -1214,8 +1214,8 @@ function Guardhit(eventid, creature, attacker, damage)
 	end
 end
 
-RegisterCreatureEvent(49001, 9, Guardhit)
 RegisterCreatureEvent(49002, 9, Guardhit)
+RegisterCreatureEvent(49003, 9, Guardhit)
 
 function Guardkill(eventid, creature, victim)
 	
@@ -1232,8 +1232,8 @@ function Guardkill(eventid, creature, victim)
 	end
 end
 
-RegisterCreatureEvent(49001, 3, Guardkill)
 RegisterCreatureEvent(49002, 3, Guardkill)
+RegisterCreatureEvent(49003, 3, Guardkill)
 
 -- ****************************************************
 print ("PVP core: "..pvp_version.."")
