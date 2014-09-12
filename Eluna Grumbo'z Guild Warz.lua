@@ -1088,6 +1088,10 @@ RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
 -- *********** Guild Guard combat actions *************
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
 
+local function FactionReset(event, timer, cycle, player)
+	player:SetFaction(GGW[player:GetAccountId()].faction)
+end
+
 function Guardffa(eventid, creature, player)
 local LocId = GetLocationId(player)
 	
@@ -1111,12 +1115,14 @@ local LocId = GetLocationId(player)
 								player:SetFFA(1)
 								player:SetPvP(1)
 								creature:AttackStart(player)
+								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 							end
 							if(GWARZ[LocId].team==1)then -- faction 85
 								player:SetFaction(1)
 								player:SetFFA(1)
 								player:SetPvP(1)
 								creature:AttackStart(player)
+								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 							end
 						end
 					else
