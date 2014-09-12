@@ -1115,12 +1115,12 @@ local LocId = GetLocationId(player)
 					if(GWARZ[LocId].team < 2)then
 	
 						if(GWARZ[LocId].team==0)then -- faction 57 2
-							player:SetFaction(2)
+							player:SetFaction(83)
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						end
 
 						if(GWARZ[LocId].team==1)then -- faction 85 1
-							player:SetFaction(1)
+							player:SetFaction(84)
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						end
 					else
