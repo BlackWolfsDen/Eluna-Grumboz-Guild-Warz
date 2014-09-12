@@ -1065,6 +1065,7 @@ end
 RegisterGameObjectEvent(187433, 9, Hordeflag)
 
 -- *********** Guild Invite Flag Action ***********
+
 function Gwarz_Guild_Flag_Hello(eventid, player, object)
 	local locid = GetLocationId(player)
 	player:GossipClearMenu()
@@ -1072,6 +1073,7 @@ function Gwarz_Guild_Flag_Hello(eventid, player, object)
 	player:GossipMenuAddItem(1,"Nevermind.",0,11)
 	player:GossipSendMenu(1, object)
 end
+
 function Gwarz_Guild_Flag_Select(eventid, player, object, sender, intid, code)
 local locid = GetLocationId(player)
 	if (intid == 10) then
@@ -1089,10 +1091,13 @@ RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
 
 local function FactionReset(event, timer, cycle, player)
+	
 	player:SetFaction(GGW[player:GetAccountId()].faction)
+		
 end
 
-function Guardffa(eventid, creature, player)
+function PigWatch(eventid, creature, player)
+
 local LocId = GetLocationId(player)
 	
 	if(LocId == nil)then
@@ -1101,40 +1106,28 @@ local LocId = GetLocationId(player)
 	
 	if(player:GetObjectType()=="Player")then
 
-		if(player:IsInGuild()==true)then
-		
-			if(GWCOMM["SERVER"].anarchy==1)then
+		if(GWCOMM["SERVER"].anarchy==1)then
 				
+			if(player:IsInGuild()==true)then
+			
 				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 	
 					if(GWARZ[LocId].team < 2)then
 	
-						if(creature:IsWithinDistInMap(player, 45))then
-							if(GWARZ[LocId].team==0)then -- faction 57
-								player:SetFaction(2)
-								player:SetFFA(1)
-								player:SetPvP(1)
-								creature:AttackStart(player)
-								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
-							end
-							if(GWARZ[LocId].team==1)then -- faction 85
-								player:SetFaction(1)
-								player:SetFFA(1)
-								player:SetPvP(1)
-								creature:AttackStart(player)
-								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
-							end
+						if(GWARZ[LocId].team==0)then -- faction 57 2
+							player:SetFaction(2)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
+						end
+
+						if(GWARZ[LocId].team==1)then -- faction 85 1
+							player:SetFaction(1)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						end
 					else
-						player:SetFaction(GGW[player:GetAccountId()].faction)
 					end
 				else
-					player:SetFaction(GGW[player:GetAccountId()].faction)
-					player:SetFFA(1)
-					player:SetPvP(1)
 				end
 			else
-				player:SetFaction(GGW[player:GetAccountId()].faction)
 			end
 		else
 		end
@@ -1142,6 +1135,26 @@ local LocId = GetLocationId(player)
 	end
 end
 
+RegisterCreatureEvent(49000, 27, PigWatch)
+RegisterCreatureEvent(49001, 27, PigWatch)
+
+function Guardffa(eventid, creature, player)
+
+local LocId = GetLocationId(player)
+
+	if(player:GetObjectType()=="Player")then
+
+		if(player:IsInGuild()==true)then
+		
+			if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+			
+				if(creature:IsWithinDistInMap(player, 40))then
+					creature:AttackStart(player)
+				end
+			end
+		end
+	end
+end
 
 RegisterCreatureEvent(49002, 27, Guardffa)
 RegisterCreatureEvent(49003, 27, Guardffa)
