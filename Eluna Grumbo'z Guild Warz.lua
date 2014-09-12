@@ -1147,9 +1147,19 @@ local LocId = GetLocationId(player)
 		if(player:IsInGuild()==true)then
 		
 			if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
-			
+
 				if(creature:IsWithinDistInMap(player, 40))then
-					creature:AttackStart(player)
+				
+					if(GWCOMM["SERVER"].anarchy==1)then
+					
+						if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+							creature:AttackStart(player)
+						end
+					end
+					
+					if(GetTeam(player) ~= GWARZ[LocId].team)then
+						creature:AttackStart(player)
+					end
 				end
 			end
 		end
