@@ -205,11 +205,11 @@ function CreateLocation(map, area, zone)
 	return CLentry;
 end
 
-function CreateGcommands(guild)
+function CreateGcommands(guild, name)
 	local gid = guild:GetId()
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
-	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
-	WorldDBQuery("UPDATE INTO guild_warz.commands SET `guild_id` = '"..gid.."' WHERE `guild` = '"..name.."';");
+	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..name.."';");
+	PreparedStatements(3, "guild_id", gid, name)
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
 	return guild;
@@ -218,7 +218,7 @@ end
 local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version)/4)
 
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
-	CreateGcommands(name)
+	CreateGcommands(guild, name)
 	leader:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].gift_count)
 	SendWorldMessage("|cffFF0000The Guild "..name.." lead by "..leader:GetName().." has entered exsistance..!! NOW Prepair to hold your lands!!|r")
 end
@@ -269,6 +269,10 @@ local LocId = GetLocationId(player)
 	
 local Guildname = ""..player:GetGuildName()..""
 
+	if(GWCOMM[Guildname]==nil)then
+		Gcommands = CreateGcommands(player:GetGuild(), player:GetGuildName())
+	end
+	
 	if(GWCOMM[Guildname]==nil)then
 		Gcommands = CreateGcommands(player:GetGuildName())
 	end
