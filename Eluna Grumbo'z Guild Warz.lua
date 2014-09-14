@@ -1191,6 +1191,7 @@ local LocId = GetLocationId(player)
 					else
 					end
 				else
+					FactionReset(1, 1, 1, player)
 				end
 			else
 			end
