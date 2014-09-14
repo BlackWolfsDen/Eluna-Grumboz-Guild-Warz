@@ -17,13 +17,13 @@
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
 
-if(GetLuaEngine()~="ElunaEngine")then
-	print("err: "..GetLuaEngine().." Detected.\n")
-	print("!!..LOAD HALTED..?!!")
-	return false;
-else
-	print("Approved: Eluna Detected.\n")
-end
+	if(GetLuaEngine()~="ElunaEngine")then
+		print("err: "..GetLuaEngine().." Detected.\n")
+		print("!!..LOAD HALTED..?!!")
+		return false;
+	else
+		print("Approved: Eluna Detected.\n")
+	end
 
 local table_version = 1.70
 local core_version = 6.0
@@ -31,10 +31,12 @@ local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.15
 local Server = "SERVER"
+
 GWCOMM = {};
 GWARZ = {};
 GWHELP = {};
 GGW = {};
+
 local function LoadGWtable()
 
 local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
@@ -45,8 +47,8 @@ local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
 			command = Ghsql:GetString(1),
 			description = Ghsql:GetString(2),
 			example = Ghsql:GetString(3),
-			command_level = Ghsql:GetUInt32(4)
-										};
+			command_level = Ghsql:GetUInt32(4),
+						};
 		until not Ghsql:NextRow()
 	end
 
@@ -104,8 +106,8 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 			flag_timer = Gcsql:GetUInt32(47),
 			spawn_timer = Gcsql:GetUInt32(48),
 			guild_id = Gcsql:GetUInt32(49),
-			guild_guid = Gcsql:GetUInt32(50)
-			};
+			guild_guid = Gcsql:GetUInt32(50),
+						};
 		until not Gcsql:NextRow()
 	end
 
@@ -131,7 +133,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				flag_id = Gwsql:GetUInt32(14),
 				spawn_time = Gwsql:GetUInt32(15),
 				guild_id = Gwsql:GetUInt32(16),
-			};
+							};
 		until not Gwsql:NextRow()
 	end
 end
@@ -142,9 +144,11 @@ print("Guild Warz tables version: "..table_version.."")
 
 local Currencynamedb = WorldDBQuery("SELECT `name` FROM `item_template` WHERE `entry` = '"..GWCOMM["SERVER"].currency.."';");
 local Currencyname = Currencynamedb:GetString(0)
+
 -- ******************************************************
--- CORE : Guild Master/Member Commands/custom functions
+-- ************** CORE : custom functions ***************
 -- ******************************************************
+
 local function GetLocationId(player)
 	for i = 1, #GWARZ do
 		if(GWARZ[i].map_id == player:GetMapId() and GWARZ[i].area_id == player:GetAreaId() and GWARZ[i].zone_id == player:GetZoneId()) then
@@ -239,6 +243,10 @@ end
 								
 RegisterPlayerEvent(3, PlrFaction)
 
+-- ****************************************************
+-- ******************* CORE ENGINE ********************
+-- ****************************************************
+
 function GWcommands(event, player, msg, type, language)
 local k = 0
 local ChatCache = {}
@@ -250,12 +258,15 @@ local ChatCache = {}
 
 math.randomseed(tonumber(os.time()*os.time()))
 
+local guild_id = player:GetGuildId()
 local LocId = GetLocationId(player)
-
+	
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
+	
 local Guildname = ""..player:GetGuildName()..""
+
 	if(GWCOMM[Guildname]==nil)then
 		Gcommands = CreateGcommands(player:GetGuildName())
 	end
@@ -265,13 +276,12 @@ local Guildname = ""..player:GetGuildName()..""
 	local ypigcnt = 0
 	local yvalue = 0
 	
--- *********** CORE : Guild Member Commands ***********
+-- ****************************************************
+-- ************** CORE : Guild Commands ***************
 -- ****************************************************
 
 	if(player:IsInGuild()==true)then
 		
-		local guild_id = player:GetGuildId()
-	
 		if(ChatCache[1]==GWCOMM[player:GetGuildName()].commands)then
 			player:SendBroadcastMessage("*************************************")
 			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (Game Rank: "..player:GetGMRank()..")")
@@ -501,6 +511,7 @@ local Guildname = ""..player:GetGuildName()..""
 		return false;
 		end
 
+-- ****************************************************
 -- ************ CORE: Guild Master Commands ***********
 -- ****************************************************
 
@@ -679,6 +690,7 @@ local Guildname = ""..player:GetGuildName()..""
 			return false;
 			end
 		end
+
 -- ******************* Sell commands ******************
 
 		if(player:GetGuildRank() <= GWCOMM[Guildname].GLD_lvls)and(ChatCache[1] == "sell")then
@@ -838,6 +850,7 @@ local Guildname = ""..player:GetGuildName()..""
 		return false;
 		end
 		
+-- ****************************************************
 -- **************** Game Master Commands **************
 -- ****************************************************
 		
@@ -851,6 +864,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." succesfully |r|cffcc0000LOCKED.|r")
 			return false;
 			end
+		
 			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM["SERVER"].loc)then
 				PreparedStatements(1, "guild_name", Server, LocId)
 				PreparedStatements(1, "team", 2, LocId)
@@ -905,22 +919,22 @@ local Guildname = ""..player:GetGuildName()..""
 			return false;
 			end
 			
-           if(ChatCache[1] == GWCOMM["SERVER"].details_loc)then
-	            player:SendBroadcastMessage("*************************************")
-	            player:SendBroadcastMessage("|cff00cc00Location ID: "..GWARZ[LocId].entry..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Guild Name: "..GWARZ[LocId].guild_name..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Team: "..GWARZ[LocId].team..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Farm count: "..GWARZ[LocId].farm_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Barrack count: "..GWARZ[LocId].barrack_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Hall count: "..GWARZ[LocId].hall_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Pig count: "..GWARZ[LocId].pig_count..".")
-	            player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
-	            player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Guild ID: "..GWARZ[LocId].guild_id..".|r")
-	            player:SendBroadcastMessage("*************************************")
-            return false;
-            end
+			if(ChatCache[1] == GWCOMM["SERVER"].details_loc)then
+				player:SendBroadcastMessage("*************************************")
+				player:SendBroadcastMessage("|cff00cc00Location ID: "..GWARZ[LocId].entry..".|r")
+				player:SendBroadcastMessage("|cff00cc00Guild Name: "..GWARZ[LocId].guild_name..".|r")
+				player:SendBroadcastMessage("|cff00cc00Team: "..GWARZ[LocId].team..".|r")
+				player:SendBroadcastMessage("|cff00cc00Farm count: "..GWARZ[LocId].farm_count..".|r")
+				player:SendBroadcastMessage("|cff00cc00Barrack count: "..GWARZ[LocId].barrack_count..".|r")
+				player:SendBroadcastMessage("|cff00cc00Hall count: "..GWARZ[LocId].hall_count..".|r")
+				player:SendBroadcastMessage("|cff00cc00Pig count: "..GWARZ[LocId].pig_count..".")
+				player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
+				player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
+				player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
+				player:SendBroadcastMessage("|cff00cc00Guild ID: "..GWARZ[LocId].guild_id..".|r")
+				player:SendBroadcastMessage("*************************************")
+			return false;
+			end
 		end
 	end
 end
@@ -936,6 +950,7 @@ print ("Guild Warz core version: "..core_version.."")
 local function pig_payz(eventid, timer, cycles, player)
 
 	if(player:IsInGuild() == true)then
+		
 		local pig = 0
 		local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."' AND `pig_count` > '0';");
 
@@ -973,12 +988,15 @@ RegisterPlayerEvent(3, pig_payz_timer)
 print ("Pig Payz version: "..pigpayz_version.."")
 
 -- ****************************************************
--- Guild Warz teleporter system -- a mild mutation of Grandelf1's guild teleporter
+-- ********** Guild Warz teleporter system ************
+-- ** a mild mutation of Grandelf1's guild teleporter *
 -- ****************************************************
 
 function Guildteleport(event, player, message, type, language)
-	local ChatMsg = GWCOMM[player:GetGuildName()].tele
-	local startpos, endpos = string.find(message, ChatMsg)
+
+local ChatMsg = GWCOMM[player:GetGuildName()].tele
+local startpos, endpos = string.find(message, ChatMsg)
+
 	if(startpos == 1) then
 		local text = message:gsub(ChatMsg, "")
 		if(player:IsInGuild()==true)then
@@ -1004,10 +1022,11 @@ RegisterPlayerEvent(21, Guildteleport)
 print("Teleporter version: "..tele_version.."")
 
 -- ****************************************************
--- GUILD WARZ Action System
+-- *************** GUILD WARZ PvP System **************
 -- ****************************************************
 
 -- ************* Guild Warz Flag actions **************
+
 function TransferFlag(player, locid, go)
 	if(go:GetGUIDLow()~=GWARZ[locid].flag_id)then
 		go:Despawn()
@@ -1015,6 +1034,7 @@ function TransferFlag(player, locid, go)
 		PreparedStatements(2, "gameobject", go:GetGUIDLow())
 		return false;
 	end
+	
 	if(player:IsInGuild()==false)then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 		player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
@@ -1022,11 +1042,13 @@ function TransferFlag(player, locid, go)
 		Gwarz_Guild_Flag_Hello(1, player, go)
 		return false;
 	end
+	
 	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
 		player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
 		return false;
 	end
+	
 	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
 
 		if(GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer > GetGameTime())and(GWCOMM["SERVER"].flag_timer==1)then
@@ -1105,7 +1127,6 @@ RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
 local function FactionReset(event, timer, cycle, player)
 	
 	player:SetFaction(GGW[player:GetAccountId()].faction)
-		
 end
 
 function PigWatch(eventid, creature, player)
