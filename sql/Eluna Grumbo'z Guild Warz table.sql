@@ -154,7 +154,9 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(55, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
 	(56, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
 	(57, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
-	(58, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6');
+	(58, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6'),
+	(1, 'guild_id', 'Guild id for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
+	(1, 'guild_guid', 'Guild GUIIDLow for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
