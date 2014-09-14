@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'when a flag spawns there is a no-tag timer if set to 1 based on s_timer.',
   `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'timer length for no-tag flag timer in seconds. 5 minutes = 300.',
   `guild_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild id',
+  `guild_invite` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'guild invite no/yes == 0/1 default yes == 1',
  PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -97,7 +98,7 @@ DELETE FROM `help`;
 /*!40000 ALTER TABLE `help` DISABLE KEYS */;
 INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
-	(2, 'commands', 'produces a list of accessible commands by level.', 'set comm', '1'),
+	(2, 'commands', 'produces a list of accessible commands by level.', 'set commands comm', '1'),
 	(3, 'info_loc', 'produces a basic description of current location.', 'set info_loc look', '1'),
 	(4, 'list_loc', 'produces a list of all locations own by player guild sshowing the loocation id, houses, guards, pigs, and value then provides a tally at the end.', 'set list_loc lands', '1'),
 	(5, 'tele', 'allows guild members to teleport to guild location flags using location id\'s.', 'set tele goto', '1'),
@@ -155,6 +156,7 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(57, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
 	(58, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6'),
 	(59, 'guild_id', 'Guild id for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
+	(60, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4'),
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
