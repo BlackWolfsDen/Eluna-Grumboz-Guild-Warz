@@ -107,7 +107,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 			flag_timer = Gcsql:GetUInt32(47),
 			spawn_timer = Gcsql:GetUInt32(48),
 			guild_id = Gcsql:GetUInt32(49),
-			guild_guid = Gcsql:GetUInt32(50),
+			guild_invite = Gcsql:GetUInt32(50),
 						};
 		until not Gcsql:NextRow()
 	end
@@ -323,6 +323,12 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("*************************************")
 			end
 			
+			if(player:GetGuildRank()==0)then
+				player:SendBroadcastMessage("Guild Master settings:")
+				player:SendBroadcastMessage("|cff00cc00"..GWCOMM[Guildname].guild_invite.."      guild invite system. 0 = off 1 = on.|r")
+				player:SendBroadcastMessage("*************************************")
+			end
+
 			if(player:GetGuildRank()==0)or(player:GetGMRank()==GWCOMM["SERVER"].GM_admin)then
 				player:SendBroadcastMessage("Guild Master/Game Master/Admin special Commands:")
 				player:SendBroadcastMessage("|cff00cc00"..GWCOMM["SERVER"].command_set.."      used to modify commands and settings.|r")
@@ -1034,11 +1040,18 @@ function TransferFlag(player, locid, go)
 	end
 	
 	if(player:IsInGuild()==false)then
-		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
-		player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
-		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
-		Gwarz_Guild_Flag_Hello(1, player, go)
+		
+		if(GWARZ[locid].guild_invite == 1)then
+			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
+			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
+			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
+			Gwarz_Guild_Flag_Hello(1, player, go)
+		else
+			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
+			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
+			player:SendBroadcastMessage("|cff00cc00The Guild Master has disabled the guild\'s invite system.|r")
 		return false;
+		end
 	end
 	
 	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
