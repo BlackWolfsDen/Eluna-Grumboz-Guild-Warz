@@ -1041,7 +1041,7 @@ function TransferFlag(player, locid, go)
 	
 	if(player:IsInGuild()==false)then
 		
-		if(GWARZ[locid].guild_invite == 1)then
+		if(GWCOMM[GWARZ[locid].guild_name].guild_invite == 1)then
 			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
