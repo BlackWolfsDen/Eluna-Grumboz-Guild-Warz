@@ -333,9 +333,9 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(player:GetGuildRank()==0)then
 				player:SendBroadcastMessage("Guild Master settings:")
-				player:SendBroadcastMessage("Guild Buy. minimum required guild rank: "..GWCOMM[player:GetGuildName()].GLD_lvlb.."")
-				player:SendBroadcastMessage("Guild Sell. minimum required guild rank: "..GWCOMM[player:GetGuildName()].GLD_lvls.."")
-				player:SendBroadcastMessage("|cff00cc00guild invite system: "..GWCOMM[Guildname].guild_invite..".          0 = off 1 = on.|r")
+				player:SendBroadcastMessage("|cff00cc00Guild Buy. minimum required guild rank:|r "..GWCOMM[player:GetGuildName()].GLD_lvlb.."")
+				player:SendBroadcastMessage("|cff00cc00Guild Sell. minimum required guild rank:|r "..GWCOMM[player:GetGuildName()].GLD_lvls.."")
+				player:SendBroadcastMessage("|cff00cc00guild invite system: |r"..GWCOMM[Guildname].guild_invite..".         |cff00cc00 0 = off 1 = on.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 
