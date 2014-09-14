@@ -99,7 +99,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(5, 'tele', 'allows guild members to teleport to guild location flags using location id\'s.', 'set tele goto', '1'),
 	(6, 'version', 'allows player to view the system versions.', 'set version intelect', '1'),
 	(7, 'loc', 'allows guild members to purchase locations based on its value.', 'LOCKED', '4'),
-	(8, 'farm', 'allows guild members to purchase houses for guild locations.', 'set farm mudhole', '4'),
+	(8, 'farm', 'allows guild members to purchase farms to support pigs for guild locations.', 'set farm mudhole', '4'),
 	(9, 'barrack', 'allows guild members to purchasebarracks to produce guards for guild locations.', 'LOCKED', '4'),
 	(10, 'hall', 'allows guild members to purchase a guild hall for guild locations.', 'LOCKED', '4'),
 	(11, 'pig', 'allows guild members to purchase guild pigs for guild locations.', 'LOCKED', '4'),
