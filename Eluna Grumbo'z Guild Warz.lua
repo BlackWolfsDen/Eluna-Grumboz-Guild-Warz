@@ -26,7 +26,7 @@ print("Grumbo'z Guild Warz System Loading:\n")
 	end
 
 local table_version = 1.75
-local core_version = 6.25
+local core_version = 6.30
 local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.25
@@ -213,9 +213,6 @@ function CreateGcommands(guild)
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
 	return guild;
-end
-
-local function SendGuildInvite(player, guild_name, guild_id)
 end
 
 local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version)/4)
