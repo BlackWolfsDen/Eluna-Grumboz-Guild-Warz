@@ -1297,6 +1297,9 @@ RegisterCreatureEvent(49002, 3, Guardkill)
 RegisterCreatureEvent(49003, 3, Guardkill)
 
 -- ****************************************************
+-- ******************** End OF Line ******************* 
+-- ****************************************************
+
 print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
 print("-----------------------------------\n")
