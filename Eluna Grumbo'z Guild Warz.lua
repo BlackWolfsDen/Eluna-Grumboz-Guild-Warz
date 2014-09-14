@@ -1042,14 +1042,17 @@ function TransferFlag(player, locid, go)
 	if(player:IsInGuild()==false)then
 		
 		if(GWCOMM[GWARZ[locid].guild_name].guild_invite == 1)then
+			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System:|r")
 			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
 			Gwarz_Guild_Flag_Hello(1, player, go)
 		else
-			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
-			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
-			player:SendBroadcastMessage("|cff00cc00The Guild Master has disabled the guild\'s invite system.|r")
+			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System:|r")
+			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
+			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
+			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
+			player:SendBroadcastMessage("|cff00cc00This Guild Master has disabled the guild\'s invite system.|r")
 		return false;
 		end
 	end
