@@ -325,7 +325,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(player:GetGuildRank()==0)then
 				player:SendBroadcastMessage("Guild Master settings:")
-				player:SendBroadcastMessage("|cff00cc00"..GWCOMM[Guildname].guild_invite.."      guild invite system. 0 = off 1 = on.|r")
+				player:SendBroadcastMessage("|cff00cc00guild invite system: "..GWCOMM[Guildname].guild_invite..".          0 = off 1 = on.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 
