@@ -25,11 +25,12 @@ print("Grumbo'z Guild Warz System Loading:\n")
 		print("Approved: Eluna Detected.\n")
 	end
 
-local table_version = 1.70
-local core_version = 6.0
+local table_version = 1.75
+local core_version = 6.25
 local pigpayz_version = 2.50
 local tele_version = 1.50
-local pvp_version = 4.15
+local pvp_version = 4.25
+
 local Server = "SERVER"
 
 GWCOMM = {};
