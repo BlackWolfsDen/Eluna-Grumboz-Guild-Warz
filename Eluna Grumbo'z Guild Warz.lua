@@ -347,20 +347,20 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 			
 			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvlb)or(player:GetGMRank()>=GWCOMM["SERVER"].GM_minimum)then
-				player:SendBroadcastMessage("Prices")
-				player:SendBroadcastMessage("|cff00cc00Zone price: "..GWCOMM["SERVER"].loc_cost.." base location price.|r")
-				player:SendBroadcastMessage("|cff00cc00Farm price: "..GWCOMM["SERVER"].farm_cost..".|r")
-				player:SendBroadcastMessage("|cff00cc00Barracks price: "..GWCOMM["SERVER"].barrack_cost..".|r")
-				player:SendBroadcastMessage("|cff00cc00Hall price: "..GWCOMM["SERVER"].hall_cost..".|r")
-				player:SendBroadcastMessage("|cff00cc00Pig price: "..GWCOMM["SERVER"].pig_cost..".|r")
-				player:SendBroadcastMessage("|cff00cc00Guard price: "..GWCOMM["SERVER"].guard_cost.." disposable.|r")
+				player:SendBroadcastMessage("Prices in "..Currencyname.."'s")
+				player:SendBroadcastMessage("|cff00cc00Zone price:|r "..GWCOMM["SERVER"].loc_cost.."|cff00cc00 base location price.|r")
+				player:SendBroadcastMessage("|cff00cc00Farm price:|r "..GWCOMM["SERVER"].farm_cost.."")
+				player:SendBroadcastMessage("|cff00cc00Barracks price:|r "..GWCOMM["SERVER"].barrack_cost.."")
+				player:SendBroadcastMessage("|cff00cc00Hall price:|r "..GWCOMM["SERVER"].hall_cost.."")
+				player:SendBroadcastMessage("|cff00cc00Pig price:|r "..GWCOMM["SERVER"].pig_cost.."")
+				player:SendBroadcastMessage("|cff00cc00Guard price:|r "..GWCOMM["SERVER"].guard_cost.."|cff00cc00 disposable.|r")
 				player:SendBroadcastMessage("*************************************")
 				player:SendBroadcastMessage("Limits")
-				player:SendBroadcastMessage("|cff00cc00Farm limit: "..GWCOMM["SERVER"].farm_L.." per location.|r")
-				player:SendBroadcastMessage("|cff00cc00Pig limit: "..GWCOMM["SERVER"].pig_L.." per farm.|r")
-				player:SendBroadcastMessage("|cff00cc00Barrack limit: "..GWCOMM["SERVER"].barrack_L.." per farm.|r")
-				player:SendBroadcastMessage("|cff00cc00Guard limit: "..GWCOMM["SERVER"].guard_L.." per barrack.|r")
-				player:SendBroadcastMessage("|cff00cc00Hall limit: "..GWCOMM["SERVER"].hall_L.." per location.|r")
+				player:SendBroadcastMessage("|cff00cc00Farm limit:|r "..GWCOMM["SERVER"].farm_L.."|cff00cc00 per location.|r")
+				player:SendBroadcastMessage("|cff00cc00Pig limit:|r "..GWCOMM["SERVER"].pig_L.."|cff00cc00 per farm.|r")
+				player:SendBroadcastMessage("|cff00cc00Barrack limit:|r "..GWCOMM["SERVER"].barrack_L.."|cff00cc00 per farm.|r")
+				player:SendBroadcastMessage("|cff00cc00Guard limit:|r "..GWCOMM["SERVER"].guard_L.."|cff00cc00 per barrack.|r")
+				player:SendBroadcastMessage("|cff00cc00Hall limit:|r "..GWCOMM["SERVER"].hall_L.."|cff00cc00 per location.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 			
@@ -379,14 +379,14 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00lock "..GWCOMM["SERVER"].loc.."         -locks a location from purchase.|r")
 				player:SendBroadcastMessage("*************************************")
 				player:SendBroadcastMessage("ADMIN settings")
-				player:SendBroadcastMessage("|cff00cc00ADMIN Level Access: "..GWCOMM["SERVER"].GM_admin.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Minimum GM Level Access: "..GWCOMM["SERVER"].GM_minimum.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Pig Payz: "..GWCOMM["SERVER"].pig_payz.." copper.|r")
-				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." .|r")
-				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag = "..GWCOMM["SERVER"].flag_timer.." .|r")
-				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag-Timer = "..GWCOMM["SERVER"].spawn_timer.." .|r")
+				player:SendBroadcastMessage("|cff00cc00ADMIN Level Access:|r "..GWCOMM["SERVER"].GM_admin.."")
+				player:SendBroadcastMessage("|cff00cc00Minimum GM Level Access:|r "..GWCOMM["SERVER"].GM_minimum.."")
+				player:SendBroadcastMessage("|cff00cc00Pig Payz:|r "..GWCOMM["SERVER"].pig_payz.."|cff00cc00 copper.|r")
+				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount:|r "..GWCOMM["SERVER"].gift_count.."")
+				player:SendBroadcastMessage("|cff00cc00Flag require:|r "..GWCOMM["SERVER"].flag_require.."")
+				player:SendBroadcastMessage("|cff00cc00Anarchy:|r "..GWCOMM["SERVER"].anarchy.."")
+				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag:|r "..GWCOMM["SERVER"].flag_timer.."")
+				player:SendBroadcastMessage("|cff00cc00No-Tag-Flag-Timer:|r "..GWCOMM["SERVER"].spawn_timer.."")
 				player:SendBroadcastMessage("*************************************")
 			end
 		return false;
@@ -394,12 +394,12 @@ local Guildname = ""..player:GetGuildName()..""
 		
 		if(ChatCache[1]==GWCOMM[Guildname].info_loc)then
 			player:SendBroadcastMessage("*************************************")
-			player:SendBroadcastMessage("|cff00cc00Loc ID: "..GWARZ[LocId].entry..".|r")
-			player:SendBroadcastMessage("|cff00cc00Owner: "..GWARZ[LocId].guild_name..".|r")
-			player:SendBroadcastMessage("|cff00cc00Farms: "..GWARZ[LocId].farm_count.."|r")
-			player:SendBroadcastMessage("|cff00cc00Hall: "..GWARZ[LocId].hall_count.."|r")
-			player:SendBroadcastMessage("|cff00cc00pigs: "..GWARZ[LocId].pig_count.."|r")
-			player:SendBroadcastMessage("|cff00cc00Value: "..Zoneprice.." "..Currencyname.."'s.|r")
+			player:SendBroadcastMessage("|cff00cc00Loc ID:|r "..GWARZ[LocId].entry.."")
+			player:SendBroadcastMessage("|cff00cc00Owner:|r "..GWARZ[LocId].guild_name.."")
+			player:SendBroadcastMessage("|cff00cc00Farms:|r "..GWARZ[LocId].farm_count.."")
+			player:SendBroadcastMessage("|cff00cc00Hall:|r "..GWARZ[LocId].hall_count.."")
+			player:SendBroadcastMessage("|cff00cc00pigs:|r "..GWARZ[LocId].pig_count.."")
+			player:SendBroadcastMessage("|cff00cc00Value:|r "..Zoneprice.."|cff00cc00 "..Currencyname.."'s.|r")
 			
 			if(GWARZ[LocId].team==0)then
 				player:SendBroadcastMessage("|cff00cc00Faction: Alliance.|r")
@@ -417,7 +417,7 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 
 			if(GWARZ[LocId].team==3)then
-				player:SendBroadcastMessage("|cff00cc00Faction: LOCKED.|r")
+				player:SendBroadcastMessage("|cff00cc00Faction:|r LOCKED")
 				player:SendBroadcastMessage("*************************************")
 			end
 			return false;
