@@ -102,7 +102,9 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 			command_set = Gcsql:GetString(45),
 			anarchy = Gcsql:GetUInt32(46),			
 			flag_timer = Gcsql:GetUInt32(47),
-			spawn_timer = Gcsql:GetUInt32(48)			
+			spawn_timer = Gcsql:GetUInt32(48),
+			guild_id = Gcsql:GetUInt32(49),
+			guild_guid = Gcsql:GetUInt32(50)
 			};
 		until not Gcsql:NextRow()
 	end
@@ -128,6 +130,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 				guard_count = Gwsql:GetUInt32(13),
 				flag_id = Gwsql:GetUInt32(14),
 				spawn_time = Gwsql:GetUInt32(15),
+				guild_id = Gwsql:GetUInt32(16),
 			};
 		until not Gwsql:NextRow()
 	end
@@ -198,8 +201,10 @@ function CreateLocation(map, area, zone)
 end
 
 function CreateGcommands(guild)
+	local gid = guild:GetId()
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
 	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
+	WorldDBQuery("UPDATE INTO guild_warz.commands SET `guild_id` = '"..gid.."' WHERE `guild` = '"..name.."';");
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
 	return guild;
@@ -520,6 +525,7 @@ local Guildname = ""..player:GetGuildName()..""
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
 							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
+							PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
 							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
@@ -1039,6 +1045,7 @@ function TransferFlag(player, locid, go)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "flag_id", Nflag, locid)
 					PreparedStatements(1, "fs_time", GetGameTime(), locid)
+					PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
 				end
 			end
 		end
