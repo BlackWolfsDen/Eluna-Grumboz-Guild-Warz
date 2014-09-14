@@ -68,7 +68,9 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'when a flag spawns there is a no-tag timer if set to 1 based on s_timer.',
   `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'timer length for no-tag flag timer in seconds. 5 minutes = 300.',
-  PRIMARY KEY (`guild`),
+  `guild_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild id',
+  `guildguid` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild guid low',
+ PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
