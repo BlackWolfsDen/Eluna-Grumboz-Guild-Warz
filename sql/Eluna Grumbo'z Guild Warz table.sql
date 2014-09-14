@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'when a flag spawns there is a no-tag timer if set to 1 based on s_timer.',
   `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'timer length for no-tag flag timer in seconds. 5 minutes = 300.',
   `guild_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild id',
-  `guild_guid` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild guid low',
  PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -156,7 +155,6 @@ INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) 
 	(57, 'f_timer', 'game core setting allows a no-tag-timer to be applied to a flag when it spawns. 0 = off::1 = on ', 'set f_timer 1', '6'),
 	(58, 's_timer', 'game core setting. time amount for no-tag-timer. value in seconds. 5 minutes = 300 seconds.', 'set s_timer 300', '6'),
 	(59, 'guild_id', 'Guild id for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
-	(60, 'guild_guid', 'Guild GUIIDLow for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
@@ -179,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) NOT NULL DEFAULT '0',
   `fs_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
