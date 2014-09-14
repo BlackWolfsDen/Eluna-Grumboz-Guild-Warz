@@ -234,8 +234,12 @@ function PlrFaction(eventId, player)
 				};
 			
 	if(player:GetGuildName())then
+		
 		local Guildname = ""..player:GetGuildName()..""
-		player:SendBroadcastMessage("|cff00cc00Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+
+			if(GWCOMM[Guildname])then
+				player:SendBroadcastMessage("|cff00cc00Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+			end
 	end
 end
 								
@@ -1141,6 +1145,14 @@ RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
 local function FactionReset(event, timer, cycle, player)
 	
 	player:SetFaction(GGW[player:GetAccountId()].faction)
+end
+
+local function GetTeam(player)
+	if(player:IsAlliance()==true)then
+		return 0;
+	else
+		return 1;
+	end
 end
 
 function PigWatch(eventid, creature, player)
