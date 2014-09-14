@@ -1055,13 +1055,14 @@ function TransferFlag(player, locid, go)
 			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
 			Gwarz_Guild_Flag_Hello(1, player, go)
+			return false;
 		else
 			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System:|r")
 			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r")
 			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r")
 			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
 			player:SendBroadcastMessage("|cff00cc00This Guild Master has disabled the guild\'s invite system.|r")
-		return false;
+			return false;
 		end
 	end
 	
@@ -1071,7 +1072,7 @@ function TransferFlag(player, locid, go)
 		return false;
 	end
 	
-	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
+	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(player:IsInGuild()==true)and(GWCOMM["SERVER"].anarchy==1))then
 
 		if(GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer > GetGameTime())and(GWCOMM["SERVER"].flag_timer==1)then
 			player:SendBroadcastMessage("|cffff0000!!..Cooldown Timer in Affect..!!|r")
