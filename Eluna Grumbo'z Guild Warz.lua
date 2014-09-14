@@ -251,6 +251,7 @@ local ChatCache = {}
 math.randomseed(tonumber(os.time()*os.time()))
 
 local LocId = GetLocationId(player)
+
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
@@ -268,6 +269,8 @@ local Guildname = ""..player:GetGuildName()..""
 -- ****************************************************
 
 	if(player:IsInGuild()==true)then
+		
+		local guild_id = player:GetGuildId()
 	
 		if(ChatCache[1]==GWCOMM[player:GetGuildName()].commands)then
 			player:SendBroadcastMessage("*************************************")
@@ -525,7 +528,7 @@ local Guildname = ""..player:GetGuildName()..""
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
 							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
-							PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
+							PreparedStatements(1, "guild_id", guild_id, LocId)
 							player:RemoveItem(GWCOMM["SERVER"].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
@@ -695,6 +698,7 @@ local Guildname = ""..player:GetGuildName()..""
 						PreparedStatements(1, "team", 2, LocId)
 						PreparedStatements(1, "flag_id", 0, LocId)
 						PreparedStatements(1, "fs_time", 0, LocId)
+						PreparedStatements(1, "guild_id", 0, LocId)
 						player:AddItem(GWCOMM["SERVER"].currency, Zoneprice)
 						player:SendBroadcastMessage("|cff00cc00!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r")
 					end
@@ -913,6 +917,7 @@ local Guildname = ""..player:GetGuildName()..""
 	            player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
 	            player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
 	            player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
+	            player:SendBroadcastMessage("|cff00cc00Guild ID: "..GWARZ[LocId].guild_id..".|r")
 	            player:SendBroadcastMessage("*************************************")
             return false;
             end
@@ -925,7 +930,7 @@ RegisterPlayerEvent(21, GWcommands)
 print ("Guild Warz core version: "..core_version.."")
 
 -- ****************************************************
--- Pig Payz System -- Ty rochet2 of ac-web
+-- Pig Payz System -- Ty rochet2 of EmuDevs.com
 -- ****************************************************
 
 local function pig_payz(eventid, timer, cycles, player)
