@@ -432,7 +432,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(Glocdb~=nil)then
 				player:SendBroadcastMessage("**********************************************************************")
-				player:SendBroadcastMessage("|cff00cc00LOCid:     farm:     barracks:     Hall:     Guards:     Pigs:          Zone value:|r")
+				player:SendBroadcastMessage("|cff00cc00Loc ID:     farm:     barracks:     Hall:     Guards:     Pigs:          Zone value:|r")
 				
 				repeat
 					local Gloc = Glocdb:GetUInt32(0)
