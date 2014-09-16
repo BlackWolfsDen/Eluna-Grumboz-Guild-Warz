@@ -417,7 +417,7 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 
 			if(GWARZ[LocId].team==3)then
-				player:SendBroadcastMessage("|cff00cc00Faction:|r LOCKED")
+				player:SendBroadcastMessage("|cff00cc00Faction:|r |cffFF0000LOCKED|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 			return false;
