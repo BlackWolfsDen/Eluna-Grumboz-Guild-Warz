@@ -927,14 +927,14 @@ local Guildname = ""..player:GetGuildName()..""
 
 			if((ChatCache[1]=="spawn")and(ChatCache[2]=="flag"))then
 				if(GWARZ[LocId].team >= 2)then
-					player:SendBroadcastMessage("|cff00cc00The Server Owns This Land. !! NO NEW FLAG SPAWNED !!|r")
+					player:SendBroadcastMessage("|cffFF0000The Server controls This Land. !! NO NEW FLAG SPAWNED !!|r")
 				else
 					GMFlagid = PerformIngameSpawn(2, GWCOMM["SERVER"].flag_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow() -- no flag spawns +GWARZ[LocId].Team
 					PreparedStatements(1, "flag_id", GMFlagid, LocId)
 					PreparedStatements(1, "fs_time", GMFlagid, LocId)
 					player:SendBroadcastMessage("|cff00cc00New flag spawned for Guild Warz location: "..GWARZ[LocId].entry.."|r")
-				return false;
 				end
+			return false;
 			end
 			
 			if(ChatCache[1] == GWCOMM["SERVER"].details_loc)then
