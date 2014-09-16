@@ -374,7 +374,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00reset "..GWCOMM["SERVER"].hall.."          -Resets location hall count to 0.|r")
 				player:SendBroadcastMessage("|cff00cc00reset "..GWCOMM["SERVER"].pig.."          -Resets location pig count to 0.|r")
 				player:SendBroadcastMessage("|cff00cc00reset "..GWCOMM["SERVER"].guard.."          -Resets location guard count to 0.|r")
-				player:SendBroadcastMessage("|cff00cc00"..GWCOMM["SERVER"].respawn_flag.."         -Spawns new flag if current|r")
+				player:SendBroadcastMessage("|cff00cc00spawn "..GWCOMM["SERVER"].respawn_flag.."         -Spawns new flag if current|r")
 				player:SendBroadcastMessage("|cff00cc00                         flag is missing.|r") 
 				player:SendBroadcastMessage("|cff00cc00lock "..GWCOMM["SERVER"].loc.."         -locks a location from purchase.|r")
 				player:SendBroadcastMessage("*************************************")
