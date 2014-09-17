@@ -1177,28 +1177,23 @@ local LocId = GetLocationId(player)
 	
 	if(player:GetObjectType()=="Player")then
 
-		if(GWCOMM["SERVER"].anarchy==1)then
-				
-			if(player:IsInGuild()==true)then
-			
-				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+		if(player:IsInGuild()==true)then
+
+			if(GetTeam(player)~=GWARZ[LocId].team)or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
 	
-					if(GWARZ[LocId].team < 2)then
-	
-						if(creature:IsWithinDistInMap(player, 40))then
-							
-							if(GWARZ[LocId].team==0)then -- ally faction 84 team 0 ::  horde faction 83 team 1
-								player:SetFaction(83)
-								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
-							else
-								player:SetFaction(84)
-								local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
-							end
+				if(GWARZ[LocId].team < 2)then
+
+					if(creature:IsWithinDistInMap(player, 40))then
+						
+						if(GWARZ[LocId].team==0)then -- ally faction 84 team 0 ::  horde faction 83 team 1
+							player:SetFaction(83)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
+						else
+							player:SetFaction(84)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						end
-					else
 					end
 				else
-					FactionReset(1, 1, 1, player)
 				end
 			else
 			end
@@ -1215,27 +1210,37 @@ function Guardffa(eventid, creature, player)
 
 local LocId = GetLocationId(player)
 
+	if(LocId == nil)then
+		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
+	end
+
 	if(player:GetObjectType()=="Player")then
 
 		if(player:IsInGuild()==true)then
-		
-			if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 
-				if(creature:IsWithinDistInMap(player, 40))then
-				
-					if(GWCOMM["SERVER"].anarchy==1)then
-					
-						if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+			if(GetTeam(player)~=GWARZ[LocId].team)or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
+	
+				if(GWARZ[LocId].team < 2)then
+
+					if(creature:IsWithinDistInMap(player, 40))then
+						
+						if(GWARZ[LocId].team==0)then -- ally faction 84 team 0 ::  horde faction 83 team 1
+							player:SetFaction(83)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
+							creature:AttackStart(player)
+						else
+							player:SetFaction(84)
+							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 							creature:AttackStart(player)
 						end
 					end
-					
-					if(GetTeam(player) ~= GWARZ[LocId].team)then
-						creature:AttackStart(player)
-					end
+				else
 				end
+			else
 			end
+		else
 		end
+	else
 	end
 end
 
