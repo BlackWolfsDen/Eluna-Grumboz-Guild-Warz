@@ -13,6 +13,7 @@
 -- *b* Please Do Not Remove any of the credits ***
 -- ****** or attempt to repost as your own **2****
 -- ***o********************************0**********
+-- **************** First Public *****************
 -- *********** release date 03-10-2013 ***********
 -- ***********************************************
 
@@ -43,6 +44,7 @@ GGW = {};
 local function LoadGWtable()
 
 local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
+
 	if(Ghsql)then
 		repeat
 		GWHELP[Ghsql:GetUInt32(0)] = {
@@ -56,6 +58,7 @@ local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
 	end
 
 local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
+
 	if(Gcsql)then
 		repeat
 		GWCOMM[Gcsql:GetString(0)] = {
