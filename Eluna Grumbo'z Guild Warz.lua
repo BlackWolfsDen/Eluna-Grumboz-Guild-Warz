@@ -20,7 +20,9 @@
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
 
-	if(GetLuaEngine()~="ElunaEngine")then
+local start = os.clock()
+
+if(GetLuaEngine()~="ElunaEngine")then
 		print("err: "..GetLuaEngine().." Detected.\n")
 		print("!!..LOAD HALTED..?!!")
 		return false;
@@ -1346,4 +1348,6 @@ RegisterCreatureEvent(49003, 3, Guardkill)
 
 print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
+local duration = (string.format("Load Time: %0.03f seconds.", os.clock() - start));
+print(duration)
 print("-----------------------------------\n")
