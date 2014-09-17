@@ -1350,4 +1350,4 @@ print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
 local duration = (string.format("Load Time: %0.03f seconds.", os.clock() - start));
 print(duration)
-print("-----------------------------------\n")
+print("-----------------------------------\n") 
