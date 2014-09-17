@@ -148,8 +148,7 @@ LoadGWtable()
 
 print("Guild Warz tables version: "..table_version.."")
 
-local Currencynamedb = WorldDBQuery("SELECT `name` FROM `item_template` WHERE `entry` = '"..GWCOMM["SERVER"].currency.."';");
-local Currencyname = Currencynamedb:GetString(0)
+local Currencyname = GetItemLink(GWCOMM["SERVER"].currency)
 
 -- ******************************************************
 -- ************** CORE : custom functions ***************
