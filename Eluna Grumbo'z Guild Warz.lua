@@ -11,7 +11,7 @@
 -- ************* TRINITY/ELUNA ONLY *t************
 -- *♠*******************4***********************♠*
 -- *b* Please Do Not Remove any of the credits ***
--- ****** or attempt to repost as your own **2****
+-- **** and/or attempt to release as your own **2*
 -- ***o******************©*************0**********
 -- **************** First Public *****************
 -- *********** release date 03-10-2013 ***********
