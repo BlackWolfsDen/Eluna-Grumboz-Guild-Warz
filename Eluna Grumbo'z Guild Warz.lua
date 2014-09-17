@@ -311,22 +311,17 @@ local Guildname = ""..player:GetGuildName()..""
 			if(player:GetGuildRank() <= GWCOMM[player:GetGuildName()].GLD_lvlb)then
 				player:SendBroadcastMessage("(buy) Guild Master level Commands:Rank: "..GWCOMM[player:GetGuildName()].GLD_lvlb.." access.")
 				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].loc.."         -purchase area.|r")
-				player:SendBroadcastMessage("|cff00cc00                            base price is "..GWCOMM["SERVER"].loc_cost.." "..Currencyname..".|r")
-				player:SendBroadcastMessage("|cff00cc00                            a farm and pigs will change the value.|r")
 				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].farm.."       -purchase a guild farm.|r")
 				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].barrack.."       -purchase a barracks for guards.|r")
 				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].hall.."       -purchase a guild hall.|r")
-				player:SendBroadcastMessage("|cff00cc00                            for "..GWCOMM["SERVER"].farm_cost.." "..Currencyname.."'s.|r")
 				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].pig.."           -purchase a pig.|r")
-				player:SendBroadcastMessage("|cff00cc00                           for "..GWCOMM["SERVER"].pig_cost.." "..Currencyname..".|r")
-				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].guard.."       -purchase guard.")
-				player:SendBroadcastMessage("|cff00cc00                           for "..GWCOMM["SERVER"].guard_cost.." "..Currencyname..".|r")
+				player:SendBroadcastMessage("|cff00cc00buy "..GWCOMM[Guildname].guard.."       -purchase a disposable guard.")
 				player:SendBroadcastMessage("*************************************")
 			end
 			
 			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvls)then
 				player:SendBroadcastMessage("(sell) Guild Master level Commands:Rank: "..GWCOMM[player:GetGuildName()].GLD_lvls.." access.")
-				player:SendBroadcastMessage("|cff00cc00sell "..GWCOMM[Guildname].loc.."         -sell area for its current value.|r")
+				player:SendBroadcastMessage("|cff00cc00sell "..GWCOMM[Guildname].loc.."         -sell area for its TOTAL value.|r")
 				player:SendBroadcastMessage("|cff00cc00sell "..GWCOMM[Guildname].farm.."       -sell farm.|r")		
 				player:SendBroadcastMessage("|cff00cc00sell "..GWCOMM[Guildname].barrack.."       -sell barracks.|r")		
 				player:SendBroadcastMessage("|cff00cc00sell "..GWCOMM[Guildname].hall.."       -sell hall.|r")		
