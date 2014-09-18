@@ -1179,7 +1179,7 @@ local LocId = GetLocationId(player)
 
 		if(player:IsInGuild()==true)then
 
-			if(GetTeam(player)~=GWARZ[LocId].team)or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
+			if((GetTeam(player)~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
 	
 				if(GWARZ[LocId].team < 2)then
 
