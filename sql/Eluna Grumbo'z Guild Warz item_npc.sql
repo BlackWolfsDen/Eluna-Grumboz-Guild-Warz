@@ -7,13 +7,15 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49002, 26725, 'Guild War\'z Guard', 'Alliance', 'Attack', 80, 80, 84, 83, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024, 12340),
 (49003, 26725, 'Guild War\'z Guard', 'Horde', 'Attack', 80, 80, 83, 84, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024, 12340);
 
+REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`, `WDBVerified`) VALUES 
+(187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', '', 12340),
+(187433, 10, 5652, 'Horde Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', '', 12340),
+(500000, 10, 8060, 'Alliance Guild farm', 'Interact', '', '', 35, 6553632, 0.6, 0, 0, 0, 1, 0, '', '', 12340),
+(500001, 10, 8060, 'Horde Guild farm', 'Interact', '', '', 35, 6553632, 0.6, 0, 0, 0, 1, 0, '', '', 12340),
+(500002, 10, 8057, 'Alliance Guild Barracks', 'Interact', '', '', 35, 6553632, 0.3, 0, 0, 0, 1, 0, '', '', 12340),
+(500003, 10, 8057, 'Horde Guild Barracks', 'Interact', '', '', 35, 6553632, 0.3, 0, 0, 0, 1, 0, '', '', 12340);
+
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data14`, `data18`, `data22`, `AIName`, `ScriptName`, `WDBVerified`) VALUES 
-(187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
-(187433, 10, 5652, 'Horde Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
-(500000, 10, 8060, 'Alliance Guild farm', 'Interact', '', '', 35, 6553632, 0.6, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
-(500001, 10, 8060, 'Horde Guild farm', 'Interact', '', '', 35, 6553632, 0.6, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
-(500002, 10, 8057, 'Alliance Guild Barracks', 'Interact', '', '', 35, 6553632, 0.3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
-(500003, 10, 8057, 'Horde Guild Barracks', 'Interact', '', '', 35, 6553632, 0.3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 12340),
 (500004, 33, 7900, 'Tiff\'s Guild Hall', 'Interact', '', '', 35, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', '', 12340),
 (500005, 33, 7878, 'Grumbo\'z Guild Hall', 'Interact', '', '', 35, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', '', 12340);
 
