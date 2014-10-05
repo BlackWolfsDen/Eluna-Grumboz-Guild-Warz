@@ -578,7 +578,7 @@ local Guildname = ""..player:GetGuildName()..""
 					else
 						if(GWARZ[LocId].farm_count >= GWCOMM["SERVER"].farm_L)then
 							player:SendBroadcastMessage("You have  "..GWARZ[LocId].farm_count.." farm\'s at this location.")
-							player:SendBroadcastMessage("You can only purchase "..GWCOMM["SERVER"].farm_L.." house per location.")
+							player:SendBroadcastMessage("You can only purchase "..GWCOMM["SERVER"].farm_L.." farm\'s per location.")
 						else
 							if(GWARZ[LocId].pig_count < (GWARZ[LocId].farm_count * GWCOMM["SERVER"].pig_L))then
 								player:SendBroadcastMessage("you still need to finish populating your other farm.")
