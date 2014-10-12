@@ -35,7 +35,7 @@ local table_version = 2.00
 local core_version = 6.40
 local pigpayz_version = 2.50
 local tele_version = 1.50
-local pvp_version = 4.50
+local pvp_version = 4.60
 
 local Server = "SERVER"
 
