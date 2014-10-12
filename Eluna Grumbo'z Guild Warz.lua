@@ -30,13 +30,19 @@ if(GetLuaEngine()~="ElunaEngine")then
 		print("Approved: Eluna Detected.\n")
 	end
 
-local table_version = 1.80
+local table_version = 2.00
 local core_version = 6.40
 local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.50
 
 local Server = "SERVER"
+
+local guild_warz = {
+		help = "guild_warz.help",
+		commands = "guild_warz.commands",
+		zones = "guild_warz.zones",
+					};
 
 GWCOMM = {};
 GWARZ = {};
@@ -45,7 +51,7 @@ GGW = {};
 
 local function LoadGWtable()
 
-local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
+local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz.help..";");
 
 	if(Ghsql)then
 		repeat
@@ -59,7 +65,7 @@ local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
 		until not Ghsql:NextRow()
 	end
 
-local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
+local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz.commands..";");
 
 	if(Gcsql)then
 		repeat
@@ -119,7 +125,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 		until not Gcsql:NextRow()
 	end
 
-	local Gwsql =  WorldDBQuery("SELECT * FROM guild_warz.zones;");
+	local Gwsql =  WorldDBQuery("SELECT * FROM "..guild_warz.zones..";");
 
 	if(Gwsql)then
 		repeat
@@ -166,9 +172,9 @@ end
 
 local function PreparedStatements(key, ...)
 	local Query = {
-		[1] = "UPDATE guild_warz.zones SET `%s` = '%s' WHERE `entry` = '%s';",
+		[1] = "UPDATE "..guild_warz.zones.." SET `%s` = '%s' WHERE `entry` = '%s';",
 		[2] = "DELETE FROM %s WHERE `guid` = '%s';",
-		[3] = "UPDATE guild_warz.commands SET `%s` = '%s' WHERE `guild` = '%s';"
+		[3] = "UPDATE "..guild_warz.commands.." SET `%s` = '%s' WHERE `guild` = '%s';"
 	}
 	
 	if(key == 1) then
@@ -191,7 +197,7 @@ end
 
 function CreateLocation(map, area, zone)
 	local CLentry = (#GWARZ+1)
-	WorldDBQuery("INSERT INTO guild_warz.zones SET `entry` = '"..CLentry.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz.zones.." SET `entry` = '"..CLentry.."';");
 	LoadGWtable()
 	print("Location: "..CLentry.." : created.")	
 	
@@ -214,7 +220,7 @@ end
 function CreateGcommands(guild, name)
 	local gid = guild:GetId()
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
-	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..name.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz.commands.." SET `guild` = '"..name.."';");
 	PreparedStatements(3, "guild_id", gid, name)
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
@@ -236,7 +242,8 @@ function PlrFaction(eventId, player)
 	local xFaction = player:GetFaction()
 	
 	GGW[player:GetAccountId()] = {
-			faction = xFaction
+			faction = xFaction,
+			team = player:GetTeam(),
 				};
 			
 	if(player:GetGuildName())then
