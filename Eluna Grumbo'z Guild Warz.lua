@@ -19,6 +19,7 @@
 
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
+print("For TC2 Ace WotLK 3.3.5a\n")
 
 local start = os.clock()
 
@@ -183,11 +184,13 @@ local function PreparedStatements(key, ...)
 		WorldDBQuery(qs)
 		GWARZ[loc][subtable] = value;
 	end
+	
 	if(key == 2) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
 		LoadGWtable()
 	end
+	
 	if(key == 3) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
@@ -1117,23 +1120,15 @@ function TransferFlag(player, locid, go)
 	return false;
 end
 
-function Allyflag(event, go, _, player)
-	if(player~=nil)then
-		local LocId = GetLocationId(player)
-		TransferFlag(player, LocId, go)
-	end
-end
-
-RegisterGameObjectEvent(187432, 9, Allyflag)
-
-function Hordeflag(event, go, _, player)
+function Tagflag(event, go, _, player)
 	if(player ~= nil)then
 		local LocId = GetLocationId(player)
 		TransferFlag(player, LocId, go)
 	end
 end
 
-RegisterGameObjectEvent(187433, 9, Hordeflag)
+RegisterGameObjectEvent(GWCOMM["SERVER"].flag_id, 9, Tagflag)
+RegisterGameObjectEvent(GWCOMM["SERVER"].flag_id+1, 9, Tagflag)
 
 -- *********** Guild Invite Flag Action ***********
 
@@ -1155,8 +1150,8 @@ local locid = GetLocationId(player)
 player:GossipComplete()
 end
 
-RegisterGameObjectGossipEvent(187432, 2, Gwarz_Guild_Flag_Select)
-RegisterGameObjectGossipEvent(187433, 2, Gwarz_Guild_Flag_Select)
+RegisterGameObjectGossipEvent(GWCOMM["SERVER"].flag_id, 2, Gwarz_Guild_Flag_Select)
+RegisterGameObjectGossipEvent(GWCOMM["SERVER"].flag_id+1, 2, Gwarz_Guild_Flag_Select)
 
 -- *********** Guild Guard combat actions *************
 -- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
@@ -1166,37 +1161,33 @@ local function FactionReset(event, timer, cycle, player)
 	player:SetFaction(GGW[player:GetAccountId()].faction)
 end
 
-local function GetTeam(player)
-	if(player:IsAlliance()==true)then
-		return 0;
-	else
-		return 1;
-	end
-end
 
-function PigWatch(eventid, creature, player)
+local function PigWatch(eventid, creature, player)
 
 local LocId = GetLocationId(player)
-	
-	if(LocId == nil)then
-		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
-	end
-	
-	if(player:GetObjectType()=="Player")then
 
+	if(player:GetObjectType()=="Player")then
+	
+	local Pteam = GGW[player:GetAccountId()].team
+	local LocId = GetLocationId(player)
+	
+		if(LocId == nil)then
+			LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
+		end
+	
 		if(player:IsInGuild()==true)then
 
-			if((GetTeam(player)~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
+			if((Pteam~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM["SERVER"].anarchy==1)and(Pteam==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
 	
 				if(GWARZ[LocId].team < 2)then
 
 					if(creature:IsWithinDistInMap(player, 40))then
 						
 						if(GWARZ[LocId].team==0)then -- ally faction 84 team 0 ::  horde faction 83 team 1
-							player:SetFaction(83)
+							player:SetFaction(2) -- 83
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						else
-							player:SetFaction(84)
+							player:SetFaction(1) -- 84
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 						end
 					end
@@ -1210,33 +1201,34 @@ local LocId = GetLocationId(player)
 	end
 end
 
-RegisterCreatureEvent(49000, 27, PigWatch)
-RegisterCreatureEvent(49001, 27, PigWatch)
+RegisterCreatureEvent(GWCOMM["SERVER"].pig_id, 27, PigWatch)
+RegisterCreatureEvent(GWCOMM["SERVER"].pig_id+1, 27, PigWatch)
 
 function Guardffa(eventid, creature, player)
 
-local LocId = GetLocationId(player)
-
-	if(LocId == nil)then
-		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
-	end
-
 	if(player:GetObjectType()=="Player")then
-
-		if(player:IsInGuild()==true)then
-
-			if((GetTeam(player)~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM["SERVER"].anarchy==1)and(GetTeam(player)==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
 	
+	local Pteam = GGW[player:GetAccountId()].team
+	local LocId = GetLocationId(player)
+	
+		if(LocId == nil)then
+			LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
+		end
+	
+		if(player:IsInGuild()==true)then
+		
+			if((Pteam~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM["SERVER"].anarchy==1)and(Pteam==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
+		
 				if(GWARZ[LocId].team < 2)then
-
+		
 					if(creature:IsWithinDistInMap(player, 40))then
 						
 						if(GWARZ[LocId].team==0)then -- ally faction 84 team 0 ::  horde faction 83 team 1
-							player:SetFaction(83)
+							player:SetFaction(2) -- 83
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 							creature:AttackStart(player)
 						else
-							player:SetFaction(84)
+							player:SetFaction(1) -- 84
 							local faction_reset = player:RegisterEvent(FactionReset, 10000, 1)
 							creature:AttackStart(player)
 						end
@@ -1251,8 +1243,8 @@ local LocId = GetLocationId(player)
 	end
 end
 
-RegisterCreatureEvent(49002, 27, Guardffa)
-RegisterCreatureEvent(49003, 27, Guardffa)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 27, Guardffa)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 27, Guardffa)
 
 function Guardcombat(eventid, creature, player)
 
@@ -1273,8 +1265,8 @@ function Guardcombat(eventid, creature, player)
 	end
 end
 
-RegisterCreatureEvent(49002, 1, Guardcombat)
-RegisterCreatureEvent(49003, 1, Guardcombat)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 1, Guardcombat)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 1, Guardcombat)
 
 function Guarddied(eventid, creature, player)
 	
@@ -1299,8 +1291,8 @@ function Guarddied(eventid, creature, player)
 	creature:DespawnOrUnsummon()
 end
 
-RegisterCreatureEvent(49002, 4, Guarddied)
-RegisterCreatureEvent(49003, 4, Guarddied)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 4, Guarddied)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 4, Guarddied)
 
 function Guardhit(eventid, creature, attacker, damage)
 
@@ -1328,8 +1320,8 @@ function Guardhit(eventid, creature, attacker, damage)
 	end
 end
 
-RegisterCreatureEvent(49002, 9, Guardhit)
-RegisterCreatureEvent(49003, 9, Guardhit)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 9, Guardhit)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 9, Guardhit)
 
 function Guardkill(eventid, creature, victim)
 	
@@ -1346,8 +1338,8 @@ function Guardkill(eventid, creature, victim)
 	end
 end
 
-RegisterCreatureEvent(49002, 3, Guardkill)
-RegisterCreatureEvent(49003, 3, Guardkill)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 3, Guardkill)
+RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 3, Guardkill)
 
 -- ****************************************************
 -- ******************** End OF Line ******************* 
