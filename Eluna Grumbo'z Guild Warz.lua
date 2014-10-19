@@ -38,7 +38,7 @@ local tele_version = 1.50
 local pvp_version = 4.60
 
 local Server = "SERVER"
-local guild_warz = "guild_warz_335a" -- use unique name if running on multiple cores i.e. guild_warz_4.3.4_1 
+local guild_warz = "guild_warz_335a" -- use unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
 
 GWCOMM = {};
 GWARZ = {};
