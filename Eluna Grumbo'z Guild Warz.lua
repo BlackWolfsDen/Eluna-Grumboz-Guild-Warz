@@ -31,14 +31,15 @@ if(GetLuaEngine()~="ElunaEngine")then
 		print("Approved: Eluna Detected.\n")
 	end
 
-local table_version = 2.00
+local Guard_Died_Drop = 20558 -- wsg's
+local table_version = 2.20
 local core_version = 6.40
 local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.60
 
 local Server = "SERVER"
-local guild_warz = "guild_warz_335a" -- use unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
+local guild_warz_DB = "guild_warz_335a" -- use unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
 
 GWCOMM = {};
 GWARZ = {};
@@ -47,7 +48,7 @@ GGW = {};
 
 local function LoadGWtable()
 
-local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz..".help;");
+local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".help;");
 
 	if(Ghsql)then
 		repeat
@@ -61,7 +62,7 @@ local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz..".help;");
 		until not Ghsql:NextRow()
 	end
 
-local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz..".commands;");
+local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 
 	if(Gcsql)then
 		repeat
@@ -121,7 +122,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz..".commands;");
 		until not Gcsql:NextRow()
 	end
 
-	local Gwsql =  WorldDBQuery("SELECT * FROM "..guild_warz..".zones;");
+	local Gwsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".zones;");
 
 	if(Gwsql)then
 		repeat
@@ -168,9 +169,9 @@ end
 
 local function PreparedStatements(key, ...)
 	local Query = {
-		[1] = "UPDATE "..guild_warz..".zones SET `%s` = '%s' WHERE `entry` = '%s';",
+		[1] = "UPDATE "..guild_warz_DB..".zones SET `%s` = '%s' WHERE `entry` = '%s';",
 		[2] = "DELETE FROM %s WHERE `guid` = '%s';",
-		[3] = "UPDATE "..guild_warz..".commands SET `%s` = '%s' WHERE `guild` = '%s';"
+		[3] = "UPDATE "..guild_warz_DB..".commands SET `%s` = '%s' WHERE `guild` = '%s';"
 	}
 	
 	if(key == 1) then
@@ -195,7 +196,7 @@ end
 
 function CreateLocation(map, area, zone)
 	local CLentry = (#GWARZ+1)
-	WorldDBQuery("INSERT INTO "..guild_warz..".zones SET `entry` = '"..CLentry.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz_DB..".zones SET `entry` = '"..CLentry.."';");
 	LoadGWtable()
 	print("Location: "..CLentry.." : created.")	
 	
@@ -218,7 +219,7 @@ end
 function CreateGcommands(guild, name)
 	local gid = guild:GetId()
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
-	WorldDBQuery("INSERT INTO "..guild_warz..".commands SET `guild` = '"..name.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild` = '"..name.."';");
 	PreparedStatements(3, "guild_id", gid, name)
 	print("commands for: "..guild.." : created.")	
 	LoadGWtable()
@@ -430,7 +431,7 @@ local Guildname = ""..player:GetGuildName()..""
 		end
 		
 		if(ChatCache[1]==GWCOMM[Guildname].list_loc)then
-			local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+			local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..player:GetGuildName().."';");
 			
 			if(Glocdb==nil)then
 				player:SendBroadcastMessage("Your guild does not own any land")
@@ -976,7 +977,7 @@ local function pig_payz(eventid, timer, cycles, player)
 	if(player:IsInGuild() == true)then
 		
 		local pig = 0
-		local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."' AND `pig_count` > '0';");
+		local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..player:GetGuildName().."' AND `pig_count` > '0';");
 
 		if(Glocdb==nil)then
 			player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
@@ -992,7 +993,7 @@ local function pig_payz(eventid, timer, cycles, player)
 
 			Pigpayz=(GWCOMM["SERVER"].pig_payz*pig)
 			player:ModifyMoney(Pigpayz)
-			player:SendBroadcastMessage("DemiiGods whispers:|cff00cc00Your Guild\'s hard work pays off.|r")
+			player:SendBroadcastMessage("DemiiGods says:|cff00cc00Your Guild\'s hard work pays off.|r")
 			player:SendBroadcastMessage("|cff00cc00PigPayz: "..Pigpayz / '10000'.." gold.|r")
 		end
 		return false;
@@ -1280,7 +1281,7 @@ function Guarddied(eventid, creature, player)
 	end
 	
 	if(Drop==4)then
-		player:AddItem(20558, math.random(1, 4))
+		player:AddItem(Guard_Died_Drop, math.random(1, 4))
 	end
 	
 	creature:DespawnOrUnsummon()
