@@ -3,7 +3,7 @@
 -- **** Brought to you by Grumbo of BloodyWoW *l**
 -- **r*************** slp13at420 ****p************
 -- ***Foereaper***  Ty Eluna guyz  ****Rochet2****
--- ***************  Ty AC-web.org  *********1*****
+-- ******t***o***********M*******m*******y*1*****
 -- **u******************♠*********3***************
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
@@ -11,8 +11,12 @@
 -- ************* Arcemu/ALE ONLY *t************
 -- *♠*******************4***********************♠*
 -- *b* Please Do Not Remove any of the credits ***
--- ****** or attempt to repost as your own **2****
--- ***o********************************0**********
+-- **** and/or attempt to release as your own **2*
+-- ***o******************©*************0**********
+-- **************** First Public *****************
+-- *********** release date 03-10-2013 ***********
+-- ***********************************************
+
 print("\nGrumbo'z Guild Warz System Loading:\n")
 
 if(GetLuaEngine()~="ALE")then
@@ -28,14 +32,17 @@ local core_version = 5.95
 local pigpayz_version = 1.75
 local tele_version = 1.50
 local pvp_version = 3.80
+
 local Server = "SERVER"
+local guild_warz_DB = "guild_warz_335a"
+
 GWCOMM = {};
 GWARZ = {};
 GWHELP = {};
 
 local function LoadGWtable()
 
-local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
+local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".help;");
 
 	if(Ghsql)then
 
@@ -51,7 +58,7 @@ local Ghsql =  WorldDBQuery("SELECT * FROM guild_warz.help;");
 		until not Ghsql:NextRow()
 	end
 
-local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
+local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 
 	if(Gcsql)then
 
@@ -108,7 +115,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM guild_warz.commands;");
 		until not Gcsql:NextRow()
 	end
 
-	local Gwsql =  WorldDBQuery("SELECT * FROM guild_warz.zones;");
+	local Gwsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".zones;");
 
 	if(Gwsql)then
 
@@ -154,9 +161,9 @@ end
 
 local function PreparedStatements(key, ...)
 	local Query = {
-		[1] = "UPDATE guild_warz.zones SET `%s` = '%s' WHERE `entry` = '%s';",
+		[1] = "UPDATE "..guild_warz_DB..".zones SET `%s` = '%s' WHERE `entry` = '%s';",
 		[2] = "DELETE FROM %s WHERE `id` = '%s';",
-		[3] = "UPDATE guild_warz.commands SET `%s` = '%s' WHERE `guild` = '%s';"
+		[3] = "UPDATE "..guild_warz_DB..".commands SET `%s` = '%s' WHERE `guild` = '%s';"
 	}
 	
 	if(key == 1) then
@@ -177,7 +184,7 @@ end
 
 function CreateLocation(map, area, zone)
 	local CLentry = (#GWARZ+1)
-	WorldDBQuery("INSERT INTO guild_warz.zones SET `entry` = '"..CLentry.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz_DB..".zones SET `entry` = '"..CLentry.."';");
 	LoadGWtable()
 	print("Location: "..CLentry.." : created.")	
 	
@@ -199,7 +206,7 @@ end
 
 function CreateGcommands(guild)
 	local CLentry = guild
-	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
+	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild` = '"..guild.."';");
 	print("commands for: "..CLentry.." : created.")	
 	LoadGWtable()
 	return CLentry;
@@ -220,7 +227,7 @@ function plrFunction(eventId, plr)
 	local xFaction = plr:GetFaction()
 	GGW[plr:GetAccountName()] = {
 					faction = xFaction
-								};
+				};
 end
 								
 RegisterServerHook(19, plrFaction)
@@ -376,7 +383,7 @@ print(player:GetGmRank())
 		end
 		
 		if(ChatCache[1]==GWCOMM[Guildname].list_loc)then
-			local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+			local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..player:GetGuildName().."';");
 			
 			if(Glocdb==nil)then
 				player:SendBroadcastMessage("Your guild does not own any land")
@@ -665,7 +672,7 @@ print(player:GetGmRank())
 				if(GWARZ[LocId].guild_name~=player:GetGuildName())then
 					player:SendBroadcastMessage("Your guild does not own this land.")
 				else
-               		if(player:GetGameObjectNearestCoords(player:GetX(), player:GetY(), player:GetZ(), GWCOMM["SERVER"].flag_id+(player:GetTeam()))==nil)then
+               				if(player:GetGameObjectNearestCoords(player:GetX(), player:GetY(), player:GetZ(), GWCOMM["SERVER"].flag_id+(player:GetTeam()))==nil)then
 						player:SendBroadcastMessage("You must be next to your guild flag.")
 						player:SendBroadcastMessage("move closer and try again.")
 					else
@@ -905,7 +912,7 @@ print ("Guild Warz core version: "..core_version.."")
 
 local function Payout(player)
 	local pig = 0
-	local Glocdb = WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+	local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..player:GetGuildName().."';");
 	if(Glocdb==nil)then
 		player:SendBroadcastMessage("PigPayz: 0 gold.", 0)
 		player:SendBroadcastMessage("Your guild does not own any pigs.", 0)
@@ -1002,7 +1009,7 @@ function TransferFlag(player, locid, go)
 			if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
 				go:Despawn(0, 0)
 				Nflag = player:SpawnGameObject(187432+player:GetTeam(), player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 0, 300, 1, 1):GetSpawnId()
-				PreparedStatements(2, "world.gameobject_spawns", go:GetSpawnId())
+				PreparedStatements(2, "gameobject_spawns", go:GetSpawnId())
 				SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
 				PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
 				PreparedStatements(1, "team", player:GetTeam(), locid)
