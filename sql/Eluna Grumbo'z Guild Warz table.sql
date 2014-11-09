@@ -2,23 +2,25 @@
 -- Host:                         127.0.0.1
 -- Server version:               5.5.9-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
--- HeidiSQL Version:             8.3.0.4694
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2014-01-30 22:17:46
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping database structure for guild_warz
-CREATE DATABASE IF NOT EXISTS `guild_warz_335a` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `guild_warz_335a`;
+DROP DATABASE IF EXISTS `guild_warz`;
+CREATE DATABASE IF NOT EXISTS `guild_warz` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `guild_warz`;
 
 
 -- Dumping structure for table guild_warz.commands
+DROP TABLE IF EXISTS `commands`;
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
-  `commands` varchar(10) NOT NULL DEFAULT 'commands',
+  `commands` varchar(10) NOT NULL DEFAULT 'gcommands',
   `info_loc` varchar(10) NOT NULL DEFAULT 'info',
   `list_loc` varchar(10) NOT NULL DEFAULT 'list',
   `tele` varchar(6) NOT NULL DEFAULT 'gtele',
@@ -34,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `respawn_flag` varchar(50) NOT NULL DEFAULT 'flag' COMMENT 'GM command spawns and assigns a flag to a guild owned area. will return an error if location is owned by SERVER',
   `details_loc` varchar(50) NOT NULL DEFAULT 'loc' COMMENT 'GM command gives more info about location.',
   `table` varchar(50) NOT NULL DEFAULT 'table' COMMENT 'GM command reloads GW table.',
-  `GM_admin` tinyint(3) unsigned NOT NULL DEFAULT '5' COMMENT 'GM rank of server admin',
-  `GM_minimum` tinyint(1) unsigned NOT NULL DEFAULT '4' COMMENT 'Minimum Required Gm security level to use GM level commands.',
+  `GM_admin` char(6) NOT NULL DEFAULT 'az' COMMENT 'GM rank of server admin',
+  `GM_minimum` varchar(6) NOT NULL DEFAULT 'ae' COMMENT 'Minimum Required Gm security level to use GM level commands.',
   `currency` bigint(20) unsigned NOT NULL DEFAULT '62006' COMMENT 'item id for currency used.',
   `loc_cost` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'price for basic empty zone.',
   `farm_cost` smallint(5) unsigned NOT NULL DEFAULT '5' COMMENT 'price for small cheezy government issued house.',
@@ -49,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `pig_L` smallint(5) NOT NULL DEFAULT '20' COMMENT 'how many pigs per location.',
   `guard_L` smallint(5) NOT NULL DEFAULT '10' COMMENT 'how many guards per location.',
   `pig_payz` bigint(20) NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
-  `pig_payz_timer` bigint(20) NOT NULL DEFAULT '1800000' COMMENT 'timer for pig payz. default  1800000 = 30 minutes.',
   `gift_count` tinyint(3) NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
   `flag_require` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'does capturing a flag require killing all guards? default  == 0 no ; 1 == yes',
   `Server` varchar(6) NOT NULL DEFAULT 'SERVER' COMMENT 'Do Not Touch',
@@ -58,28 +59,26 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `barrack_id` mediumint(8) NOT NULL DEFAULT '500002' COMMENT 'Do Not Touch',
   `hall_id` mediumint(8) NOT NULL DEFAULT '500004' COMMENT 'Do Not Touch',
   `pig_id` mediumint(8) NOT NULL DEFAULT '49000' COMMENT 'Do Not Touch',
-  `guard_id` mediumint(8) NOT NULL DEFAULT '49002' COMMENT 'Do Not Touch',
+  `guard_id` mediumint(8) NOT NULL DEFAULT '49001' COMMENT 'Do Not Touch',
   `x1` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `x2` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `x3` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
   `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
-  `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
-  `s_timer` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
-  `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
-  `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'guild invite system. 0 == off :: 1 == on',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table guild_warz.commands: ~2 rows (approximately)
+DELETE FROM `commands`;
 /*!40000 ALTER TABLE `commands` DISABLE KEYS */;
-REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `x1`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`) VALUES
-	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49002, 1, 1, 1, 'set', 1, 1, 300, 0, 0);
+INSERT INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `pig_payz`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `x1`, `x2`, `x3`, `command_set`, `anarchy`) VALUES
+	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 0, 0, 'flag', 'loc', 'table', 'az', 'cghi', 62006, 10, 5, 10, 100, 1, 1, 1, 1, 1, 20, 10, 100000, 25, 0, 'SERVER', 187432, 500000, 500002, 500005, 49000, 49001, 1, 1, 1, 'set', 0);
 /*!40000 ALTER TABLE `commands` ENABLE KEYS */;
 
 
 -- Dumping structure for table guild_warz.help
+DROP TABLE IF EXISTS `help`;
 CREATE TABLE IF NOT EXISTS `help` (
   `entry` bigint(20) unsigned DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -89,9 +88,10 @@ CREATE TABLE IF NOT EXISTS `help` (
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz.help: ~60 rows (approximately)
+-- Dumping data for table guild_warz.help: ~55 rows (approximately)
+DELETE FROM `help`;
 /*!40000 ALTER TABLE `help` DISABLE KEYS */;
-REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
+INSERT INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
 	(2, 'commands', 'produces a list of accessible commands by level.', 'set comm', '1'),
 	(3, 'info_loc', 'produces a basic description of current location.', 'set info_loc look', '1'),
@@ -99,13 +99,13 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(5, 'tele', 'allows guild members to teleport to guild location flags using location id\'s.', 'set tele goto', '1'),
 	(6, 'version', 'allows player to view the system versions.', 'set version intelect', '1'),
 	(7, 'loc', 'allows guild members to purchase locations based on its value.', 'LOCKED', '4'),
-	(8, 'farm', 'allows guild members to purchase farms to support pigs for guild locations.', 'set farm mudhole', '4'),
-	(9, 'barrack', 'allows guild members to purchasebarracks to produce guards for guild locations.', 'LOCKED', '4'),
+	(8, 'farm', 'allows guild members to purchase houses for guild locations.', 'LOCKED', '4'),
+	(9, 'barracks', 'allows guild members to purchasebarracks to produce guards for guild locations.', 'LOCKED', '4'),
 	(10, 'hall', 'allows guild members to purchase a guild hall for guild locations.', 'LOCKED', '4'),
 	(11, 'pig', 'allows guild members to purchase guild pigs for guild locations.', 'LOCKED', '4'),
 	(12, 'guard', 'allows guildmembers to purchase guards for locations', 'LOCKED', '4'),
-	(13, 'buy', 'allows guild member to buy.', 'LOCKED', '7'),
-	(14, 'sell', 'allows guild member to sell.', 'LOCKED', '7'),
+	(13, 'buy', 'allows guild member to buy.', 'LOCKED', '4'),
+	(14, 'sell', 'allows guild member to sell.', 'LOCKED', '4'),
 	(15, 'GLD_lvlb', 'allows rank x access to guild master buy commands. guildmaster==0 any number above 0 is a lower guild rank i.e. officer==1.', 'set GLD_lvlb 2', '4'),
 	(16, 'GLD_lvls', 'allows rank x access to guild master sell commands. same as LGD_lvlb guild master == 0 officer == 1 etc.. etc..etc...', 'set GLD_lvls 1', '4'),
 	(17, 'reset loc', 'allows GM of minimum rank to reset a location onwner to "SERVER" and able to be purchased.', 'LOCKED', '5'),
@@ -132,30 +132,26 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(38, 'pig_L', 'system setting limit how may pigs per location.', 'set pig_L 20', '6'),
 	(39, 'guard_L', 'system setting limit how many guards per location.', 'set guard_L 10', '6'),
 	(40, 'pig_payz', 'system setting how much each pig payz in copper per half hour. 10g == 100000', 'set pig_payz 100000', '6'),
-	(41, 'pig_payz_timer', 'system setting timer for pig payz.', 'set pig_payz 1800000', '6'),
-	(42, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
-	(43, 'flag_require', 'system setting switch does system require all guards dead to capture flag? default == 0 no; 1 == yes', 'set flag_require 1', '6'),
-	(44, 'Server', 'game core ID for guild ID storage of game master level commands  >>>>> DO NOT CHANGE  <<<<<', 'LOCKED', '7'),
-	(45, 'flag_id', 'game core ID for ally flag id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(46, 'farm_id', 'game core ID for guild house id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(47, 'barrack_id', 'game core ID for guild barrack id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(48, 'hall_id', 'game core ID for guild hall id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(49, 'pig_id', 'game core ID for guild pig id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(50, 'guard_id', 'game core ID for guild guard id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(51, 'x1', 'game core ID for x1 ', 'LOCKED', '7'),
-	(52, 'x2', 'game core ID for x2 ', 'LOCKED', '7'),
-	(53, 'x3', 'game core ID for x3', 'LOCKED', '7'),
-	(54, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
-	(55, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
-	(56, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6'),
-	(57, 'f_timer', 'no-tag-flag system  on/off == 0/1', 'set f_timer 1', '6'),
-	(58, 's_timer', 'no-tag-flag-timer time in ms.', 'set s_timer 180000', '6'),
-	(59, 'guild_id', 'guild id', 'LOCKED', '7'),
-	(60, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4');
+	(41, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
+	(42, 'flag_require', 'system setting switch does system require all guards dead to capture flag? default == 0 no; 1 == yes', 'set flag_require 1', '6'),
+	(43, 'Server', 'game core ID for guild ID storage of game master level commands  >>>>> DO NOT CHANGE  <<<<<', 'LOCKED', '7'),
+	(44, 'flag_id', 'game core ID for ally flag id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(45, 'farm_id', 'game core ID for guild house id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(46, 'barrack_id', 'game core ID for guild barrack id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(47, 'hall_id', 'game core ID for guild hall id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(48, 'pig_id', 'game core ID for guild pig id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(49, 'guard_id', 'game core ID for guild guard id >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(50, 'x1', 'game core ID for x1 ', 'LOCKED', '7'),
+	(51, 'x2', 'game core ID for x2 ', 'LOCKED', '7'),
+	(52, 'x3', 'game core ID for x3', 'LOCKED', '7'),
+	(53, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
+	(54, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
+	(55, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6');
 /*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
 
 -- Dumping structure for table guild_warz.zones
+DROP TABLE IF EXISTS `zones`;
 CREATE TABLE IF NOT EXISTS `zones` (
   `entry` bigint(10) unsigned NOT NULL DEFAULT '0',
   `map_id` bigint(10) unsigned NOT NULL DEFAULT '0',
@@ -172,16 +168,16 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `pig_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) NOT NULL DEFAULT '0',
-  `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'time in seconds when the flag was spawned.',
-  `guild_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild id',
+  PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz.zones: ~3 rows (approximately)
+-- Dumping data for table guild_warz.zones: ~2 rows (approximately)
+DELETE FROM `zones`;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
-	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `flag_id`) VALUES
+	(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
