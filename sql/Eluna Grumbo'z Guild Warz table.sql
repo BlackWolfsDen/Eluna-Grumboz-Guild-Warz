@@ -11,8 +11,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for guild_warz
-CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `guild_warz_335`;
+CREATE DATABASE IF NOT EXISTS `guild_warz_335a` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `guild_warz_335a`;
 
 
 -- Dumping structure for table guild_warz.commands
