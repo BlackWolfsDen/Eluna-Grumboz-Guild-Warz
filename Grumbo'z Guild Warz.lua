@@ -1087,7 +1087,7 @@ function TransferFlag(player, locid, go)
 	
 	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(player:IsInGuild()==true)and(GWCOMM["SERVER"].anarchy==1))then
 
-		if(GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer > GetGameTime())and(GWCOMM["SERVER"].flag_timer==1)then
+		if((GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer < GetGameTime())and(GWCOMM["SERVER"].flag_timer==1))then
 			player:SendBroadcastMessage("|cffff0000!!..Cooldown Timer in Affect..!!|r")
 			
 		else
