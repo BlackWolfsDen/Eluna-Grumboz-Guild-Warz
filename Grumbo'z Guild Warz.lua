@@ -1116,15 +1116,15 @@ function TransferFlag(player, locid, go)
 	return false;
 end
 
-function Tagflag(event, go, _, player)
+function Tagflag(event, player, go)
 	if(player ~= nil)then
 		local LocId = GetLocationId(player)
 		TransferFlag(player, LocId, go)
 	end
 end
 
-RegisterGameObjectEvent(GWCOMM["SERVER"].flag_id, 9, Tagflag)
-RegisterGameObjectEvent(GWCOMM["SERVER"].flag_id+1, 9, Tagflag)
+RegisterGameObjectGossipEvent(GWCOMM["SERVER"].flag_id, 1, Tagflag)
+RegisterGameObjectGossipEvent(GWCOMM["SERVER"].flag_id+1, 1, Tagflag)
 
 -- *********** Guild Invite Flag Action ***********
 
