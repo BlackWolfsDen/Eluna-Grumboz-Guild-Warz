@@ -885,17 +885,20 @@ print(player:GetGmRank())
 			end
 			
            if(ChatCache[1] == GWCOMM["SERVER"].details_loc)then
-	            player:SendBroadcastMessage("*************************************")
-	            player:SendBroadcastMessage("|cff00cc00Location ID: "..GWARZ[LocId].entry..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Guild Name: "..GWARZ[LocId].guild_name..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Team: "..GWARZ[LocId].team..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Farm count: "..GWARZ[LocId].farm_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Barrack count: "..GWARZ[LocId].barrack_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Hall count: "..GWARZ[LocId].hall_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00Pig count: "..GWARZ[LocId].pig_count..".")
-	            player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
-	            player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
-	            player:SendBroadcastMessage("*************************************")
+	        player:SendBroadcastMessage("*************************************")
+	        player:SendBroadcastMessage("|cff00cc00Location ID: "..GWARZ[LocId].entry..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Guild Name: "..GWARZ[LocId].guild_name..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Team: "..GWARZ[LocId].team..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Farm count: "..GWARZ[LocId].farm_count..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Barrack count: "..GWARZ[LocId].barrack_count..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Hall count: "..GWARZ[LocId].hall_count..".|r")
+	        player:SendBroadcastMessage("|cff00cc00Pig count: "..GWARZ[LocId].pig_count..".")
+	        player:SendBroadcastMessage("|cff00cc00guard count: "..GWARZ[LocId].guard_count..".|r")
+	        player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
+--		player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
+--		player:SendBroadcastMessage("|cff00cc00Guild ID: "..GWARZ[LocId].guild_id..".|r")
+		player:SendBroadcastMessage("|cff00cc00Game Time: "..GetGameTime()..".|r")
+	        player:SendBroadcastMessage("*************************************")
             return false;
             end
 		end
