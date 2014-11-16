@@ -957,6 +957,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00flag spawn id: "..GWARZ[LocId].flag_id..".|r")
 				player:SendBroadcastMessage("|cff00cc00flag spawn time: "..GWARZ[LocId].spawn_time..".|r")
 				player:SendBroadcastMessage("|cff00cc00Guild ID: "..GWARZ[LocId].guild_id..".|r")
+				player:SendBroadcastMessage("|cff00cc00Game Time: "..GetGameTime()..".|r")
 				player:SendBroadcastMessage("*************************************")
 			return false;
 			end
