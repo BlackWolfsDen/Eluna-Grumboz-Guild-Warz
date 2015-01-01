@@ -52,13 +52,13 @@ local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".help;");
 
 	if(Ghsql)then
 		repeat
-		GWHELP[Ghsql:GetUInt32(0)] = {
-			entry = Ghsql:GetUInt32(0),
-			command = Ghsql:GetString(1),
-			description = Ghsql:GetString(2),
-			example = Ghsql:GetString(3),
-			command_level = Ghsql:GetUInt32(4),
-						};
+			GWHELP[Ghsql:GetUInt32(0)] = {
+				entry = Ghsql:GetUInt32(0),
+				command = Ghsql:GetString(1),
+				description = Ghsql:GetString(2),
+				example = Ghsql:GetString(3),
+				command_level = Ghsql:GetUInt32(4),
+			};
 		until not Ghsql:NextRow()
 	end
 
@@ -66,59 +66,59 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 
 	if(Gcsql)then
 		repeat
-		GWCOMM[Gcsql:GetString(0)] = {
-			guild = Gcsql:GetString(0),
-			commands = Gcsql:GetString(1),
-			info_loc = Gcsql:GetString(2),
-			list_loc = Gcsql:GetString(3),
-			tele = Gcsql:GetString(4),
-			version = Gcsql:GetString(5),
-			loc = Gcsql:GetString(6),
-			farm = Gcsql:GetString(7),
-			barrack = Gcsql:GetString(8),
-			hall = Gcsql:GetString(9),
-			pig = Gcsql:GetString(10),
-			guard = Gcsql:GetString(11),
-			GLD_lvlb = Gcsql:GetUInt32(12),
-			GLD_lvls = Gcsql:GetUInt32(13),
-			respawn_flag = Gcsql:GetString(14),
-			details_loc = Gcsql:GetString(15),
-			table = Gcsql:GetString(16),
-			GM_admin = Gcsql:GetUInt32(17),
-			GM_minimum = Gcsql:GetUInt32(18),
-			currency = Gcsql:GetUInt32(19),
-			loc_cost = Gcsql:GetUInt32(20),
-			farm_cost = Gcsql:GetUInt32(21),
-			barrack_cost = Gcsql:GetUInt32(22),
-			hall_cost = Gcsql:GetUInt32(23),
-			pig_cost = Gcsql:GetUInt32(24),
-			guard_cost = Gcsql:GetUInt32(25),
-			farm_L = Gcsql:GetUInt32(26),
-			barrack_L = Gcsql:GetUInt32(27),
-			hall_L = Gcsql:GetUInt32(28),
-			pig_L = Gcsql:GetUInt32(29),
-			guard_L = Gcsql:GetUInt32(30),
-			pig_payz = Gcsql:GetUInt32(31),
-			pig_payz_timer = Gcsql:GetUInt32(32),
-			gift_count = Gcsql:GetUInt32(33),
-			flag_require = Gcsql:GetUInt32(34),
-			Server = Gcsql:GetString(35),
-			flag_id = Gcsql:GetUInt32(36),
-			farm_id = Gcsql:GetUInt32(37),
-			barrack_id = Gcsql:GetUInt32(38),
-			hall_id = Gcsql:GetUInt32(39),
-			pig_id = Gcsql:GetUInt32(40),
-			guard_id = Gcsql:GetUInt32(41),
-			x1 = Gcsql:GetUInt32(42),
-			x2 = Gcsql:GetUInt32(43),
-			x3 = Gcsql:GetUInt32(44),
-			command_set = Gcsql:GetString(45),
-			anarchy = Gcsql:GetUInt32(46),			
-			flag_timer = Gcsql:GetUInt32(47),
-			spawn_timer = Gcsql:GetUInt32(48),
-			guild_id = Gcsql:GetUInt32(49),
-			guild_invite = Gcsql:GetUInt32(50),
-						};
+			GWCOMM[Gcsql:GetString(0)] = {
+				guild = Gcsql:GetString(0),
+				commands = Gcsql:GetString(1),
+				info_loc = Gcsql:GetString(2),
+				list_loc = Gcsql:GetString(3),
+				tele = Gcsql:GetString(4),
+				version = Gcsql:GetString(5),
+				loc = Gcsql:GetString(6),
+				farm = Gcsql:GetString(7),
+				barrack = Gcsql:GetString(8),
+				hall = Gcsql:GetString(9),
+				pig = Gcsql:GetString(10),
+				guard = Gcsql:GetString(11),
+				GLD_lvlb = Gcsql:GetUInt32(12),
+				GLD_lvls = Gcsql:GetUInt32(13),
+				respawn_flag = Gcsql:GetString(14),
+				details_loc = Gcsql:GetString(15),
+				table = Gcsql:GetString(16),
+				GM_admin = Gcsql:GetUInt32(17),
+				GM_minimum = Gcsql:GetUInt32(18),
+				currency = Gcsql:GetUInt32(19),
+				loc_cost = Gcsql:GetUInt32(20),
+				farm_cost = Gcsql:GetUInt32(21),
+				barrack_cost = Gcsql:GetUInt32(22),
+				hall_cost = Gcsql:GetUInt32(23),
+				pig_cost = Gcsql:GetUInt32(24),
+				guard_cost = Gcsql:GetUInt32(25),
+				farm_L = Gcsql:GetUInt32(26),
+				barrack_L = Gcsql:GetUInt32(27),
+				hall_L = Gcsql:GetUInt32(28),
+				pig_L = Gcsql:GetUInt32(29),
+				guard_L = Gcsql:GetUInt32(30),
+				pig_payz = Gcsql:GetUInt32(31),
+				pig_payz_timer = Gcsql:GetUInt32(32),
+				gift_count = Gcsql:GetUInt32(33),
+				flag_require = Gcsql:GetUInt32(34),
+				Server = Gcsql:GetString(35),
+				flag_id = Gcsql:GetUInt32(36),
+				farm_id = Gcsql:GetUInt32(37),
+				barrack_id = Gcsql:GetUInt32(38),
+				hall_id = Gcsql:GetUInt32(39),
+				pig_id = Gcsql:GetUInt32(40),
+				guard_id = Gcsql:GetUInt32(41),
+				x1 = Gcsql:GetUInt32(42),
+				x2 = Gcsql:GetUInt32(43),
+				x3 = Gcsql:GetUInt32(44),
+				command_set = Gcsql:GetString(45),
+				anarchy = Gcsql:GetUInt32(46),			
+				flag_timer = Gcsql:GetUInt32(47),
+				spawn_timer = Gcsql:GetUInt32(48),
+				guild_id = Gcsql:GetUInt32(49),
+				guild_invite = Gcsql:GetUInt32(50),
+			};
 		until not Gcsql:NextRow()
 	end
 
@@ -144,7 +144,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				flag_id = Gwsql:GetUInt32(14),
 				spawn_time = Gwsql:GetUInt32(15),
 				guild_id = Gwsql:GetUInt32(16),
-							};
+			};
 		until not Gwsql:NextRow()
 	end
 end
