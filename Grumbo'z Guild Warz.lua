@@ -1126,4 +1126,4 @@ RegisterUnitEvent(49002, 3, Guardkill)
 -- ****************************************************
 print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
-
+print("-----------------------------------\n") 
