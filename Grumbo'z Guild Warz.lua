@@ -19,7 +19,7 @@
 
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
-print("For TC2 Ace WotLK 3.3.5a\n")
+print("For TrinityCore2 WotLK 3.3.5a\n")
 
 local start = os.clock()
 
