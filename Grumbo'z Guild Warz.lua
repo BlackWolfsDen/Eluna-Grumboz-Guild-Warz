@@ -17,7 +17,9 @@
 -- *********** release date 03-10-2013 ***********
 -- ***********************************************
 
-print("\nGrumbo'z Guild Warz System Loading:\n")
+print("\n-----------------------------------")
+print("Grumbo'z Guild Warz System Loading:\n")
+print("For ArcEmu WotLK 3.3.5a\n")
 
 if(GetLuaEngine()~="ALE")then
 	print("err: "..GetLuaEngine().." Detected.\n")
