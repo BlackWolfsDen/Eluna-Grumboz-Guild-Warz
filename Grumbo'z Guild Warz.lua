@@ -327,7 +327,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage("|cff00cc00Hall limit: "..GWCOMM["SERVER"].hall_L.." per location.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
-print(player:GetGmRank())			
+
 			if((GWCOMM["SERVER"].GM_minimum == player:GetGmRank())or(GWCOMM["SERVER"].GM_admin == player:GetGmRank()))then
 				player:SendBroadcastMessage("Game Master Commands:")
 				player:SendBroadcastMessage("|cff00cc00"..GWCOMM["SERVER"].details_loc.."         -location info.|r")
