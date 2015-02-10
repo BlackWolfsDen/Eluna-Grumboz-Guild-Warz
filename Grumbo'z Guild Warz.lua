@@ -732,9 +732,9 @@ local Guildname = ""..player:GetGuildName()..""
 					if(player:GetItemCount(GWCOMM["SERVER"].currency) < GWCOMM["SERVER"].buffer_cost)then
 						player:SendBroadcastMessage("Each buff vendor costs "..GWCOMM["SERVER"].buffer_cost.." "..Currencyname..".")
 					else
-						if(GWARZ[LocId].buffer_count >= (GWCOMM["SERVER"].buffer_L * GWARZ[LocId].hall_count))then
+						if(GWARZ[LocId].buffer_count >= GWCOMM["SERVER"].buffer_L)then
 							player:SendBroadcastMessage("You have "..GWARZ[LocId].buffer_count.." buff vendors at this location.")
-							player:SendBroadcastMessage("You can only have "..(GWCOMM["SERVER"].buffer_L*GWCOMM["SERVER"].hall_L).." per location.")
+							player:SendBroadcastMessage("You can only have "..GWCOMM["SERVER"].buffer_L.." per location.")
 						else
 							PerformIngameSpawn(1, GWCOMM["SERVER"].buffer_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 							PreparedStatements(1, "buffer_count", GWARZ[LocId].buffer_count+1, LocId)
