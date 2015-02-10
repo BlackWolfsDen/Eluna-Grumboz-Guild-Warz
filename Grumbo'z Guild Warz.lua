@@ -420,17 +420,17 @@ local Guildname = ""..player:GetGuildName()..""
 			player:SendBroadcastMessage("|cff00cc00Value:|r "..Zoneprice.."|cff00cc00 "..Currencyname.."'s.|r")
 			
 			if(GWARZ[LocId].team==0)then
-				player:SendBroadcastMessage("|cff00cc00Faction: Alliance.|r")
+				player:SendBroadcastMessage("|cff00cc00Faction:|r|cff3399FF Alliance.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 			
 			if(GWARZ[LocId].team==1)then
-				player:SendBroadcastMessage("|cff00cc00Faction: Horde.|r")
+				player:SendBroadcastMessage("|cff00cc00Faction:|r|cffFF0000 Horde.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 			
 			if(GWARZ[LocId].team==2)then
-				player:SendBroadcastMessage("|cff00cc00Faction: For Sale.|r")
+				player:SendBroadcastMessage("|cff00cc00Faction:|r For Sale.|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 
