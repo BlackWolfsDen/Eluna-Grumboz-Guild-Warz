@@ -19,17 +19,17 @@
 
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
-print("For TC2 Ace WotLK 3.3.5a\n")
+print("For TC2 WotLK 3.3.5a\n")
 
 local start = os.clock()
 
 if(GetLuaEngine()~="ElunaEngine")then
-		print("err: "..GetLuaEngine().." Detected.\n")
-		print("!!..LOAD HALTED..?!!")
-		return false;
-	else
-		print("Approved: Eluna Detected.\n")
-	end
+	print("err: "..GetLuaEngine().." Detected.\n")
+	print("!!..LOAD HALTED..?!!")
+	return false;
+else
+	print("Approved: Eluna Detected.\n")
+end
 
 local Guard_Died_Drop = 20558 -- wsg's
 local table_version = 2.30; -- 30
