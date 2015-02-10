@@ -227,7 +227,7 @@ function CreateGcommands(guild, name)
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
 	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild` = '"..name.."';");
 	PreparedStatements(3, "guild_id", gid, name)
-	print("commands for: "..guild.." : created.")	
+	print("commands for: "..name.." : created.")	
 	LoadGWtable()
 	return guild;
 end
