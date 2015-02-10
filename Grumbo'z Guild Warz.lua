@@ -1135,7 +1135,7 @@ print("Teleporter version: "..tele_version.."")
 -- ************* Guild Warz Flag actions **************
 
 function TransferFlag(player, locid, go)
-	if(go:GetGUIDLow()~=GWARZ[locid].flag_id)then
+	if(go:GetGUIDLow() ~= GWARZ[locid].flag_id)then
 		go:Despawn()
 		player:SendBroadcastMessage("|cffcc0000error.... Phantom flag removed.|r")
 		PreparedStatements(2, "gameobject", go:GetGUIDLow())
@@ -1160,7 +1160,7 @@ function TransferFlag(player, locid, go)
 			return false;
 		end
 	end
-	
+
 	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
 		player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
@@ -1169,14 +1169,14 @@ function TransferFlag(player, locid, go)
 	
 	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(player:IsInGuild()==true)and(GWCOMM["SERVER"].anarchy==1))then
 
-		if((GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer < GetGameTime())and(GWCOMM["SERVER"].flag_timer==1))then
+		if((GWARZ[locid].spawn_time+GWCOMM["SERVER"].spawn_timer > GetGameTime())and(GWCOMM["SERVER"].flag_timer==1))then
 			player:SendBroadcastMessage("|cffff0000!!..Cooldown Timer in Affect..!!|r")
-			
 		else
+
 			if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
 				player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
-	
 			else
+
 				if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
 					player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
 					Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
