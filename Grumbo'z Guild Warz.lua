@@ -30,7 +30,7 @@ if(GetLuaEngine()~="ElunaEngine")then
 	else
 		print("Approved: Eluna Detected.\n")
 	end
-
+ 
 local Guard_Died_Drop = 20558 -- wsg's
 local table_version = 2.30; -- 30
 local core_version = 6.50 -- 50
