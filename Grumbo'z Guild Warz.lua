@@ -24,12 +24,12 @@ print("For TC2 WotLK 3.3.5a\n")
 local start = os.clock()
 
 if(GetLuaEngine()~="ElunaEngine")then
-	print("err: "..GetLuaEngine().." Detected.\n")
-	print("!!..LOAD HALTED..?!!")
-	return false;
-else
-	print("Approved: Eluna Detected.\n")
-end
+		print("err: "..GetLuaEngine().." Detected.\n")
+		print("!!..LOAD HALTED..?!!")
+		return false;
+	else
+		print("Approved: Eluna Detected.\n")
+	end
 
 local Guard_Died_Drop = 20558 -- wsg's
 local table_version = 2.30; -- 30
@@ -887,34 +887,6 @@ local Guildname = ""..player:GetGuildName()..""
 			return false;
 			end
 			
-			if(ChatCache[2] == GWCOMM[Guildname].buffer)then
-
-				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
-					player:SendBroadcastMessage("Your guild does not own this land.")
-				else
-					if(GWARZ[LocId].buffer_count == 0)then
-						player:SendBroadcastMessage("You DONT have any buff vendors in this area.")
-					else
-						if(player:GetSelection() == nil)then
-							player:SendBroadcastMessage("You must select a buff vendor.")
-
-						else
-							if(player:GetSelection():GetEntry()~=(GWCOMM["SERVER"].buffer_id+0 or GWCOMM["SERVER"].buffer_id+1))then
-								player:SendBroadcastMessage("You must select a guild buff vendor.")
-
-							else
-								local buffspawnid = player:GetSelection():GetGUIDLow()
-								player:GetSelection():DespawnOrUnsummon()
-								PreparedStatements(2, "creature", buffspawnid)
-								PreparedStatements(1, "buffer_count", GWARZ[LocId].buffer_count-1, LocId)
-								player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].buffer_cost)
-								player:SendBroadcastMessage("|cff00cc00Buff Vendor sold.|r")
-							end
-						end
-					end
-				end
-			end	
-
 			if(ChatCache[2] == GWCOMM[Guildname].guard)then
 
 				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
@@ -927,7 +899,7 @@ local Guildname = ""..player:GetGuildName()..""
 							player:SendBroadcastMessage("You must select a guard.")
 
 						else
-							if(player:GetSelection():GetEntry()~=(GWCOMM["SERVER"].guard_id+0 or GWCOMM["SERVER"].guard_id+1))then
+							if((player:GetSelection():GetEntry()) ~= ((GWCOMM["SERVER"].guard_id+0)or(GWCOMM["SERVER"].guard_id+1)))then
 								player:SendBroadcastMessage("You must select a guild guard.")
 
 							else
@@ -942,6 +914,39 @@ local Guildname = ""..player:GetGuildName()..""
 				end
 			end	
 			
+			if(ChatCache[2] == GWCOMM[Guildname].buffer)then
+
+				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+					player:SendBroadcastMessage("Your guild does not own this land.")
+				else
+					if(GWARZ[LocId].buffer_count == 0)then
+						player:SendBroadcastMessage("You DONT have any buff vendors in this area.")
+					else
+
+						if(player:GetSelection() == nil)then
+							player:SendBroadcastMessage("You must select a guild buff vendor.")
+						else
+						
+							local npc = player:GetSelection():GetEntry();
+							local buffer = GWCOMM["SERVER"].buffer_id;
+							
+							if not((npc == buffer)or(npc == buffer+1))then
+								player:SendBroadcastMessage("You must select a guild buff vendor.")
+
+							else
+								local buffspawnid = player:GetSelection():GetGUIDLow();
+								player:GetSelection():SetPhaseMask(0); 
+								player:GetSelection():DespawnOrUnsummon();
+								PreparedStatements(2, "creature", buffspawnid)
+								PreparedStatements(1, "buffer_count", GWARZ[LocId].buffer_count-1, LocId)
+								player:AddItem(GWCOMM["SERVER"].currency, GWCOMM["SERVER"].buffer_cost)
+								player:SendBroadcastMessage("|cff00cc00Buff Vendor sold.|r")
+							end
+						end
+					end
+				end
+			end	
+
 		return false;
 		end
 		
@@ -1176,21 +1181,23 @@ function TransferFlag(player, locid, go)
 			if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
 				player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
 			else
+				if(	player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)))then
 
-				if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
-					player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
-					Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
-					PreparedStatements(2, "gameobject", go:GetGUIDLow())
-					SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
-					PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
-					PreparedStatements(1, "team", player:GetTeam(), locid)
-					PreparedStatements(1, "x", player:GetX(), locid)
-					PreparedStatements(1, "y", player:GetY(), locid)
-					PreparedStatements(1, "z", player:GetZ(), locid)
-					PreparedStatements(1, "flag_id", Nflag, locid)
-					PreparedStatements(1, "flag_id", Nflag, locid)
-					PreparedStatements(1, "fs_time", GetGameTime(), locid)
-					PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
+					if(((GWARZ[locid].guard_count==0)and(GWCOMM["SERVER"].flag_require==1))or(GWCOMM["SERVER"].flag_require==0))then
+						player:GetNearestGameObject(2, (GWCOMM["SERVER"].flag_id+GWARZ[locid].team)):Despawn()
+						Nflag = (PerformIngameSpawn(2, (GWCOMM["SERVER"].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
+						PreparedStatements(2, "gameobject", go:GetGUIDLow())
+						SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1)
+						PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
+						PreparedStatements(1, "team", player:GetTeam(), locid)
+						PreparedStatements(1, "x", player:GetX(), locid)
+						PreparedStatements(1, "y", player:GetY(), locid)
+						PreparedStatements(1, "z", player:GetZ(), locid)
+						PreparedStatements(1, "flag_id", Nflag, locid)
+						PreparedStatements(1, "flag_id", Nflag, locid)
+						PreparedStatements(1, "fs_time", GetGameTime(), locid)
+						PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
+					end
 				end
 			end
 		end
@@ -1428,7 +1435,7 @@ local function buff_NPC(event, player, creature)
 local LocId = GetLocationId(creature)
 	
 	if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-		creature:SendUnitYell("!!Evil doe`r!!")
+		creature:SendUnitYell("!!Evil doe`r!!", 0)
 	else
 		player:GossipClearMenu()
 		player:GossipMenuAddItem(0, "Armor + 10%", 0, 1)
