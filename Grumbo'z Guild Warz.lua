@@ -32,11 +32,12 @@ if(GetLuaEngine()~="ElunaEngine")then
 	end
 
 local Guard_Died_Drop = 20558 -- wsg's
-local table_version = 2.30
-local core_version = 6.50
+local table_version = 2.30; -- 30
+local core_version = 6.50 -- 50
 local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.60
+local npc_version = 1.00
 
 local Server = "SERVER"
 local guild_warz_DB = "guild_warz_1" -- Must match unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
@@ -231,7 +232,7 @@ function CreateGcommands(guild, name)
 	return guild;
 end
 
-local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version)/4)
+local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version+npc_version)/4)
 
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
 	CreateGcommands(guild, name)
@@ -474,6 +475,7 @@ local Guildname = ""..player:GetGuildName()..""
 			player:SendBroadcastMessage("|cff00cc00PigPayz :: "..pigpayz_version..".|r")
 			player:SendBroadcastMessage("|cff00cc00Teleport :: "..tele_version..".|r")
 			player:SendBroadcastMessage("|cff00cc00PvP :: "..pvp_version..".|r")
+			player:SendBroadcastMessage("|cff00cc00NPC :: "..npc_version..".|r")
 			player:SendBroadcastMessage("*******************************")
 			return false;
 		end
