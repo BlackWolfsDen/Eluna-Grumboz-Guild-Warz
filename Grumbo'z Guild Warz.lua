@@ -971,7 +971,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM["SERVER"].farm)then
 				PreparedStatements(1, "farm_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." house count reset.|r")
+				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." farm count reset.|r")
 			return false;
 			end
 			
