@@ -24,12 +24,14 @@ print("For TC2 WotLK 3.3.5a\n")
 local start = os.clock()
 
 if(GetLuaEngine()~="ElunaEngine")then
-		print("err: "..GetLuaEngine().." Detected.\n")
-		print("!!..LOAD HALTED..?!!")
-		return false;
-	else
-		print("Approved: Eluna Detected.\n")
-	end
+	print("err: "..GetLuaEngine().." Detected.\n")
+	print("!!..LOAD HALTED..?!!")
+	print("\nXXX XXX XXX XXX XXX XXX XXX XXX XXX")
+	print("-----------------------------------")
+	return false;
+else
+	print("Approved: Eluna Detected.\n")
+end
 
 local Guard_Died_Drop = 20558 -- wsg's
 local table_version = 2.30; -- 30
@@ -37,7 +39,7 @@ local core_version = 6.50 -- 50
 local pigpayz_version = 2.50
 local tele_version = 1.50
 local pvp_version = 4.60
-local npc_version = 1.00
+local vendor_version = 1.00
 
 local Server = "SERVER"
 local guild_warz_DB = "guild_warz_335" -- Must match unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
@@ -232,7 +234,7 @@ function CreateGcommands(guild, name)
 	return guild;
 end
 
-local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version+npc_version)/4)
+local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version+vendor_version)/4)
 
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
 	CreateGcommands(guild, name)
@@ -1426,6 +1428,8 @@ end
 RegisterCreatureEvent(GWCOMM["SERVER"].guard_id, 3, Guardkill)
 RegisterCreatureEvent(GWCOMM["SERVER"].guard_id+1, 3, Guardkill)
 
+print ("PVP core: "..pvp_version.."")
+
 -- ****************************************************
 -- NPC functions
 -- ****************************************************
@@ -1470,11 +1474,12 @@ RegisterCreatureGossipEvent(GWCOMM["SERVER"].buffer_id+1, 1, buff_NPC)
 RegisterCreatureGossipEvent(GWCOMM["SERVER"].buffer_id, 2, On_Buff_Select)
 RegisterCreatureGossipEvent(GWCOMM["SERVER"].buffer_id+1, 2, On_Buff_Select)
 
+print ("Vendor core: "..vendor_version.."")
+
 -- ****************************************************
 -- ******************** End OF Line ******************* 
 -- ****************************************************
 
-print ("PVP core: "..pvp_version.."")
 print ("GUILD WARZ ver: "..GW_version.." Loaded.")
 local duration = (string.format("Load Time: %0.03f seconds.", os.clock() - start));
 print(duration)

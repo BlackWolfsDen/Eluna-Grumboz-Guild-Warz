@@ -5,18 +5,10 @@
 -- HeidiSQL Version:             9.1.0.4867
 -- --------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
--- Dumping database structure for guild_warz_335
 DROP DATABASE IF EXISTS `guild_warz_335`;
 CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `guild_warz_335`;
 
-
--- Dumping structure for table guild_warz_1.commands
 DROP TABLE IF EXISTS `commands`;
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
@@ -77,14 +69,9 @@ CREATE TABLE IF NOT EXISTS `commands` (
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz_1.commands: ~2 rows (approximately)
-/*!40000 ALTER TABLE `commands` DISABLE KEYS */;
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `buffer`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `buffer_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `buffer_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `buffer_id`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`) VALUES
-	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0);
-/*!40000 ALTER TABLE `commands` ENABLE KEYS */;
+('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0);
 
-
--- Dumping structure for table guild_warz_1.help
 DROP TABLE IF EXISTS `help`;
 CREATE TABLE IF NOT EXISTS `help` (
   `entry` bigint(20) unsigned DEFAULT NULL,
@@ -95,8 +82,6 @@ CREATE TABLE IF NOT EXISTS `help` (
   UNIQUE KEY `entry` (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz_1.help: ~63 rows (approximately)
-/*!40000 ALTER TABLE `help` DISABLE KEYS */;
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
 	(2, 'commands', 'produces a list of accessible commands by level.', 'set comm', '1'),
@@ -162,37 +147,31 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(62, 's_timer', 'no-tag-flag-timer time in ms.', 'set s_timer 180000', '6'),
 	(63, 'guild_id', 'guild id', 'LOCKED', '7'),
 	(64, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4');
-/*!40000 ALTER TABLE `help` ENABLE KEYS */;
 
--- Dumping structure for table guild_warz_1.zones
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE IF NOT EXISTS `zones` (
-  `entry` bigint(10) unsigned NOT NULL DEFAULT '0',
-  `map_id` bigint(10) unsigned NOT NULL DEFAULT '0',
-  `area_id` bigint(10) unsigned NOT NULL DEFAULT '0',
-  `zone_id` bigint(10) unsigned NOT NULL DEFAULT '0',
-  `guild_name` varchar(50) NOT NULL DEFAULT 'SERVER',
-  `team` smallint(10) unsigned NOT NULL DEFAULT '2',
-  `x` float NOT NULL DEFAULT '0',
-  `y` float NOT NULL DEFAULT '0',
-  `z` float NOT NULL DEFAULT '0',
-  `farm_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `barrack_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `hall_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `pig_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `guard_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `buffer_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
-  `flag_id` bigint(20) NOT NULL DEFAULT '0',
-  `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'time in seconds when the flag was spawned.',
-  `guild_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'guild id',
-  UNIQUE KEY `entry` (`entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	`entry` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`map_id` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`area_id` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`zone_id` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`guild_name` VARCHAR(50) NOT NULL DEFAULT 'SERVER',
+	`team` SMALLINT(10) UNSIGNED NOT NULL DEFAULT '2',
+	`x` FLOAT NOT NULL DEFAULT '0',
+	`y` FLOAT NOT NULL DEFAULT '0',
+	`z` FLOAT NOT NULL DEFAULT '0',
+	`farm_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`barrack_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`hall_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`pig_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`guard_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`buffer_count` TINYINT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`flag_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0',
+	`fs_time` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'time in seconds when the flag was spawned.',
+	`guild_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'guild id',
+	PRIMARY KEY (`entry`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table guild_warz_1.zones: ~3 rows (approximately)
-/*!40000 ALTER TABLE `zones` DISABLE KEYS */;
 REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `buffer_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
 (1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-/*!40000 ALTER TABLE `zones` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
