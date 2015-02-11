@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
   `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
-  `s_timer` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
+  `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
   `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'guild invite system. 0 == off :: 1 == on',
   PRIMARY KEY (`guild`),
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
 -- Dumping data for table guild_warz_1.commands: ~2 rows (approximately)
 /*!40000 ALTER TABLE `commands` DISABLE KEYS */;
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `buffer`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `buffer_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `buffer_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `buffer_id`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`) VALUES
-	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 1, 1, 300, 0, 0);
+	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0);
 /*!40000 ALTER TABLE `commands` ENABLE KEYS */;
 
 
