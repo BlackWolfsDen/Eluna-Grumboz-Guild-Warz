@@ -6,9 +6,9 @@
 -- Grumboz Guild Warz            2.3
 -- --------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS `guild_warz_434` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `guild_warz_434`;
+USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
@@ -65,6 +65,21 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
   `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'guild invite system. 0 == off :: 1 == on',
+  `color_1` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'Command color GREEN',
+  `color_2` varchar(10) NOT NULL DEFAULT '|cffFFFF00' COMMENT 'Value color YELLOW',
+  `color_3` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'Info color WHITE',
+  `color_4` varchar(10) NOT NULL DEFAULT '|cff3399FF' COMMENT 'Alliance color BLUE',
+  `color_5` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'Horde color RED',
+  `color_6` varchar(10) NOT NULL DEFAULT '|cffFFFF00' COMMENT 'For Sale color YELLOW',
+  `color_7` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'LOCKED color RED',
+  `color_8` varchar(10) NOT NULL DEFAULT '|cffC0C0C0' COMMENT 'Titles color GREY',
+  `color_9` varchar(10) NOT NULL DEFAULT '|cff000000' COMMENT 'Separators color BLACK',
+  `color_10` varchar(10) DEFAULT '|cff00cc00' COMMENT 'HELP Commands color GREEN',
+  `color_11` varchar(10) NOT NULL DEFAULT '|cffFFFF00' COMMENT 'HELP Description color YELLOW',
+  `color_12` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'SET Error color RED',
+  `color_13` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'SET Values color WHITE',
+  `color_14` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'Good Announcements color GREEN',
+  `color_15` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'Bad Annoucements RED',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 )
@@ -72,8 +87,8 @@ COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `buffer`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `buffer_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `buffer_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `buffer_id`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`) VALUES
-('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0);
+REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `buffer`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `buffer_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `buffer_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `buffer_id`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
+('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` 
 (
@@ -152,7 +167,22 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(61, 'f_timer', 'no-tag-flag system  0 = off :: 1 = on', 'set f_timer 1', '6'),
 	(62, 's_timer', 'no-tag-flag-timer time in ms.', 'set s_timer 180000', '6'),
 	(63, 'guild_id', 'guild id', 'LOCKED', '7'),
-	(64, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4');
+	(64, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4'),
+	(65, 'color_1', 'command color GuildMaster Level', 'set color_1 cff000000', '4'),
+	(66, 'color_2', 'Setting Value color  GuildMaster Level', 'set color_2 cff000000', '4'),
+	(67, 'color_3', 'Info color  GuildMaster Level HEX CODE', 'set color_3 cff000000', '4'),
+	(68, 'color_4', 'Alliance color  GuildMaster Level HEX CODE', 'set color_4 cff000000', '4'),
+	(69, 'color_5', 'Horde color  GuildMaster Level HEX CODE', 'set color_5 cff000000', '4'),
+	(70, 'color_6', 'For Sale color  GuildMaster Level HEX CODE', 'set color_6 cff000000', '4'),
+	(71, 'color_7', 'LOCKED color  GuildMaster Level HEX CODE', 'set color_7 cff000000', '4'),
+	(72, 'color_8', 'Titles color  GuildMaster Level HEX CODE', 'set color_8 cff000000', '4'),
+	(73, 'color_9', 'Separator color  GuildMaster Level HEX CODE', 'set color_9 cff000000', '4'),
+	(74, 'color_10', 'Help Commands color  GuildMaster Level HEX CODE', 'set color_10 cff000000', '4'),
+	(75, 'color_11', 'Help Description color  GuildMaster Level HEX CODE', 'set color_11 cff000000', '4'),
+	(76, 'color_12', 'Set Error color  GuildMaster Level HEX CODE', 'set color_12 cff000000', '4'),
+	(77, 'color_13', 'Set Values color  GuildMaster Level HEX CODE', 'set color_13 cff000000', '4'),
+	(78, 'color_14', 'Good Announcements  color  GuildMaster Level HEX CODE', 'set color_14 cff000000', '4'),
+	(79, 'color_15', 'Bad Announcements  color  GuildMaster Level HEX CODE', 'set color_15 cff000000', '4');
 
 CREATE TABLE IF NOT EXISTS `zones` (
 	`entry` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
