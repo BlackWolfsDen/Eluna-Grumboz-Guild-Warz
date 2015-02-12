@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `help` (
 
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
-	(2, 'commands', 'produces a list of accessible commands by level.', 'set comm', '1'),
+	(2, 'commands', 'produces a list of accessible commands by level.', 'set commands comm', '1'),
 	(3, 'info_loc', 'produces a basic description of current location.', 'set info_loc look', '1'),
 	(4, 'list_loc', 'produces a list of all locations own by player guild sshowing the loocation id, houses, guards, pigs, and value then provides a tally at the end.', 'set list_loc lands', '1'),
 	(5, 'tele', 'allows guild members to teleport to guild location flags using location id\'s.', 'set tele goto', '1'),
@@ -142,8 +142,8 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(57, 'x3', 'game core ID for x3', 'LOCKED', '7'),
 	(58, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
 	(59, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
-	(60, 'anarchy', 'game core setting allows same team invasions . 0 = off::1 = on', 'set anarchy 1', '6'),
-	(61, 'f_timer', 'no-tag-flag system  on/off == 0/1', 'set f_timer 1', '6'),
+	(60, 'anarchy', 'game core setting allows same team invasions . 0 = off :: 1 = on', 'set anarchy 1', '6'),
+	(61, 'f_timer', 'no-tag-flag system  0 = off :: 1 = on', 'set f_timer 1', '6'),
 	(62, 's_timer', 'no-tag-flag-timer time in ms.', 'set s_timer 180000', '6'),
 	(63, 'guild_id', 'guild id', 'LOCKED', '7'),
 	(64, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4');

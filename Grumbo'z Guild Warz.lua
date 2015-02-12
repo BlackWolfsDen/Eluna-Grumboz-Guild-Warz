@@ -49,8 +49,8 @@ GWARZ = {};
 GWHELP = {};
 GGW = {};
 
-local Colors = {
-			[1] = "|cff00cc00", -- Primary color -- GREEN
+local Colors = { -- these colors are used for the chat box output.
+			[1] = "|cff00cc00", -- Command color -- GREEN
 			[2] = "|cffFFFF00", -- Value color -- YELLOW
 			[3] = "|cffFFFFFF", -- Info color WHITE
 			[4] = "|cff3399FF", -- Alliance color BLUE
@@ -59,6 +59,8 @@ local Colors = {
 			[7] = "|cffFF0000", -- LOCKED RED
 			[8] = "|cffC0C0C0", -- Titles GREY
 			[9] = "|cff000000", -- Separators BLACK
+			[10] = "|cff00cc00", -- help commands GREEN
+			[11] = "|cffFFFF00", -- help description YELLOW
 };
 
 local function LoadGWtable()
@@ -383,7 +385,7 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(Colors[1].."Barracks price:|r "..Colors[2]..""..GWCOMM[Server].barrack_cost.."|r");
 				player:SendBroadcastMessage(Colors[1].."Hall price:|r "..Colors[2]..""..GWCOMM[Server].hall_cost.."|r");
 				player:SendBroadcastMessage(Colors[1].."Pig price:|r "..Colors[2]..""..GWCOMM[Server].pig_cost.."|r");
-				player:SendBroadcastMessage(Colors[1].."Guard price:|r "..Colors[2]..""..GWCOMM[Server].guard_cost.." "..Colors[3].."disposable.|r");
+				player:SendBroadcastMessage(Colors[1].."Guard price:|r "..Colors[2]..""..GWCOMM[Server].guard_cost.."|r");
 				player:SendBroadcastMessage(Colors[1].."Buff vendor price:|r "..Colors[2]..""..GWCOMM[Server].buffer_cost.."|r");
 				player:SendBroadcastMessage(Colors[9].."*************************************")
 			end
@@ -515,7 +517,7 @@ local Guildname = ""..player:GetGuildName()..""
 		
 					if(GWHELP[i].command_level<=6)and(GWHELP[i].command_level>=5)and(player:GetGMRank()==GWCOMM[Server].GM_admin)then
 						PreparedStatements(3, ChatCache[2], ChatCache[3], Server)
-						player:SendBroadcastMessage("GM cmd "..ChatCache[2].." set to "..ChatCache[3]..".");
+						player:SendBroadcastMessage(Colors[10].."GM cmd "..ChatCache[2].." set to "..ChatCache[3].."|r.");
 					return false;
 					end
 				end
@@ -534,11 +536,11 @@ local Guildname = ""..player:GetGuildName()..""
 						for b = 1, #GWHELP do
 
 							if((player:GetGuildRank()==0)and(GWHELP[b].command_level<=4))then
-								player:SendBroadcastMessage(GWHELP[b].command.."     -     |cff00cc00"..GWHELP[b].description.."|r");
+								player:SendBroadcastMessage(Colors[10]..""..GWHELP[b].command.."     -     "..Colors[11]..""..GWHELP[b].description.."|r");
 							end
 							
 							if(player:GetGMRank()==GWCOMM[Server].GM_admin)and(GWHELP[b].command_level>=5)and(GWHELP[b].command_level<=6)then
-	                        	player:SendBroadcastMessage(GWHELP[b].command.."     -     |cff00cc00"..GWHELP[b].description.."|r");
+	                        	player:SendBroadcastMessage(Colors[10]..""..GWHELP[b].command.."     -     "..Colors[11]..""..GWHELP[b].description.."|r");
 	                        end
 						end
 				return false;
