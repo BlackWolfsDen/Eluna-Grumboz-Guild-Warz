@@ -324,6 +324,8 @@ local Guildname = ""..player:GetGuildName()..""
 		
 		if(ChatCache[1]==GWCOMM[player:GetGuildName()].commands)then
 			player:SendBroadcastMessage(Colors[9].."*************************************");
+			player:SendBroadcastMessage(Colors[8].."*  -Grumbo'z Guild Warz Commands:-  *");
+			player:SendBroadcastMessage(Colors[9].."*************************************");
 			player:SendBroadcastMessage("(Guild: "..Guildname..")");
 			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (Game Rank: "..player:GetGMRank()..")");
 			player:SendBroadcastMessage(Colors[9].."*************************************");
@@ -379,7 +381,7 @@ local Guildname = ""..player:GetGuildName()..""
 			end
 			
 			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
-				player:SendBroadcastMessage(Colors[8].."Prices in "..Currencyname.."'s");
+				player:SendBroadcastMessage(Colors[8].."Prices in "..Currencyname.."'s:");
 				player:SendBroadcastMessage(Colors[1].."Zone price:|r "..Colors[2]..""..GWCOMM[Server].loc_cost.."|r "..Colors[3].."base location price.|r");
 				player:SendBroadcastMessage(Colors[1].."Farm price:|r "..Colors[2]..""..GWCOMM[Server].farm_cost.."|r");
 				player:SendBroadcastMessage(Colors[1].."Barracks price:|r "..Colors[2]..""..GWCOMM[Server].barrack_cost.."|r");
@@ -434,6 +436,7 @@ local Guildname = ""..player:GetGuildName()..""
 		end
 		
 		if(ChatCache[1]==GWCOMM[Guildname].info_loc)then
+			player:SendBroadcastMessage(Colors[8].."Location details:")
 			player:SendBroadcastMessage(Colors[9].."*************************************")
 			player:SendBroadcastMessage(Colors[1].."|cff00cc00Loc ID:|r "..Colors[2]..""..GWARZ[LocId].entry.."|r");
 			player:SendBroadcastMessage(Colors[1].."|cff00cc00Owner:|r "..Colors[2]..""..GWARZ[LocId].guild_name.."|r");
@@ -1087,9 +1090,16 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(ChatCache[1] == GWCOMM[Server].details_loc)then
 				player:SendBroadcastMessage(Colors[9].."*************************************");
+				player:SendBroadcastMessage(Colors[8].."Location details:");
 				player:SendBroadcastMessage(Colors[1].."Location ID:|r "..Colors[2]..""..GWARZ[LocId].entry.."|r.");
 				player:SendBroadcastMessage(Colors[1].."Guild Name:|r "..Colors[2]..""..GWARZ[LocId].guild_name.."|r.");
 				player:SendBroadcastMessage(Colors[1].."Team:|r  "..Colors[2]..""..GWARZ[LocId].team.."|r.");
+
+				if(GWARZ[LocId].team==0)then player:SendBroadcastMessage(Colors[1].."Faction: "..Colors[4].."Alliance.|r");end
+				if(GWARZ[LocId].team==1)then player:SendBroadcastMessage(Colors[1].."Faction: "..Colors[5].."Horde.|r");end
+				if(GWARZ[LocId].team==2)then player:SendBroadcastMessage(Colors[1].."Faction: "..Colors[6].."For Sale.|r");end
+				if(GWARZ[LocId].team==3)then player:SendBroadcastMessage(Colors[1].."Faction: "..Colors[7].."LOCKED|r");end
+
 				player:SendBroadcastMessage(Colors[1].."Farm count:|r  "..Colors[2]..""..GWARZ[LocId].farm_count.."|r.");
 				player:SendBroadcastMessage(Colors[1].."Barrack count:|r  "..Colors[2]..""..GWARZ[LocId].barrack_count.."|r.");
 				player:SendBroadcastMessage(Colors[1].."Hall count:|r  "..Colors[2]..""..GWARZ[LocId].hall_count.."|r.");
@@ -1509,7 +1519,7 @@ local LocId = GetLocationId(creature)
 	end
 end
 
-local function On_Buff_Select(player, event, object, sender, intid, code)
+local function On_Buff_Select(event, player, object, sender, intid, code)
 
 	if(intid == 1) then	player:AddAura(23767, player);end
 	if(intid == 2) then	player:AddAura(23768, player);end
