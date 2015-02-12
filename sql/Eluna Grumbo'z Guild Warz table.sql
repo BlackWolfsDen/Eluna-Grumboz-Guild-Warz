@@ -5,11 +5,10 @@
 -- HeidiSQL Version:             9.1.0.4867
 -- --------------------------------------------------------
 
-DROP DATABASE IF EXISTS `guild_warz_335`;
 CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
 USE `guild_warz_335`;
 
-DROP TABLE IF EXISTS `commands`;
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
   `commands` varchar(10) NOT NULL DEFAULT 'commands',
@@ -67,20 +66,26 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'guild invite system. 0 == off :: 1 == on',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
+COMMENT='version 1.76'
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
 
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `buffer`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `buffer_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `buffer_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `buffer_id`, `x2`, `x3`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`) VALUES
 ('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'buffer', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 1, 1, 'set', 0, 0, 300, 0, 0);
 
-DROP TABLE IF EXISTS `help`;
-CREATE TABLE IF NOT EXISTS `help` (
+CREATE TABLE IF NOT EXISTS `help` 
+(
   `entry` bigint(20) unsigned DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `description` varchar(1028) DEFAULT NULL,
   `example` varchar(1028) DEFAULT NULL,
   `command_level` varchar(1028) DEFAULT NULL,
   UNIQUE KEY `entry` (`entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
+COMMENT='version 1.76'
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
 
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
@@ -148,7 +153,6 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(63, 'guild_id', 'guild id', 'LOCKED', '7'),
 	(64, 'guild_invite', 'Guild Level Setting. Guild invite system 0 == off :: 1 == on // default on.', 'set guild_invite 1', '4');
 
-DROP TABLE IF EXISTS `zones`;
 CREATE TABLE IF NOT EXISTS `zones` (
 	`entry` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
 	`map_id` BIGINT(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -170,8 +174,9 @@ CREATE TABLE IF NOT EXISTS `zones` (
 	`guild_id` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'guild id',
 	PRIMARY KEY (`entry`)
 )
+COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ENGINE=InnoDB;
 
 REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `buffer_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
 (1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
