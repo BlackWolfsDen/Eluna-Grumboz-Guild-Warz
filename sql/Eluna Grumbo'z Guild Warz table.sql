@@ -3,12 +3,12 @@
 -- Server version:               5.5.9-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL Version:             9.1.0.4867
--- Grumboz Guild Warz            4.3.4 Cataclysm Eluna
+-- Grumboz Guild Warz            3.3.5a WotlK Eluna
 -- --------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS `guild_warz_434` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `guild_warz_434`;
+USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
