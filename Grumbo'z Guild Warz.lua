@@ -49,20 +49,6 @@ GWARZ = {};
 GWHELP = {};
 GGW = {};
 
---local Colors = { -- these colors are used for the chat box output.
---			[1] = "|cff00cc00", -- Command color -- GREEN
---			[2] = "|cffFFFF00", -- Value color -- YELLOW
---			[3] = "|cffFFFFFF", -- Info color WHITE
---			[4] = "|cff3399FF", -- Alliance color BLUE
---			[5] = "|cffFF0000", -- Horde color RED
---			[6] = "|cffFFFF00", -- For Sale YELLOW
---			[7] = "|cffFF0000", -- LOCKED RED
---			[8] = "|cffC0C0C0", -- Titles GREY
---			[9] = "|cff000000", -- Separators BLACK
---			[10] = "|cff00cc00", -- help commands GREEN
---			[11] = "|cffFFFF00", -- help description YELLOW
---};
-
 local function LoadGWtable()
 
 local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".help;");
