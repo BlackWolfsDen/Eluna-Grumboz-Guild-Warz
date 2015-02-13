@@ -3,7 +3,7 @@
 -- Server version:               5.5.9-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL Version:             9.1.0.4867
--- Grumboz Guild Warz            2.3
+-- Grumboz Guild Warz            3.3.5a WotlK Eluna
 -- --------------------------------------------------------
 
 CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
