@@ -338,7 +338,7 @@ local Guildname = ""..player:GetGuildName()..""
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."*  -Grumbo'z Guild Warz Commands:-  *");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*********************************************");
 			player:SendBroadcastMessage("(Guild: "..Guildname..")");
-			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (GM Rank: "..player:GetGMRank()..")");
+			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (GAME Rank: "..player:GetGMRank()..")");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.." Guild Member Commands:");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
