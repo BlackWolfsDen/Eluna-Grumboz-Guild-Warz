@@ -41,6 +41,7 @@ local tele_version = 1.50;
 local pvp_version = 4.60;
 local vendor_version = 1.50;
 
+local buff_vendor = 1; -- use built-in vendor 0/1 no/yes off/on.
 local Server = "SERVER";
 local guild_warz_DB = "guild_warz_335"; -- Must match unique name if running on multiple cores i.e. guild_warz_335_1 
 
@@ -1864,33 +1865,36 @@ local LocId = GetLocationId(creature)
 	end
 end
 
-if(GWCOMM[Server].vendor1_id > 0)then 
+if(buff_vendor == 1)then
 
-	local function On_Buff_Select(event, player, object, sender, intid, code)
+	if(GWCOMM[Server].vendor1_id > 0)then 
 	
-		if(intid < 10) then
-			if(intid == 1) then	player:AddAura(23767, player);end
-			if(intid == 2) then	player:AddAura(23768, player);end
-			if(intid == 3) then	player:AddAura(23769, player);end
-			if(intid == 4) then	player:AddAura(23736, player);end
-			if(intid == 5) then	player:AddAura(23766, player);end
-			if(intid == 6) then	player:AddAura(23738, player);end
-			if(intid == 7) then	player:AddAura(23735, player);end
-			if(intid == 8) then	player:AddAura(23737, player);end
-			if(intid == 9) then	player:AddAura(25840, player);end
-			buff_NPC(1, player, object);
-		else
-			player:GossipComplete()
+		local function On_Buff_Select(event, player, object, sender, intid, code)
+		
+			if(intid < 10) then
+				if(intid == 1) then	player:AddAura(23767, player);end
+				if(intid == 2) then	player:AddAura(23768, player);end
+				if(intid == 3) then	player:AddAura(23769, player);end
+				if(intid == 4) then	player:AddAura(23736, player);end
+				if(intid == 5) then	player:AddAura(23766, player);end
+				if(intid == 6) then	player:AddAura(23738, player);end
+				if(intid == 7) then	player:AddAura(23735, player);end
+				if(intid == 8) then	player:AddAura(23737, player);end
+				if(intid == 9) then	player:AddAura(25840, player);end
+				buff_NPC(1, player, object);
+			else
+				player:GossipComplete()
+			end
 		end
+	
+		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 1, buff_NPC)
+		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 1, buff_NPC)
+		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 2, On_Buff_Select)
+		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 2, On_Buff_Select)
+		print("Vendor1 loaded.")
+	else
+		player:SendBroadcastMessage("default vendor1 disabled.")
 	end
-
-	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 1, buff_NPC)
-	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 1, buff_NPC)
-	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 2, On_Buff_Select)
-	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 2, On_Buff_Select)
-	print("Vendor1 loaded.")
-else
-	player:SendBroadcastMessage("default vendor1 disabled.")
 end
 
 if(GWCOMM[Server].vendor2_id > 0)then print("Vendor2 loaded.")else print("Vendor2 Disabled.");end
