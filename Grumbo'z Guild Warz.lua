@@ -42,7 +42,7 @@ local pvp_version = 4.60;
 local vendor_version = 1.50;
 
 local Server = "SERVER";
-local guild_warz_DB = "guild_warz_434"; -- Must match unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
+local guild_warz_DB = "guild_warz_434"; -- Must match unique name if running on multiple cores i.e. guild_warz_4.3.4_1 
 
 GWCOMM = {};
 GWARZ = {};
@@ -719,7 +719,7 @@ local Guildname = ""..player:GetGuildName()..""
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You have "..GWARZ[LocId].hall_count.." hall at this location.");				
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You can only have "..GWCOMM[Server].hall_L.." hall per area.");	
 						else
-							if(GWARZ[LocId].barrack_count >= 1)then
+							if(GWARZ[LocId].barrack_count == 0)then
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Each Hall require's 1 barracks per location to provide guards for defensive support.");
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Gotta protect your HQ.");
 							else
