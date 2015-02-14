@@ -1701,6 +1701,7 @@ local LocId = GetLocationId(creature)
 		player:GossipMenuAddItem(0, "Strength + 10%", 0, 7)
 		player:GossipMenuAddItem(0, "Stamina + 10%", 0, 8)
 		player:GossipMenuAddItem(0, "Heal Me", 0, 9)
+		player:GossipMenuAddItem(0, "good bye", 0, 10)
 		player:GossipSendMenu(1, creature)
 	end
 end
@@ -1709,16 +1710,20 @@ if(GWCOMM[Server].vendor1_id > 0)then
 
 	local function On_Buff_Select(event, player, object, sender, intid, code)
 	
-		if(intid == 1) then	player:AddAura(23767, player);end
-		if(intid == 2) then	player:AddAura(23768, player);end
-		if(intid == 3) then	player:AddAura(23769, player);end
-		if(intid == 4) then	player:AddAura(23736, player);end
-		if(intid == 5) then player:AddAura(23766, player);end
-		if(intid == 6) then	player:AddAura(23738, player);end
-		if(intid == 7) then	player:AddAura(23735, player);end
-		if(intid == 8) then	player:AddAura(23737, player);end
-		if(intid == 9) then	player:AddAura(25840, player);end
-		player:GossipComplete()
+		if(intid < 10) then
+			if(intid == 1) then	player:AddAura(23767, player);end
+			if(intid == 2) then	player:AddAura(23768, player);end
+			if(intid == 3) then	player:AddAura(23769, player);end
+			if(intid == 4) then	player:AddAura(23736, player);end
+			if(intid == 5) then	player:AddAura(23766, player);end
+			if(intid == 6) then	player:AddAura(23738, player);end
+			if(intid == 7) then	player:AddAura(23735, player);end
+			if(intid == 8) then	player:AddAura(23737, player);end
+			if(intid == 9) then	player:AddAura(25840, player);end
+			buff_NPC(1, player, object);
+		else
+			player:GossipComplete()
+		end
 	end
 
 	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 1, buff_NPC)
