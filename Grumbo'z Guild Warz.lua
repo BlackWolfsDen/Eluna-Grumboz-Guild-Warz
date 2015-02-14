@@ -448,9 +448,11 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].hall.."|r          "..GWCOMM[Guildname].color_3.."-Resets location hall count to 0.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].pig.."|r          "..GWCOMM[Guildname].color_3.."-Resets location pig count to 0.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].guard.."|r          "..GWCOMM[Guildname].color_3.."-Resets location guard count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor1.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 1 count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor2.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 2 count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor3.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 3 count to 0.|r");
+				
+				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor1.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 1 count to 0.|r");end
+				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor2.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 2 count to 0.|r");end
+				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor3.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 3 count to 0.|r");end
+				
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."spawn "..GWCOMM[Server].respawn_flag.."|r         "..GWCOMM[Guildname].color_3.."-Spawns new flag if current|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                         "..GWCOMM[Guildname].color_3.."flag is missing.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."lock "..GWCOMM[Server].loc.."|r         "..GWCOMM[Guildname].color_3.."-locks a location from purchase.|r");
@@ -1297,69 +1299,99 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Area: "..GWARZ[LocId].entry.." succesfully |r"..GWCOMM[Guildname].color_7.."LOCKED|r.");
 			return false;
 			end
-		
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].loc)then
-				PreparedStatements(1, "guild_name", Server, LocId)
-				PreparedStatements(1, "team", 2, LocId)
-				PreparedStatements(1, "flag_id", 0, LocId)
-				PreparedStatements(1, "fs_time", 0, LocId)
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Area: "..GWARZ[LocId].entry.." succesfully reset.|r");
-			return false;
-			end
+--		
+			if(ChatCache[1] == "reset")then
 			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].farm)then
-				PreparedStatements(1, "farm_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." farm count reset.|r");
-			return false;
-			end
-			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].barrack)then
-				PreparedStatements(1, "barrack_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." barrack count reset.|r");
-			return false;
-			end
-			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].hall)then
-				PreparedStatements(1, "hall_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." hall count reset.|r");
-			return false;
-			end
-			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].pig)then
-				PreparedStatements(1, "pig_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." pig count reset.|r");
-			return false;
-			end
-			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].guard)then
-				PreparedStatements(1, "guard_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." guard count reset.|r");
-			return false;
-			end
-			
-			if(ChatCache[1] == "reset")and(ChatCache[2] == GWCOMM[Server].buffer)then
-				PreparedStatements(1, "vendor1_count", 0, LocId)
-				player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." vendor1 count reset.|r");
-			return false;
-			end
-
-			if(ChatCache[1] == "reload")and(ChatCache[2] == GWCOMM[Server].table)then
-				GWtable = {}
-				LoadGWtable()
-				player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz Tables Reloaded.|r");
-			return false;
-			end
-
-			if((ChatCache[1]=="spawn")and(ChatCache[2]=="flag"))then
-				if(GWARZ[LocId].team >= 2)then
-					player:SendBroadcastMessage("|cffFF0000The Server controls This Land. !! NO NEW FLAG SPAWNED !!|r");
-				else
-					GMFlagid = PerformIngameSpawn(2, GWCOMM[Server].flag_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow() -- no flag spawns +GWARZ[LocId].Team
-					PreparedStatements(1, "flag_id", GMFlagid, LocId)
-					PreparedStatements(1, "fs_time", GetGameTime(), LocId)
-					player:SendBroadcastMessage("|cff00cc00New flag spawned for Guild Warz location: "..GWARZ[LocId].entry.."|r");
+				if(ChatCache[2] == GWCOMM[Server].loc)then
+					PreparedStatements(1, "guild_name", Server, LocId)
+					PreparedStatements(1, "team", 2, LocId)
+					PreparedStatements(1, "flag_id", 0, LocId)
+					PreparedStatements(1, "fs_time", 0, LocId)
+					player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Area: "..GWARZ[LocId].entry.." succesfully reset.|r");
+				return false;
 				end
-			return false;
+				
+				if(ChatCache[2] == GWCOMM[Server].farm)then
+					PreparedStatements(1, "farm_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." farm count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].barrack)then
+					PreparedStatements(1, "barrack_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." barrack count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].hall)then
+					PreparedStatements(1, "hall_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." hall count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].pig)then
+					PreparedStatements(1, "pig_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." pig count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].guard)then
+					PreparedStatements(1, "guard_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." guard count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].vendor1)then
+					PreparedStatements(1, "vendor1_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." vendor1 count reset.|r");
+				return false;
+				end
+		
+				if(ChatCache[2] == GWCOMM[Server].vendor2)then
+					PreparedStatements(1, "vendor2_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." vendor2 count reset.|r");
+				return false;
+				end
+		
+				if(ChatCache[2] == GWCOMM[Server].vendor3)then
+					PreparedStatements(1, "vendor3_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." vendor3 count reset.|r");
+				return false;
+				end
+				
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
+				return false;
+			end
+--			
+			if(ChatCache[1] == "reload")then
+
+				if(ChatCache[2] == GWCOMM[Server].table)then
+					GWtable = {};
+					LoadGWtable();
+					player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz Tables Reloaded.|r");
+				return false;
+				end
+
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
+				return false;
+			end
+--
+			if(ChatCache[1]=="spawn")then
+				
+				if(ChatCache[2]=="flag")then
+				
+					if(GWARZ[LocId].team >= 2)then
+						player:SendBroadcastMessage("|cffFF0000The Server controls This Land. !! NO NEW FLAG SPAWNED !!|r");
+					else
+						GMFlagid = PerformIngameSpawn(2, GWCOMM[Server].flag_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow() -- no flag spawns +GWARZ[LocId].Team
+						PreparedStatements(1, "flag_id", GMFlagid, LocId)
+						PreparedStatements(1, "fs_time", GetGameTime(), LocId)
+						player:SendBroadcastMessage("|cff00cc00New flag spawned for Guild Warz location: "..GWARZ[LocId].entry.."|r");
+					end
+				end
+				
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
+				return false;
 			end
 			
 			if(ChatCache[1] == GWCOMM[Server].details_loc)then
@@ -1384,9 +1416,11 @@ local Guildname = ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Hall count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].hall_count.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Pig count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].pig_count.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."guard count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].guard_count.."|r.");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor1_count.."|r.");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor2 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor2_count.."|r.");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor3 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor3_count.."|r.");
+			
+				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor1_count.."|r.");end
+				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor2 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor2_count.."|r.");end
+				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor3 count:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor3_count.."|r.");end
+				
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."flag spawn id:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].flag_id.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."flag spawn time:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].spawn_time.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild ID:|r  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].guild_id.."|r.");
