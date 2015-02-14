@@ -6,8 +6,19 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49001, 744, 'Guild War\'z Pig', 'Horde', NULL, 80, 80, 83, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49002, 26725, 'Guild War\'z Guard', 'Alliance', 'Attack', 80, 80, 84, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
 (49003, 26725, 'Guild War\'z Guard', 'Horde', 'Attack', 80, 80, 83, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
-(49004, 10722, 'Guild War\'z Buff Vendor', '', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49005, 10722, 'Guild War\'z Buff Vendor', '', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
+(49004, 10722, 'Vendor 1', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49005, 10722, 'Vendor 1', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49006, 10722, 'Vendor 2', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49007, 10722, 'Vendor 2', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49008, 10722, 'Vendor 3', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49009, 10722, 'Vendor 3', 'Guild War\'z', NULL, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
+
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES 
+-- entry, slot, item, maxcount, incrtime, ExtendedCost -- here is where you can add 
+(49006, 0, 0, 0, 0, 0), -- Ally vendor2
+(49007, 0, 0, 0, 0, 0), -- horde vendor2
+(49008, 0, 0, 0, 0, 0), -- ally vendor3
+(49009, 0, 0, 0, 0, 0), -- horde vendr3
 
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`) VALUES 
 (187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
@@ -23,3 +34,4 @@ REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconN
 
 REPLACE INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclass`, `name`, `displayid`, `Quality`, `Flags`, `FlagsExtra`, `BuyCount`, `BuyPrice`, `SellPrice`, `InventoryType`, `AllowableClass`, `AllowableRace`, `maxcount`, `stackable`, `bonding`, `description`, `RequiredDisenchantSkill`, `ScriptName`) VALUES 
 (62006, 0, 8, -1, 'Guild Coin', 34104, 4, 0, 0, 1, 500000000, 500000000, 0, -1, -1, 2147483647, 2147483647, 0, 'Grumbo\'z Guild Warz', -1, '');
+
