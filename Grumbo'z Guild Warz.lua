@@ -312,7 +312,7 @@ local LocId = GetLocationId(player)
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
 	
-local Guildname = ""..player:GetGuildName()..""
+local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 
 	if(GWCOMM[Guildname]==nil)then
 		Gcommands = CreateGcommands(player:GetGuild(), player:GetGuildName())
@@ -338,7 +338,7 @@ local Guildname = ""..player:GetGuildName()..""
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."*  -Grumbo'z Guild Warz Commands:-  *");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*********************************************");
 			player:SendBroadcastMessage("(Guild: "..Guildname..")");
-			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (Game Rank: "..player:GetGMRank()..")");
+			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (GAME Rank: "..player:GetGMRank()..")");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.." Guild Member Commands:");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
@@ -539,28 +539,57 @@ local Guildname = ""..player:GetGuildName()..""
 		end
 	
 		if (ChatCache[1] == GWCOMM[Server].command_set) then
-	
-			for i = 1, #GWHELP do
-	
-				if(ChatCache[2]==tostring(GWHELP[i].command))then
-	
-					if(GWHELP[i].command_level<=4)and(player:GetGuildRank()==0)then
-						PreparedStatements(3, ChatCache[2], ChatCache[3], player:GetGuildName())
-						player:SendBroadcastMessage("guild cmd "..ChatCache[2].." set to "..ChatCache[3]..".");
-					return false;
-					end
 		
-					if(GWHELP[i].command_level<=6)and(GWHELP[i].command_level>=5)and(player:GetGMRank()==GWCOMM[Server].GM_admin)then
-						PreparedStatements(3, ChatCache[2], ChatCache[3], Server)
-						player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."GM cmd "..ChatCache[2].." set to "..ChatCache[3].."|r.");
-					return false;
-					end
-				end
-			end	
-		player:SendBroadcastMessage(GWCOMM[Guildname].color_12.."err...");
-		return false;
-		end
+			if(ChatCache[2])then
+			
+				for i = 1, #GWHELP do
 	
+					if(ChatCache[2]==tostring(GWHELP[i].command))then
+						
+						if(ChatCache[3])then
+					
+							if(GWHELP[i].command_level<=4)then
+							
+								if(player:GetGuildRank()==0)then
+									PreparedStatements(3, ChatCache[2], ChatCache[3], player:GetGuildName())
+									player:SendBroadcastMessage("guild cmd "..ChatCache[2].." set to "..ChatCache[3]..".");
+									return false;
+								else
+								
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GLD CMD ACCESS ERROR.:|r "..player:GetGuildRank());
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2].." "..ChatCache[3]);
+									return false;
+								end
+							end
+				
+							if(GWHELP[i].command_level<=6)and(GWHELP[i].command_level>=5)then
+								
+								if(player:GetGMRank()==GWCOMM[Server].GM_admin)then
+									PreparedStatements(3, ChatCache[2], ChatCache[3], Server)
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."GM cmd "..ChatCache[2].." set to "..ChatCache[3].."|r.");
+									return false;
+								else
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GM CMD ACCESS ERROR.: |r"..player:GetGMRank());
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2].." "..ChatCache[3]);
+									return false;
+								end
+							end
+							
+						else
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]..""..GWCOMM[Guildname].color_15.." NO value entered.");
+							return false;
+						end
+						
+						return false;
+					end
+				end	
+			else
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1]..""..GWCOMM[Guildname].color_15.." NO target command entered.");
+				return false;
+			end
+			player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1]);
+		end
+		
 		if (ChatCache[1] == "help")then
 		
 			for i = 1, #GWHELP do
@@ -834,7 +863,7 @@ local Guildname = ""..player:GetGuildName()..""
 
 			if(ChatCache[2] == GWCOMM[Guildname].vendor1)then
 
-				if(GWCOMM[Guildname].vendor1_id > 0)then
+				if(GWCOMM[Server].vendor1_id > 0)then
 				
 					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
@@ -868,7 +897,7 @@ local Guildname = ""..player:GetGuildName()..""
 
 			if(ChatCache[2] == GWCOMM[Guildname].vendor2)then
 			
-				if(GWCOMM[Guildname].vendor2_id > 0)then
+				if(GWCOMM[Server].vendor2_id > 0)then
 				
 					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
@@ -902,7 +931,7 @@ local Guildname = ""..player:GetGuildName()..""
 
 			if(ChatCache[2] == GWCOMM[Guildname].vendor3)then
 			
-				if(GWCOMM[Guildname].vendor3_id > 0)then
+				if(GWCOMM[Server].vendor3_id > 0)then
 				
 					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
@@ -1147,7 +1176,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(ChatCache[2] == GWCOMM[Guildname].vendor1)then
 
-				if(GWCOMM[Guildname].vendor1_id > 0)then
+				if(GWCOMM[Server].vendor1_id > 0)then
 				
 					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 				
@@ -1193,7 +1222,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(ChatCache[2] == GWCOMM[Guildname].vendor2)then
 
-				if(GWCOMM[Guildname].vendor2_id > 0)then
+				if(GWCOMM[Server].vendor2_id > 0)then
 				
 					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
@@ -1238,7 +1267,7 @@ local Guildname = ""..player:GetGuildName()..""
 			
 			if(ChatCache[2] == GWCOMM[Guildname].vendor3)then
 
-				if(GWCOMM[Guildname].vendor3_id > 0)then
+				if(GWCOMM[Server].vendor3_id > 0)then
 				
 					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
