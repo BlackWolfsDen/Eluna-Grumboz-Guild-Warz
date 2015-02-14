@@ -14,6 +14,13 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49008, 10722, 'Vendor 3', 'Guild War\'z', NULL, 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49009, 10722, 'Vendor 3', 'Guild War\'z', NULL, 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
 
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES 
+-- entry, slot, item, maxcount, incrtime, ExtendedCost -- here is where you can add items for #2 and #3 guild vendor's
+(49006, 0, 0, 0, 0, 0), -- Ally vendor2
+(49007, 0, 0, 0, 0, 0), -- horde vendor2
+(49008, 0, 0, 0, 0, 0), -- ally vendor3
+(49009, 0, 0, 0, 0, 0); -- horde vendr3
+
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`) VALUES 
 (187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
 (187433, 10, 5652, 'Horde Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
