@@ -719,7 +719,7 @@ local Guildname = ""..player:GetGuildName()..""
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You have "..GWARZ[LocId].hall_count.." hall at this location.");				
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You can only have "..GWCOMM[Server].hall_L.." hall per area.");	
 						else
-							if(GWARZ[LocId].barrack_count >= 1)then
+							if(GWARZ[LocId].barrack_count == 0)then
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Each Hall require's 1 barracks per location to provide guards for defensive support.");
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Gotta protect your HQ.");
 							else
