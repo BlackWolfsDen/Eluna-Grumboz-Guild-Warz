@@ -18,7 +18,7 @@ REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Ext
 (49006, 0, 0, 0, 0, 0), -- Ally vendor2
 (49007, 0, 0, 0, 0, 0), -- horde vendor2
 (49008, 0, 0, 0, 0, 0), -- ally vendor3
-(49009, 0, 0, 0, 0, 0), -- horde vendr3
+(49009, 0, 0, 0, 0, 0); -- horde vendr3
 
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`) VALUES 
 (187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
