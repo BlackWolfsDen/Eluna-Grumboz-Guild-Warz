@@ -1715,7 +1715,7 @@ if(GWCOMM[Server].vendor1_id > 0)then
 			if(intid == 2) then	player:AddAura(23768, player);end
 			if(intid == 3) then	player:AddAura(23769, player);end
 			if(intid == 4) then	player:AddAura(23736, player);end
-			if(intid == 5) then player:AddAura(23766, player);end
+			if(intid == 5) then	player:AddAura(23766, player);end
 			if(intid == 6) then	player:AddAura(23738, player);end
 			if(intid == 7) then	player:AddAura(23735, player);end
 			if(intid == 8) then	player:AddAura(23737, player);end
