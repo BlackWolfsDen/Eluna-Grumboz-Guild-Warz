@@ -7,7 +7,7 @@
 -- --------------------------------------------------------
 
 CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
+ 
 USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
