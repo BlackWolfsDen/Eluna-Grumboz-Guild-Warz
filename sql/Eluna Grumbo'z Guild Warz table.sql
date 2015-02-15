@@ -225,10 +225,3 @@ ENGINE=InnoDB;
 
 REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `vendor1_count`, `vendor2_count`, `vendor3_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
 (1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-ALTER TABLE `commands` ADD COLUMN   `vendor1` varchar(15) NOT NULL DEFAULT 'vendor1';
-ALTER TABLE `commands` ADD COLUMN   `vendor2` varchar(15) NOT NULL DEFAULT 'vendor2';
-ALTER TABLE `commands` ADD COLUMN   `vendor3` varchar(15) NOT NULL DEFAULT 'vendor3';
-
-ALTER TABLE `commands` ADD COLUMN `XXX` bigint(20) unsigned DEFAULT NULL;
-ALTER TABLE `commands` ADD COLUMN `XXX` bigint(20) unsigned DEFAULT NULL;
