@@ -54,7 +54,7 @@ local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
 -- vendor buffs {spell_id, "menu selection name"}, last entry must be the `{0, "good bye"}` entry -- vendor1
 local Vendor1 = {{23767, "Armor + 10%"},{23768, "Damage + (1 - 10)%"},{23769, "Resistances + 25"},{23736, "Agility + 10%"},{23766, "Intelligence + 10%"},{23738, "Spirit + 10%"},{23735, "Strength + 10%"},{23737, "Stamina + 10%"},{25840, "Heal Me"},{0, "good bye"},};
 
--- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per page limit 15 pages) -- vendor2, vendor3
+-- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per page, limit 15 pages) -- vendor2, vendor3
 local Vendor2 = {{7734,0},{6948,0},{49912,0},{34498,0},{46693,0},{34499,0},{35557,0},{37431,0},{17202,0},{21038,0},{46783,0},}; -- funny items
 local Vendor3 = {{32837,0},{32838,0},{22736,0},{19019,0},{51858,0},{24550,0},{2000,0},{50730,0},{50070,0},{34196,0},{30906,0},}; -- misc gear
 -- -----------------------------------------------------
