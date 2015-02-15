@@ -41,16 +41,17 @@ local tele_version = 1.50;
 local pvp_version = 4.60;
 local vendor_version = 1.50;
 
--- ----------------
--- built-in vendors operational switches
+-- -----------------------------------------------------
+-- built-in vendors operational switches and item tables
+-- -----------------------------------------------------
 local vendor1 = 1; -- use built-in vendor 1 0/1 no/yes.
 local vendor2 = 1; -- use built-in vendor 2 0/1 no/yes.
 local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
 
--- vendor items {item_id, custom_cost},
+-- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per 15 pages)
 local Vendor2 = {{7734,0},{6948,0},{49912,0},{34498,0},{46693,0},{34499,0},{35557,0},{37431,0},{17202,0},{21038,0},{46783,0},}; -- funny items
 local Vendor3 = {{32837,0},{32838,0},{22736,0},{19019,0},{51858,0},{24550,0},{2000,0},{50730,0},{50070,0},{34196,0},{30906,0},}; -- misc gear
--- ----------------
+-- -----------------------------------------------------
 
 local Server = "SERVER";
 local guild_warz_DB = "guild_warz_335"; -- Must match unique name if running on multiple cores i.e. guild_warz_335_1 
