@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `guard_id` mediumint(8) NOT NULL DEFAULT '49002' COMMENT 'Do Not Touch',
   `vendor1_id` mediumint(8) NOT NULL DEFAULT '49004' COMMENT 'Do Not Touch',
   `vendor2_id` mediumint(8) NOT NULL DEFAULT '49006' COMMENT 'Do Not Touch',
-  `vendor3_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT 'Do Not Touch',
+  `vendor3_id` mediumint(8) NOT NULL DEFAULT '49008' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
   `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `color_7` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'LOCKED color RED',
   `color_8` varchar(10) NOT NULL DEFAULT '|cffC0C0C0' COMMENT 'Titles color GREY',
   `color_9` varchar(10) NOT NULL DEFAULT '|cff000000' COMMENT 'Separators color BLACK',
-  `color_10` varchar(10) DEFAULT '|cff00cc00' COMMENT 'HELP Commands color GREEN',
+  `color_10` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'HELP Commands color GREEN',
   `color_11` varchar(10) NOT NULL DEFAULT '|cffFFFF00' COMMENT 'HELP Description color YELLOW',
   `color_12` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'SET Error color RED',
   `color_13` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'SET Values color WHITE',
@@ -94,7 +94,7 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
-('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 0, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
+('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` 
 (
@@ -195,6 +195,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(83, 'color_13', 'Set Values color  GuildMaster Level HEX CODE', 'set color_13 cff000000', '4'),
 	(84, 'color_14', 'Good Announcements  color  GuildMaster Level HEX CODE', 'set color_14 cff000000', '4'),
 	(85, 'color_15', 'Bad Announcements  color  GuildMaster Level HEX CODE', 'set color_15 cff000000', '4');
+
 
 CREATE TABLE IF NOT EXISTS `zones` (
   `entry` bigint(10) unsigned NOT NULL DEFAULT '0',
