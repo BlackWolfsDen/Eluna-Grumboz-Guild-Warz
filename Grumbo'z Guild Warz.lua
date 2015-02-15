@@ -1,16 +1,16 @@
 -- **g****************************************s***
 -- ********© Grumbo'z Guild Warz System™ ©********	
--- **** Brought to you by Grumbo of BloodyWoW *l**
+-- ********** Brought to you by Grumbo  *******l**
 -- **r*************** slp13at420 ****p************
 -- ***Foereaper***  Ty Eluna guyz  ****Rochet2****
--- *************** Ty Emudevs.com  *********1*****
+-- ****************  Emudevs.com  **********1*****
 -- **u******************♠*********3***************
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
 -- ***m***********  This is For  *****************
 -- ************* TRINITY/ELUNA ONLY *t************
 -- *♠*******************4***********************♠*
--- *b* Please Do Not Remove any of the credits ***
+-- *b* Please Do Not Rem©ve any of the credits ***
 -- **** and/or attempt to release as your own **2*
 -- ***o******************©*************0**********
 -- **************** First Public *****************
@@ -1878,7 +1878,7 @@ if(vendor1 == 1)then
 		end
 	end
 
-	local function vendor1_Select(event, player, object, sender, intid, code)
+	local function vendor1_Select(event, player, creature, sender, intid, code)
 
 	local LocId = GetLocationId(creature)
 
@@ -1896,7 +1896,7 @@ if(vendor1 == 1)then
 				if(intid == 7) then	player:AddAura(23735, player);end
 				if(intid == 8) then	player:AddAura(23737, player);end
 				if(intid == 9) then	player:AddAura(25840, player);end
-				vendor1_menu(1, player, object);
+				vendor1_menu(1, player, creature);
 			else
 				player:GossipComplete();
 			end
