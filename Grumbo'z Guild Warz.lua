@@ -19,7 +19,7 @@
  
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
-print("For TC2 cataclysm 4.3.4\n")
+print("For TC2 Cataclysm 4.3.4\n")
 
 local start = os.clock()
 
@@ -41,7 +41,17 @@ local tele_version = 1.50;
 local pvp_version = 4.60;
 local vendor_version = 1.50;
 
-local buff_vendor = 1; -- use built-in vendor 0/1 no/yes off/on.
+-- ----------------
+-- built-in vendors operational switches
+local vendor1 = 1; -- use built-in vendor 1 0/1 no/yes.
+local vendor2 = 1; -- use built-in vendor 2 0/1 no/yes.
+local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
+
+-- vendor items {item_id, custom_cost},
+local Vendor2 = {{7734,0},{6948,0},{49912,0},{34498,0},{46693,0},{34499,0},{35557,0},{37431,0},{17202,0},{21038,0},{46783,0},}; -- funny items
+local Vendor3 = {{32837,0},{32838,0},{22736,0},{19019,0},{51858,0},{24550,0},{2000,0},{50730,0},{50070,0},{34196,0},{30906,0},}; -- misc gear
+-- ----------------
+
 local Server = "SERVER";
 local guild_warz_DB = "guild_warz_434"; -- Must match unique name if running on multiple cores i.e. guild_warz_434_1 
 
@@ -1840,38 +1850,42 @@ RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 3, Guardkill)
 print ("PVP core: "..pvp_version)
 
 -- ****************************************************
--- NPC functions
+-- NPC Vendor functions
 -- ****************************************************
 
-local function buff_NPC(event, player, creature) -- provided by Pyre of EmuDevs.com
-
-local LocId = GetLocationId(creature)
+if(vendor1 == 1)then
 	
-	if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-		creature:SendUnitYell("!!Evil doe`r!!", 0)
-	else
-		player:GossipClearMenu()
-		player:GossipMenuAddItem(0, "Armor + 10%", 0, 1)
-		player:GossipMenuAddItem(0, "Damage + 1 - 10%", 0, 2)
-		player:GossipMenuAddItem(0, "Resistances + 25", 0, 3)
-		player:GossipMenuAddItem(0, "Agility + 10%", 0, 4)
-		player:GossipMenuAddItem(0, "Intelligence + 10%", 0, 5)
-		player:GossipMenuAddItem(0, "Spirit + 10%", 0, 6)
-		player:GossipMenuAddItem(0, "Strength + 10%", 0, 7)
-		player:GossipMenuAddItem(0, "Stamina + 10%", 0, 8)
-		player:GossipMenuAddItem(0, "Heal Me", 0, 9)
-		player:GossipMenuAddItem(0, "good bye", 0, 10)
-		player:GossipSendMenu(1, creature)
-	end
-end
-
-if(buff_vendor == 1)then
-
-	if(GWCOMM[Server].vendor1_id > 0)then 
+	local function vendor1_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
 	
-		local function On_Buff_Select(event, player, object, sender, intid, code)
+	local LocId = GetLocationId(creature)
 		
-			if(intid < 10) then
+		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+			creature:SendUnitYell("!!Evil doe`r!!", 0)
+		else
+			player:GossipClearMenu()
+			player:GossipMenuAddItem(0, "Armor + 10%", 0, 1)
+			player:GossipMenuAddItem(0, "Damage + 1 - 10%", 0, 2)
+			player:GossipMenuAddItem(0, "Resistances + 25", 0, 3)
+			player:GossipMenuAddItem(0, "Agility + 10%", 0, 4)
+			player:GossipMenuAddItem(0, "Intelligence + 10%", 0, 5)
+			player:GossipMenuAddItem(0, "Spirit + 10%", 0, 6)
+			player:GossipMenuAddItem(0, "Strength + 10%", 0, 7)
+			player:GossipMenuAddItem(0, "Stamina + 10%", 0, 8)
+			player:GossipMenuAddItem(0, "Heal Me", 0, 9)
+			player:GossipMenuAddItem(0, "good bye", 0, 10)
+			player:GossipSendMenu(1, creature)
+		end
+	end
+
+	local function vendor1_Select(event, player, object, sender, intid, code)
+
+	local LocId = GetLocationId(creature)
+
+		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+			creature:SendUnitYell("!!Evil doe`r!!", 0)
+		else
+	
+			if(intid < 10)then
 				if(intid == 1) then	player:AddAura(23767, player);end
 				if(intid == 2) then	player:AddAura(23768, player);end
 				if(intid == 3) then	player:AddAura(23769, player);end
@@ -1881,24 +1895,73 @@ if(buff_vendor == 1)then
 				if(intid == 7) then	player:AddAura(23735, player);end
 				if(intid == 8) then	player:AddAura(23737, player);end
 				if(intid == 9) then	player:AddAura(25840, player);end
-				buff_NPC(1, player, object);
+				vendor1_menu(1, player, object);
 			else
-				player:GossipComplete()
+				player:GossipComplete();
 			end
 		end
-	
-		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 1, buff_NPC)
-		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 1, buff_NPC)
-		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 2, On_Buff_Select)
-		RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 2, On_Buff_Select)
-		print("Vendor1 loaded.")
-	else
-		player:SendBroadcastMessage("default vendor1 disabled.")
 	end
+
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 1, vendor1_menu);
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 1, vendor1_menu);
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id, 2, vendor1_Select);
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor1_id+1, 2, vendor1_Select);
+	print("buff vendor1 loaded.");
+else
+	print("vendor 1 disabled.")
 end
 
-if(GWCOMM[Server].vendor2_id > 0)then print("Vendor2 loaded.")else print("Vendor2 Disabled.");end
-if(GWCOMM[Server].vendor3_id > 0)then print("Vendor3 loaded.")else print("Vendor3 Disabled.");end
+if(vendor2 == 1)and(GWCOMM[Server].vendor2_id > 0)then
+		
+	local function vendor2_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
+		
+	local LocId = GetLocationId(creature)
+	
+	VendorRemoveAllItems(GWCOMM[Server].vendor2_id+GWARZ[LocId].team)
+								
+		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+			creature:SendUnitYell("!!Evil doe`r!!", 0)
+		else
+
+			for item2=1,#Vendor2 do
+				AddVendorItem(GWCOMM[Server].vendor2_id+GWARZ[LocId].team, Vendor2[item2][1], 1, 1, Vendor2[item2][2]);
+			end
+			player:SendVendorWindow(creature)
+		end
+	end
+	
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor2_id, 1,vendor2_menu)
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor2_id+1, 1,vendor2_menu)
+	print("fun vendor2 loaded.")
+else
+	print("vendor2 disabled.")
+end
+
+if(vendor3 == 1)and(GWCOMM[Server].vendor3_id > 0)then
+		
+	local function vendor3_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
+		
+	local LocId = GetLocationId(creature)
+	
+	VendorRemoveAllItems(GWCOMM[Server].vendor3_id+GWARZ[LocId].team)
+		
+		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+			creature:SendUnitYell("!!Evil doe`r!!", 0)
+		else
+		
+			for item3=1,#Vendor3 do
+				AddVendorItem(GWCOMM[Server].vendor3_id+GWARZ[LocId].team, Vendor3[item3][1], 1, 1, Vendor3[item3][2]);
+			end
+			player:SendVendorWindow(creature)
+		end
+	end
+	
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor3_id, 1, vendor3_menu)
+	RegisterCreatureGossipEvent(GWCOMM[Server].vendor3_id+1, 1, vendor3_menu)
+	print("misc vendor3 loaded.")
+else
+	print("vendor3 disabled.")
+end
 
 print ("Vendor core: "..vendor_version)
 
