@@ -51,7 +51,10 @@ local vendor1 = 1; -- use built-in vendor 1 0/1 no/yes.
 local vendor2 = 1; -- use built-in vendor 2 0/1 no/yes.
 local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
 
--- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per 15 pages)
+-- vendor buffs {spell_id, "menu selection name"}, last entry must be `goodbye` entry -- vendor1
+local Vendor1 = {{23767, "Armor + 10%"},{23768, "Damage + 1 - 10%"},{23769, "Resistances + 25"},{23736, "Agility + 10%"},{23766, "Intelligence + 10%"},{23738, "Spirit + 10%"},{23735, "Strength + 10%"},{23737, "Stamina + 10%"},{25840, "Heal Me"},{0, "good bye"},};
+
+-- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per 15 pages) -- vendor2, vendor3
 local Vendor2 = {{7734,0},{6948,0},{49912,0},{34498,0},{46693,0},{34499,0},{35557,0},{37431,0},{17202,0},{21038,0},{46783,0},}; -- funny items
 local Vendor3 = {{32837,0},{32838,0},{22736,0},{19019,0},{51858,0},{24550,0},{2000,0},{50730,0},{50070,0},{34196,0},{30906,0},}; -- misc gear
 -- -----------------------------------------------------
@@ -1853,27 +1856,22 @@ print ("PVP core: "..pvp_version)
 -- ****************************************************
 -- NPC Vendor functions
 -- ****************************************************
-
 if(vendor1 == 1)then
 	
-	local function vendor1_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
+	local function vendor1_menu(event, player, creature)
 	
 	local LocId = GetLocationId(creature)
 		
 		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil doe`r!!", 0)
+			creature:SendUnitYell("!!Evil do`r!!", 0)
 		else
+		
 			player:GossipClearMenu()
-			player:GossipMenuAddItem(0, "Armor + 10%", 0, 1)
-			player:GossipMenuAddItem(0, "Damage + 1 - 10%", 0, 2)
-			player:GossipMenuAddItem(0, "Resistances + 25", 0, 3)
-			player:GossipMenuAddItem(0, "Agility + 10%", 0, 4)
-			player:GossipMenuAddItem(0, "Intelligence + 10%", 0, 5)
-			player:GossipMenuAddItem(0, "Spirit + 10%", 0, 6)
-			player:GossipMenuAddItem(0, "Strength + 10%", 0, 7)
-			player:GossipMenuAddItem(0, "Stamina + 10%", 0, 8)
-			player:GossipMenuAddItem(0, "Heal Me", 0, 9)
-			player:GossipMenuAddItem(0, "good bye", 0, 10)
+			
+				for menu=1,#Vendor1 do
+				
+					player:GossipMenuAddItem(0, Vendor1[menu][2], 0, menu);
+				end
 			player:GossipSendMenu(1, creature)
 		end
 	end
@@ -1883,22 +1881,15 @@ if(vendor1 == 1)then
 	local LocId = GetLocationId(creature)
 
 		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil doe`r!!", 0)
+			creature:SendUnitYell("!!Evil do`r!!", 0)
 		else
 	
-			if(intid < 10)then
-				if(intid == 1) then	player:AddAura(23767, player);end
-				if(intid == 2) then	player:AddAura(23768, player);end
-				if(intid == 3) then	player:AddAura(23769, player);end
-				if(intid == 4) then	player:AddAura(23736, player);end
-				if(intid == 5) then	player:AddAura(23766, player);end
-				if(intid == 6) then	player:AddAura(23738, player);end
-				if(intid == 7) then	player:AddAura(23735, player);end
-				if(intid == 8) then	player:AddAura(23737, player);end
-				if(intid == 9) then	player:AddAura(25840, player);end
+			if(intid <= (#Vendor1-1))then
+				
+				player:AddAura(Vendor1[intid][1], player);
 				vendor1_menu(1, player, creature);
 			else
-				player:GossipComplete();
+				player:GossipComplete(); -- last intid should be for `goodbye`
 			end
 		end
 	end
@@ -1914,14 +1905,14 @@ end
 
 if(vendor2 == 1)and(GWCOMM[Server].vendor2_id > 0)then
 		
-	local function vendor2_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
-		
+	local function vendor2_menu(event, player, creature)
+	
 	local LocId = GetLocationId(creature)
 	
 	VendorRemoveAllItems(GWCOMM[Server].vendor2_id+GWARZ[LocId].team)
 								
 		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil doe`r!!", 0)
+			creature:SendUnitYell("!!Evil do`r!!", 0)
 		else
 
 			for item2=1,#Vendor2 do
@@ -1940,14 +1931,14 @@ end
 
 if(vendor3 == 1)and(GWCOMM[Server].vendor3_id > 0)then
 		
-	local function vendor3_menu(event, player, creature) -- provided by Pyre of EmuDevs.com
+	local function vendor3_menu(event, player, creature)
 		
 	local LocId = GetLocationId(creature)
 	
 	VendorRemoveAllItems(GWCOMM[Server].vendor3_id+GWARZ[LocId].team)
 		
 		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil doe`r!!", 0)
+			creature:SendUnitYell("!!Evil do`r!!", 0)
 		else
 		
 			for item3=1,#Vendor3 do
