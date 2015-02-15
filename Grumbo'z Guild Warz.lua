@@ -52,7 +52,7 @@ local vendor2 = 1; -- use built-in vendor 2 0/1 no/yes.
 local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
 
 -- vendor buffs {spell_id, "menu selection name"}, last entry must be the `{0, "good bye"}` entry -- vendor1
-local Vendor1 = {{23767, "Armor + 10%"},{23768, "Damage + 1 - 10%"},{23769, "Resistances + 25"},{23736, "Agility + 10%"},{23766, "Intelligence + 10%"},{23738, "Spirit + 10%"},{23735, "Strength + 10%"},{23737, "Stamina + 10%"},{25840, "Heal Me"},{0, "good bye"},};
+local Vendor1 = {{23767, "Armor + 10%"},{23768, "Damage + (1 - 10)%"},{23769, "Resistances + 25"},{23736, "Agility + 10%"},{23766, "Intelligence + 10%"},{23738, "Spirit + 10%"},{23735, "Strength + 10%"},{23737, "Stamina + 10%"},{25840, "Heal Me"},{0, "good bye"},};
 
 -- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per 15 pages) -- vendor2, vendor3
 local Vendor2 = {{7734,0},{6948,0},{49912,0},{34498,0},{46693,0},{34499,0},{35557,0},{37431,0},{17202,0},{21038,0},{46783,0},}; -- funny items
@@ -1906,20 +1906,21 @@ end
 if(vendor2 == 1)and(GWCOMM[Server].vendor2_id > 0)then
 		
 	local function vendor2_menu(event, player, creature)
-	
-	local LocId = GetLocationId(creature)
-	
-	VendorRemoveAllItems(GWCOMM[Server].vendor2_id+GWARZ[LocId].team)
-								
-		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil do`r!!", 0)
-		else
 
-			for item2=1,#Vendor2 do
-				AddVendorItem(GWCOMM[Server].vendor2_id+GWARZ[LocId].team, Vendor2[item2][1], 1, 1, Vendor2[item2][2]);
+	local LocId = GetLocationId(creature)
+	local npc2id = creature:GetEntry();
+	
+		VendorRemoveAllItems(npc2id)
+									
+			if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				creature:SendUnitYell("!!Evil do`r!!", 0)
+			else
+	
+				for item2=1,#Vendor2 do
+					AddVendorItem(npc2id, Vendor2[item2][1], 1, 1, Vendor2[item2][2]);
+				end
+				player:SendVendorWindow(creature)
 			end
-			player:SendVendorWindow(creature)
-		end
 	end
 	
 	RegisterCreatureGossipEvent(GWCOMM[Server].vendor2_id, 1,vendor2_menu)
@@ -1934,18 +1935,19 @@ if(vendor3 == 1)and(GWCOMM[Server].vendor3_id > 0)then
 	local function vendor3_menu(event, player, creature)
 		
 	local LocId = GetLocationId(creature)
+	local npc3id = creature:GetEntry();
 	
-	VendorRemoveAllItems(GWCOMM[Server].vendor3_id+GWARZ[LocId].team)
-		
-		if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
-			creature:SendUnitYell("!!Evil do`r!!", 0)
-		else
-		
-			for item3=1,#Vendor3 do
-				AddVendorItem(GWCOMM[Server].vendor3_id+GWARZ[LocId].team, Vendor3[item3][1], 1, 1, Vendor3[item3][2]);
+		VendorRemoveAllItems(npc3id)
+			
+			if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				creature:SendUnitYell("!!Evil do`r!!", 0)
+			else
+			
+				for item3=1,#Vendor3 do
+					AddVendorItem(npc3id, Vendor3[item3][1], 1, 1, Vendor3[item3][2]);
+				end
+				player:SendVendorWindow(creature)
 			end
-			player:SendVendorWindow(creature)
-		end
 	end
 	
 	RegisterCreatureGossipEvent(GWCOMM[Server].vendor3_id, 1, vendor3_menu)
