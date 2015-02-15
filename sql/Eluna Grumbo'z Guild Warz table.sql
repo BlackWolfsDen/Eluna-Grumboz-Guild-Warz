@@ -38,36 +38,36 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `farm_cost` smallint(5) unsigned NOT NULL DEFAULT '5' COMMENT 'price for small cheezy government issued house.',
   `barrack_cost` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'price for small cheezy government issued house.',
   `hall_cost` smallint(5) unsigned NOT NULL DEFAULT '100' COMMENT 'price for small cheezy government issued house.',
-  `pig_cost` smallint(5) NOT NULL DEFAULT '1' COMMENT 'price for one of these porkerz',
-  `guard_cost` smallint(5) NOT NULL DEFAULT '1' COMMENT 'how much is your back worth guarding?',
-  `vendor1_cost` smallint(5) NOT NULL DEFAULT '25',
-  `vendor2_cost` smallint(5) NOT NULL DEFAULT '25',
-  `vendor3_cost` smallint(5) NOT NULL DEFAULT '25',
-  `farm_L` smallint(5) NOT NULL DEFAULT '1' COMMENT 'how many farms per location.',
-  `barrack_L` smallint(5) NOT NULL DEFAULT '1' COMMENT 'how many barracks per location.',
-  `hall_L` smallint(5) NOT NULL DEFAULT '1' COMMENT 'how many houses per location.',
-  `pig_L` smallint(5) NOT NULL DEFAULT '20' COMMENT 'how many pigs per farm.',
-  `guard_L` smallint(5) NOT NULL DEFAULT '10' COMMENT 'how many guards per location.',
-  `vendor1_L` smallint(5) NOT NULL DEFAULT '1',
-  `vendor2_L` smallint(5) NOT NULL DEFAULT '1',
-  `vendor3_L` smallint(5) NOT NULL DEFAULT '1',
-  `pig_payz` bigint(20) NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
-  `pig_payz_timer` bigint(20) NOT NULL DEFAULT '1800000' COMMENT 'timer for pig payz. default  1800000 = 30 minutes.',
-  `gift_count` tinyint(3) NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
-  `flag_require` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'does capturing a flag require killing all guards? default  == 0 no ; 1 == yes',
+  `pig_cost` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'price for one of these porkerz',
+  `guard_cost` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how much is your back worth guarding?',
+  `vendor1_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
+  `vendor2_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
+  `vendor3_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
+  `farm_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many farms per location.',
+  `barrack_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many barracks per location.',
+  `hall_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many houses per location.',
+  `pig_L` smallint(5) unsigned NOT NULL DEFAULT '20' COMMENT 'how many pigs per farm.',
+  `guard_L` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'how many guards per location.',
+  `vendor1_L` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `vendor2_L` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `vendor3_L` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `pig_payz` bigint(20) unsigned NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
+  `pig_payz_timer` bigint(20) unsigned NOT NULL DEFAULT '1800000' COMMENT 'timer for pig payz. default  1800000 = 30 minutes.',
+  `gift_count` tinyint(3) unsigned NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
+  `flag_require` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'does capturing a flag require killing all guards? default  == 0 no ; 1 == yes',
   `Server` varchar(6) NOT NULL DEFAULT 'SERVER' COMMENT 'Do Not Touch',
-  `flag_id` mediumint(8) NOT NULL DEFAULT '187432' COMMENT 'Do Not Touch',
-  `farm_id` mediumint(8) NOT NULL DEFAULT '500000' COMMENT 'Do Not Touch',
-  `barrack_id` mediumint(8) NOT NULL DEFAULT '500002' COMMENT 'Do Not Touch',
-  `hall_id` mediumint(8) NOT NULL DEFAULT '500004' COMMENT 'Do Not Touch',
-  `pig_id` mediumint(8) NOT NULL DEFAULT '49000' COMMENT 'Do Not Touch',
-  `guard_id` mediumint(8) NOT NULL DEFAULT '49002' COMMENT 'Do Not Touch',
-  `vendor1_id` mediumint(8) NOT NULL DEFAULT '49004' COMMENT 'Do Not Touch',
-  `vendor2_id` mediumint(8) NOT NULL DEFAULT '49006' COMMENT 'Do Not Touch',
-  `vendor3_id` mediumint(8) NOT NULL DEFAULT '49008' COMMENT 'Do Not Touch',
+  `flag_id` mediumint(8) unsigned NOT NULL DEFAULT '187432' COMMENT 'Do Not Touch',
+  `farm_id` mediumint(8) unsigned NOT NULL DEFAULT '500000' COMMENT 'Do Not Touch',
+  `barrack_id` mediumint(8) unsigned NOT NULL DEFAULT '500002' COMMENT 'Do Not Touch',
+  `hall_id` mediumint(8) unsigned NOT NULL DEFAULT '500004' COMMENT 'Do Not Touch',
+  `pig_id` mediumint(8) unsigned NOT NULL DEFAULT '49000' COMMENT 'Do Not Touch',
+  `guard_id` mediumint(8) unsigned NOT NULL DEFAULT '49002' COMMENT 'Do Not Touch',
+  `vendor1_id` mediumint(8) unsigned NOT NULL DEFAULT '49004' COMMENT 'Do Not Touch',
+  `vendor2_id` mediumint(8) unsigned NOT NULL DEFAULT '49006' COMMENT 'Do Not Touch',
+  `vendor3_id` mediumint(8) unsigned NOT NULL DEFAULT '49008' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
-  `anarchy` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
-  `f_timer` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
+  `anarchy` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
+  `f_timer` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
   `s_timer` smallint(5) unsigned NOT NULL DEFAULT '300' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
   `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'guild invite system. 0 == off :: 1 == on',
@@ -93,8 +93,8 @@ COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
-('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
+REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `vendor2_cost`, `vendor3_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `vendor2_L`, `vendor3_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
+('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 25, 25, 25, 2, 1, 1, 8, 2, 1, 1, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` 
 (
@@ -215,9 +215,9 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `vendor2_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `vendor3_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'time in seconds when the flag was spawned.',
+  `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'game time (in seconds) when the flag was spawned.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
-	PRIMARY KEY (`entry`)
+PRIMARY KEY (`entry`)
 )
 COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
