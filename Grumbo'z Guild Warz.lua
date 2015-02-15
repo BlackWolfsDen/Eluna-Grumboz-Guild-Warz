@@ -51,7 +51,7 @@ local vendor1 = 1; -- use built-in vendor 1 0/1 no/yes.
 local vendor2 = 1; -- use built-in vendor 2 0/1 no/yes.
 local vendor3 = 1; -- use built-in vendor 3 0/1 no/yes.
 
--- vendor buffs {spell_id, "menu selection name"}, last entry must be `goodbye` entry -- vendor1
+-- vendor buffs {spell_id, "menu selection name"}, last entry must be the `{0, "good bye"}` entry -- vendor1
 local Vendor1 = {{23767, "Armor + 10%"},{23768, "Damage + 1 - 10%"},{23769, "Resistances + 25"},{23736, "Agility + 10%"},{23766, "Intelligence + 10%"},{23738, "Spirit + 10%"},{23735, "Strength + 10%"},{23737, "Stamina + 10%"},{25840, "Heal Me"},{0, "good bye"},};
 
 -- vendor items {item_id, custom_cost}, if no custom cost then use 0.(vendor item limit = 10 items per 15 pages) -- vendor2, vendor3
