@@ -374,17 +374,17 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 			if(player:GetGuildRank() <= GWCOMM[player:GetGuildName()].GLD_lvlb)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvlb..GWCOMM[Guildname].color_8.." access.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."-purchase area.");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."-purchase a guild farm.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].barrack.."|r       "..GWCOMM[Guildname].color_3.."-purchase a barracks for guards.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].hall.."|r       "..GWCOMM[Guildname].color_3.."-purchase a guild hall.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].pig.."|r           "..GWCOMM[Guildname].color_3.."-purchase a pig.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].guard.."|r      "..GWCOMM[Guildname].color_3.."-purchase a disposable guard.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- purchase area.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."- purchase a guild farm.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].barrack.."|r       "..GWCOMM[Guildname].color_3.."- purchase a barracks for guards.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].hall.."|r       "..GWCOMM[Guildname].color_3.."- purchase a guild hall.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].pig.."|r           "..GWCOMM[Guildname].color_3.."- purchase a pig.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].guard.."|r      "..GWCOMM[Guildname].color_3.."- purchase a disposable guard.");
 				
-				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].cannon.."|r      "..GWCOMM[Guildname].color_3.."-purchase a cannon.");end
-				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor1.."|r      "..GWCOMM[Guildname].color_3.."-purchase vendor1.");end
-				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor2.."|r      "..GWCOMM[Guildname].color_3.."-purchase vendor2.");end
-				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor3.."|r      "..GWCOMM[Guildname].color_3.."-purchase vendor3.");end
+				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].cannon.."|r      "..GWCOMM[Guildname].color_3.."- purchase a cannon.");end
+				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor1.."|r      "..GWCOMM[Guildname].color_3.."- purchase vendor1.");end
+				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor2.."|r      "..GWCOMM[Guildname].color_3.."- purchase vendor2.");end
+				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].vendor3.."|r      "..GWCOMM[Guildname].color_3.."- purchase vendor3.");end
 
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
@@ -392,19 +392,19 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvls)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvls..GWCOMM[Guildname].color_8.." access.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."-sell area for its TOTAL value.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."-sell farm.|r")	;	
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].barrack.."|r       "..GWCOMM[Guildname].color_3.."-sell barracks.|r");		
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].hall.."|r       "..GWCOMM[Guildname].color_3.."-sell hall.|r");	
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].pig.."|r           "..GWCOMM[Guildname].color_3.."-sell a pig to market.|r");		
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].guard.."|r  "..GWCOMM[Guildname].color_3.."-removes a selected guard.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- sell area for its TOTAL value.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."- sell farm.|r")	;	
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].barrack.."|r       "..GWCOMM[Guildname].color_3.."- sell barracks.|r");		
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].hall.."|r       "..GWCOMM[Guildname].color_3.."- sell hall.|r");	
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].pig.."|r           "..GWCOMM[Guildname].color_3.."- sell a pig to market.|r");		
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].guard.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected guard.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                        "..GWCOMM[Guildname].color_3.."guards are disposable.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                        "..GWCOMM[Guildname].color_3.."no cash back.|r");
 		
-				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].cannon.."|r  "..GWCOMM[Guildname].color_3.."-sell a selected cannon.|r");end
-				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor1.."|r  "..GWCOMM[Guildname].color_3.."-removes a selected vendor1.|r");end
-				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor2.."|r  "..GWCOMM[Guildname].color_3.."-removes a selected vendor2.|r");end
-				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor3.."|r  "..GWCOMM[Guildname].color_3.."-removes a selected vendor3.|r");end
+				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].cannon.."|r  "..GWCOMM[Guildname].color_3.."- sell a selected cannon.|r");end
+				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor1.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor1.|r");end
+				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor2.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor2.|r");end
+				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor3.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor3.|r");end
 
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
