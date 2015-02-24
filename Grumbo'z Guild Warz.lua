@@ -342,7 +342,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 		Gcommands = CreateGcommands(player:GetGuildName())
 	end
 			
-	local Zoneprice=(GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count);
+	local Zoneprice = (GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[Server].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[Server].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[Server].cannon_cost*GWARZ[LocId].cannon_count);
 	local yentry = 0
 	local ypigcnt = 0
 	local yvalue = 0
@@ -434,7 +434,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Barracks price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].barrack_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Hall price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].hall_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Pig price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].pig_cost.."|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r "..GWCOMM[Guildname].color_15.."Dont increase location price.");
 				
 				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."cannon price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].cannon_cost.."|r");end
 				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor1_cost.."|r");end
