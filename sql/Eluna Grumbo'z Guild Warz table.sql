@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `vendor1` varchar(15) NOT NULL DEFAULT 'vendor1',
   `vendor2` varchar(15) NOT NULL DEFAULT 'vendor2',
   `vendor3` varchar(15) NOT NULL DEFAULT 'vendor3',
+  `cannon` varchar(15) NOT NULL DEFAULT 'cannon',
   `GLD_lvlb` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'Minimum Required Guild member level to access Guild Master buy commands. Guild Master = 0 , anything over + is rank below Guild master.',
   `GLD_lvls` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'Minimum Required Guild member level to access Guild Master sell commands. Guild Master = 0 , anything over + is rank below Guild master.',
   `respawn_flag` varchar(50) NOT NULL DEFAULT 'flag' COMMENT 'GM command spawns and assigns a flag to a guild owned area. will return an error if location is owned by SERVER',
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `vendor1_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
   `vendor2_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
   `vendor3_cost` smallint(5) unsigned NOT NULL DEFAULT '25',
+  `cannon_cost` smallint(5) unsigned NOT NULL DEFAULT '100',
   `farm_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many farms per location.',
   `barrack_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many barracks per location.',
   `hall_L` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT 'how many houses per location.',
@@ -51,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `vendor1_L` smallint(5) unsigned NOT NULL DEFAULT '1',
   `vendor2_L` smallint(5) unsigned NOT NULL DEFAULT '1',
   `vendor3_L` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `cannon_L`  smallint(5) unsigned NOT NULL DEFAULT '3',
   `pig_payz` bigint(20) unsigned NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
   `pig_payz_timer` bigint(20) unsigned NOT NULL DEFAULT '1800000' COMMENT 'timer for pig payz. default  1800000 = 30 minutes.',
   `gift_count` tinyint(3) unsigned NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
@@ -65,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `vendor1_id` mediumint(8) unsigned NOT NULL DEFAULT '49004' COMMENT 'Do Not Touch',
   `vendor2_id` mediumint(8) unsigned NOT NULL DEFAULT '49006' COMMENT 'Do Not Touch',
   `vendor3_id` mediumint(8) unsigned NOT NULL DEFAULT '49008' COMMENT 'Do Not Touch',
+  `cannon_id` mediumint(8) unsigned NOT NULL DEFAULT '49010' COMMENT 'Do Not Touch',
   `command_set` varchar(50) NOT NULL DEFAULT 'set' COMMENT 'Do Not Touch ',
   `anarchy` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   `f_timer` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
@@ -93,8 +97,9 @@ COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `vendor2_cost`, `vendor3_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `vendor2_L`, `vendor3_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
-('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 25, 25, 25, 2, 1, 1, 8, 2, 1, 1, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
+REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `cannon`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `cannon_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
+
+('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 'cannon', 0, 0, 'flag', 'loc', 'table', 4, 3, 62006, 10, 5, 10, 100, 1, 1, 25, 1, 1, 1, 20, 10, 1, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 49010, 'set', 0, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` 
 (
@@ -125,6 +130,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(13, 'vendor1', 'allows guildmembers to purchase a vendor npc for locations', 'LOCKED', '5'),
 	(14, 'vendor2', 'allows guildmembers to purchase a vendor npc for locations', 'LOCKED', '5'),
 	(15, 'vendor3', 'allows guildmembers to purchase a vendor npc for locations', 'LOCKED', '5'),
+	(15, 'cannon', 'allows guildmembers to purchase a cannon to protect locations', 'LOCKED', '5'),
 	(16, 'buy', 'allows guild member to buy.', 'LOCKED', '7'),
 	(17, 'sell', 'allows guild member to sell.', 'LOCKED', '7'),
 	(18, 'GLD_lvlb', 'allows rank x access to guild master buy commands. guildmaster==0 any number above 0 is a lower guild rank i.e. officer==1.', 'set GLD_lvlb 2', '4'),
@@ -136,6 +142,8 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(24, 'reset pig', 'allows GM of minimum rank to reset pig countof a location to 0', 'LOCKED', '5'),
 	(25, 'reset guard', 'allows GM of minimum rank to reset guard count of a location to 0', 'LOCKED', '5'),
 	(26, 'reset vendor1', 'allows GM of minimum rank to reset vendor_1 count of a location to 0', 'LOCKED', '5'),
+	(26, 'reset vendor2', 'allows GM of minimum rank to reset vendor_2 count of a location to 0', 'LOCKED', '5'),
+	(26, 'reset vendor3', 'allows GM of minimum rank to reset vendor_3 count of a location to 0', 'LOCKED', '5'),
 	(27, 'respawn flag', 'allows GM of minimum rank to spawn a missing flag and bind it to current location. if location owned by "SERVER" then an error WILL happen.', 'LOCKED', '5'),
 	(28, 'details_loc', 'allows a GM of minimum rank to list detailed information about current location.', 'set details_loc sniff', '5'),
 	(29, 'table', 'allows a GM of minimum rank to re-load all the guild warrz tables', 'set table brain', '5'),
@@ -151,6 +159,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(39, 'vendor1_cost', 'system setting how much x of currency to buy vendor 1.', 'set vendor1_cost 30', '6'),
 	(40, 'vendor2_cost', 'system setting how much x of currency to buy vendor 2.', 'set vendor2_cost 30', '6'),
 	(41, 'vendor3_cost', 'system setting how much x of currency to buy vendor 3.', 'set vendor3_cost 30', '6'),
+	(41, 'cannon_cost', 'system setting how much x of currency to buy a cannon.', 'set cannon_cost 30', '6'),
 	(42, 'farm_L', 'system setting limit how many farms per location', 'set farm_L 1', '6'),
 	(43, 'barrack_L', 'system setting limit how many barracks per farm', 'set barrack_L 1', '6'),
 	(44, 'hall_L', 'system setting limit how many halls per location', 'set hall_L 1', '6'),
@@ -159,6 +168,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(47, 'vendor1_L', 'system setting limit how many buff vendors per location.', 'set vendor1_L 2', '6'),
 	(48, 'vendor2_L', 'system setting limit how many buff vendors per location.', 'set vendor2_L 2', '6'),
 	(49, 'vendor3_L', 'system setting limit how many buff vendors per location.', 'set vendor3_L 2', '6'),
+	(49, 'cannon_L', 'system setting limit how many buff vendors per location.', 'set cannon_L 2', '6'),
 	(50, 'pig_payz', 'system setting how much each pig payz in copper per half hour. 10g == 100000', 'set pig_payz 100000', '6'),
 	(51, 'pig_payz_timer', 'system setting timer for pig payz.', 'set pig_payz 1800000', '6'),
 	(52, 'gift_count', 'system setting how much currency to gift to newly created guilds.', 'set gift_count 25', '6'),
@@ -173,6 +183,7 @@ REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`)
 	(61, 'vendor1_id', 'game core ID for vendor1 id', 'LOCKED', '6'),
 	(62, 'vendor2_id', 'game core ID for vendor2 id', 'LOCKED', '6'),
 	(63, 'vendor3_id', 'game core ID for vendor3 id', 'LOCKED', '6'),
+	(63, 'cannon_id', 'game core ID for cannon id', 'LOCKED', '6'),
 	(64, 'command_set', 'game core command for modifying custom commands   >>>>>DO NOT CHANGE<<<<<', 'LOCKED', '7'),
 	(65, 'lock', 'ADMIN command to lock an area from purchase.', 'LOCKED', '6'),
 	(66, 'anarchy', 'game core setting allows same team invasions . 0 = off :: 1 = on', 'set anarchy 1', '6'),
@@ -214,14 +225,15 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `vendor1_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `vendor2_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `vendor3_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
+  `cannon_count` tinyint(10) unsigned NOT NULL DEFAULT '0',
   `flag_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'game time (in seconds) when the flag was spawned.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
-PRIMARY KEY (`entry`)
+	PRIMARY KEY (`entry`)
 )
 COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `vendor1_count`, `vendor2_count`, `vendor3_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
-(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `vendor1_count`, `vendor2_count`, `vendor3_count`, `cannon_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
+(1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
