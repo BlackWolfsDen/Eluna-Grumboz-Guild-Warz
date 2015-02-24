@@ -311,7 +311,7 @@ end
 RegisterPlayerEvent(3, PlrFaction)
 
 local function Despawn(event, duration, cycles, creature)
-	creature:DespawnOrUnsummon();
+	creature:SetPhaseMask(0);
 	creature:RegisterEvent(Despawn, 240000, 1)
 end
 
