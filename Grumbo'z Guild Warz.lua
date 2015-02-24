@@ -19,7 +19,7 @@
  
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
-print("For TC2 Catalysm 4.3.4\n")
+print("For TC2 Cataclysm 4.3.4\n")
 
 local start = os.clock()
 
@@ -304,7 +304,7 @@ GGW[player:GetAccountId()] = {
 				Gcommands = CreateGcommands(player:GetGuild(), Guildname)
 			end
 	
-		player:SendBroadcastMessage(GWCOMM[Server].color_12.."Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+		player:SendBroadcastMessage(GWCOMM[Server].color_14.."Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
 	end
 end
 								
@@ -434,7 +434,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Barracks price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].barrack_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Hall price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].hall_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Pig price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].pig_cost.."|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r "..GWCOMM[Guildname].color_15.."Dont increase location price.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r - "..GWCOMM[Guildname].color_14.."Dont increase location price.");
 				
 				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."cannon price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].cannon_cost.."|r");end
 				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 price:|r "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor1_cost.."|r");end
@@ -464,22 +464,22 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Game Master Commands:")
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1..""..GWCOMM[Server].details_loc.."|r                   "..GWCOMM[Guildname].color_3.."-location info.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].loc.."|r           "..GWCOMM[Guildname].color_3.."-Resets location to server.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reload "..GWCOMM[Server].table.."|r          "..GWCOMM[Guildname].color_3.."-Reloads GW tables.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].farm.."|r          "..GWCOMM[Guildname].color_3.."-Resets location farm count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].barrack.."|r          "..GWCOMM[Guildname].color_3.."-Resets location barrack count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].hall.."|r          "..GWCOMM[Guildname].color_3.."-Resets location hall count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].pig.."|r          "..GWCOMM[Guildname].color_3.."-Resets location pig count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].guard.."|r          "..GWCOMM[Guildname].color_3.."-Resets location guard count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].loc.."|r           "..GWCOMM[Guildname].color_3.."- Resets location to server.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reload "..GWCOMM[Server].table.."|r          "..GWCOMM[Guildname].color_3.."- Reloads GW tables.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].farm.."|r          "..GWCOMM[Guildname].color_3.."- Resets location farm count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].barrack.."|r          "..GWCOMM[Guildname].color_3.."- Resets location barrack count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].hall.."|r          "..GWCOMM[Guildname].color_3.."- Resets location hall count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].pig.."|r          "..GWCOMM[Guildname].color_3.."- Resets location pig count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].guard.."|r          "..GWCOMM[Guildname].color_3.."- Resets location guard count to 0.|r");
 
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor1.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 1 count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor2.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 2 count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor3.."|r          "..GWCOMM[Guildname].color_3.."-Resets location vendor 3 count to 0.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].cannon.."|r          "..GWCOMM[Guildname].color_3.."-Resets location cannon count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor1.."|r          "..GWCOMM[Guildname].color_3.."- Resets location vendor 1 count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor2.."|r          "..GWCOMM[Guildname].color_3.."- Resets location vendor 2 count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vendor3.."|r          "..GWCOMM[Guildname].color_3.."- Resets location vendor 3 count to 0.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].cannon.."|r          "..GWCOMM[Guildname].color_3.."- Resets location cannon count to 0.|r");
 				
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."spawn "..GWCOMM[Server].respawn_flag.."|r         "..GWCOMM[Guildname].color_3.."-Spawns new flag if current|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."spawn "..GWCOMM[Server].respawn_flag.."|r         "..GWCOMM[Guildname].color_3.."- Spawns new flag if current|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                         "..GWCOMM[Guildname].color_3.."flag is missing.|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."lock "..GWCOMM[Server].loc.."|r         "..GWCOMM[Guildname].color_3.."-locks a location from purchase.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."lock "..GWCOMM[Server].loc.."|r         "..GWCOMM[Guildname].color_3.."- locks a location from purchase.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 				
@@ -1848,7 +1848,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].cannon_id, 4, Cannondied)
 RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 4, Cannondied)
 
-local function Guardffa(eventid, creature, player)
+function Guardffa(eventid, creature, player)
 
 	if(player:GetObjectType()=="Player")then
 	
@@ -1890,7 +1890,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 27, Guardffa)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 27, Guardffa)
 
-local function Guardcombat(eventid, creature, player)
+function Guardcombat(eventid, creature, player)
 
 	if(player:GetObjectType()=="Player")then
 
@@ -1912,7 +1912,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 1, Guardcombat)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 1, Guardcombat)
 
-local function Guarddied(eventid, creature, player)
+function Guarddied(eventid, creature, player)
 	
 	local LocId = GetLocationId(creature)
 	
@@ -1938,7 +1938,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 4, Guarddied)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 4, Guarddied)
 
-local function Guardhit(eventid, creature, attacker, damage)
+function Guardhit(eventid, creature, attacker, damage)
 
 	if(attacker:GetObjectType()=="Player")then
 
@@ -1967,7 +1967,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 9, Guardhit)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 9, Guardhit)
 
-local function Guardkill(eventid, creature, victim)
+function Guardkill(eventid, creature, victim)
 	
 	local LocId = GetLocationId(creature)
 	
