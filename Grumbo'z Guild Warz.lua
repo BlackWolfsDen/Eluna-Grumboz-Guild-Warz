@@ -19,7 +19,7 @@
  
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
-print("For TC2 Cataclysm 4.3.4\n")
+print("For TC2 WotLK 4.3.4\n")
 
 local start = os.clock()
 
@@ -311,7 +311,7 @@ end
 RegisterPlayerEvent(3, PlrFaction)
 
 local function Despawn(event, duration, cycles, creature)
-	creature:DespawnOrUnsummon();
+	creature:SetPhaseMask(0);
 	creature:RegisterEvent(Despawn, 240000, 1)
 end
 
