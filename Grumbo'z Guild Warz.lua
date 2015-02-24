@@ -1839,7 +1839,7 @@ function Cannondied(eventid, creature, player)
 	local LocId = GetLocationId(creature)
 	
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
-	PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)
+	PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 end
 	
 RegisterCreatureEvent(GWCOMM[Server].cannon_id, 4, Cannondied)
