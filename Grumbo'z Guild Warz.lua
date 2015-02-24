@@ -310,8 +310,9 @@ end
 								
 RegisterPlayerEvent(3, PlrFaction)
 
-local function Despawn(event, creature)
-	player:GetSelection():DespawnOrUnsummon();
+local function Despawn(event, duration, cycles, creature)
+	creature:DespawnOrUnsummon();
+	creature:RegisterEvent(Despawn, 240000, 1)
 end
 
 -- ****************************************************
@@ -1402,7 +1403,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 
 									local cannonspawnid = player:GetSelection():GetGUIDLow();
 									player:GetSelection():SetDeathState(1);
-									RegisterCreatureEvent(player:GetSelection():GetEntry(), 5, Despawn)
+									player:GetSelection():RegisterEvent(Despawn, 240000, 1)
 									PreparedStatements(2, "creature", cannonspawnid)
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
@@ -1848,8 +1849,8 @@ local function Cannondied(eventid, creature, player)
 
 	local LocId = GetLocationId(creature)
 
-	player:GetSelection():SetPhaseMask(0); 
-	player:GetSelection():DespawnOrUnsummon();
+	player:GetSelection():SetDeathState(1);
+	player:GetSelection():RegisterEvent(Despawn, 240000, 1)
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
 	PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 end
