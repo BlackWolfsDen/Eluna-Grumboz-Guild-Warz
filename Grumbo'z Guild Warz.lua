@@ -463,7 +463,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 			if(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Game Master Commands:")
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1..""..GWCOMM[Server].details_loc.."|r                   "..GWCOMM[Guildname].color_3.."-location info.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1..""..GWCOMM[Server].details_loc.."|r                   "..GWCOMM[Guildname].color_3.."- location info.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].loc.."|r           "..GWCOMM[Guildname].color_3.."- Resets location to server.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reload "..GWCOMM[Server].table.."|r          "..GWCOMM[Guildname].color_3.."- Reloads GW tables.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].farm.."|r          "..GWCOMM[Guildname].color_3.."- Resets location farm count to 0.|r");
