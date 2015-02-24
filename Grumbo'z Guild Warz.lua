@@ -1835,6 +1835,16 @@ if(GWCOMM[Server].cannon_id > 0)then
 	RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 27, Watcher)
 end
 
+function Cannondied(eventid, creature, player)
+	local LocId = GetLocationId(creature)
+	
+	PreparedStatements(2, "creature", creature:GetGUIDLow())
+	PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
+end
+	
+RegisterCreatureEvent(GWCOMM[Server].cannon_id, 4, Cannondied)
+RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 4, Cannondied)
+
 function Guardffa(eventid, creature, player)
 
 	if(player:GetObjectType()=="Player")then
