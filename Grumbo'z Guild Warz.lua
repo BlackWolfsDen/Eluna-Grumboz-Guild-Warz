@@ -1836,8 +1836,11 @@ if(GWCOMM[Server].cannon_id > 0)then
 end
 
 function Cannondied(eventid, creature, player)
+
 	local LocId = GetLocationId(creature)
-	
+
+	player:GetSelection():SetPhaseMask(0); 
+	player:GetSelection():DespawnOrUnsummon();
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
 	PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 end
