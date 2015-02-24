@@ -1835,7 +1835,7 @@ if(GWCOMM[Server].cannon_id > 0)then
 	RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 27, Watcher)
 end
 
-function Cannondied(eventid, creature, player)
+local function Cannondied(eventid, creature, player)
 
 	local LocId = GetLocationId(creature)
 
@@ -1848,7 +1848,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].cannon_id, 4, Cannondied)
 RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 4, Cannondied)
 
-function Guardffa(eventid, creature, player)
+local function Guardffa(eventid, creature, player)
 
 	if(player:GetObjectType()=="Player")then
 	
@@ -1890,7 +1890,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 27, Guardffa)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 27, Guardffa)
 
-function Guardcombat(eventid, creature, player)
+local function Guardcombat(eventid, creature, player)
 
 	if(player:GetObjectType()=="Player")then
 
@@ -1912,7 +1912,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 1, Guardcombat)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 1, Guardcombat)
 
-function Guarddied(eventid, creature, player)
+local function Guarddied(eventid, creature, player)
 	
 	local LocId = GetLocationId(creature)
 	
@@ -1938,7 +1938,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 4, Guarddied)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 4, Guarddied)
 
-function Guardhit(eventid, creature, attacker, damage)
+local function Guardhit(eventid, creature, attacker, damage)
 
 	if(attacker:GetObjectType()=="Player")then
 
@@ -1967,7 +1967,7 @@ end
 RegisterCreatureEvent(GWCOMM[Server].guard_id, 9, Guardhit)
 RegisterCreatureEvent(GWCOMM[Server].guard_id+1, 9, Guardhit)
 
-function Guardkill(eventid, creature, victim)
+local function Guardkill(eventid, creature, victim)
 	
 	local LocId = GetLocationId(creature)
 	
