@@ -1001,11 +1001,16 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You can only have "..GWCOMM[Server].cannon_L.." per location.");
 								return false;
 							else
-								PerformIngameSpawn(1, GWCOMM[Server].cannon_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
-								PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count+1, LocId)
-								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."cannon added by Commander "..player:GetName()..".|r");
-								return false;
+								if(GWARZ[LocId].hall_count == 0)then
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Cannons require a Hall per location.");
+									return false;
+								else
+									PerformIngameSpawn(1, GWCOMM[Server].cannon_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count+1, LocId)
+									player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."cannon added by Commander "..player:GetName()..".|r");
+									return false;
+								end
 							end
 						end
 					end
