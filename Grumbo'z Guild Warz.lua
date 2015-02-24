@@ -311,8 +311,7 @@ end
 RegisterPlayerEvent(3, PlrFaction)
 
 local function Despawn(event, creature)
-
-	creature:DespawnOrUnsummon();
+	player:GetSelection():DespawnOrUnsummon();
 end
 
 -- ****************************************************
@@ -1402,7 +1401,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 								else
 
 									local cannonspawnid = player:GetSelection():GetGUIDLow();
-									player:GetSelection():DespawnOrUnsummon();
+									player:GetSelection():SetDeathState(1);
 									RegisterCreatureEvent(player:GetSelection():GetEntry(), 5, Despawn)
 									PreparedStatements(2, "creature", cannonspawnid)
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
