@@ -13,6 +13,14 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49008, 10722, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49009, 10722, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`) VALUES 
+(49010,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,84,83,16777216,1,1,1,1,25200,35700,0,304,7.5,2000,0,1,32772,2048,8,0,215,320,44,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,1,1,344276858, 2),
+(49011,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,83,84,16777216,1,1,1,1,25200,35700,0,304,7.5,2000,0,1,32772,2048,8,0,215,320,44,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,1,1,344276858, 2);
+
+REPLACE INTO `npc_spellclick_spells` (`npc_entry`, `spell_id`, `cast_flags`, `user_type`) VALUES 
+(49010, 60682, 1, 0),
+(49011, 60682, 1, 0);
+
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`) VALUES 
 (187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
 (187433, 10, 5652, 'Horde Guild Flag', 'interact', '', '', 35, 0, 4, 0, 0, 0, 3000, 0, '', ''),
