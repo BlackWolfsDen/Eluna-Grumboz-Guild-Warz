@@ -62,6 +62,7 @@ local Vendor3 = {{32837,0},{32838,0},{22736,0},{19019,0},{51858,0},{24550,0},{20
 GWCOMM = {};
 GWARZ = {};
 GWHELP = {};
+GGWC = {};
 GGW = {};
 
 local function LoadGWtable()
@@ -310,10 +311,16 @@ end
 								
 RegisterPlayerEvent(3, PlrFaction)
 
-local function Despawn(event, duration, cycles, creature)
-	creature:SetPhaseMask(0);
-	creature:RegisterEvent(Despawn, 240000, 1)
+local function DespawnCreature(event, creature)
+
+	if(GGWC[creature:GetGUIDLow()] == 1)then
+print("DELAY", event)
+		creature:DespawnOrUnsummon();
+	end
 end
+
+RegisterCreatureEvent(GWCOMM[Server].cannon_id, 5, DespawnCreature)
+RegisterCreatureEvent(GWCOMM[Server].cannon_id+1, 5, DespawnCreature)
 
 -- ****************************************************
 -- ******************* CORE ENGINE ********************
@@ -1401,9 +1408,11 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 									return false;
 								else
 
-									local cannonspawnid = player:GetSelection():GetGUIDLow();
-									player:GetSelection():SetDeathState(1);
-									player:GetSelection():RegisterEvent(Despawn, 240000, 1)
+									local cCannon =  player:GetSelection();
+									local cannonspawnid = cCannon:GetGUIDLow();
+									GGWC[cannonspawnid] = 1;
+									-- cCannon:SetDeathState(1);
+									cCannon:DespawnOrUnsummon();
 									PreparedStatements(2, "creature", cannonspawnid)
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
@@ -1792,7 +1801,6 @@ local acctid = player:GetAccountId();
 	end
 end
 
-
 local function Watcher(eventid, creature, player)
 
 local LocId = GetLocationId(player)
@@ -1848,9 +1856,9 @@ end
 local function Cannondied(eventid, creature, player)
 
 	local LocId = GetLocationId(creature)
-
-	player:GetSelection():SetDeathState(1);
-	player:GetSelection():RegisterEvent(Despawn, 240000, 1)
+	
+	GGWC[creature:GetGUIDLow()] = 1;
+	creature:DespawnOrUnsummon();
 	PreparedStatements(2, "creature", creature:GetGUIDLow())
 	PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
 end
