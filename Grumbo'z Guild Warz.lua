@@ -1410,7 +1410,6 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 									local cCannon =  player:GetSelection();
 									local cannonspawnid = cCannon:GetGUIDLow();
 									GGWC[cannonspawnid] = 1;
-									-- cCannon:SetDeathState(1);
 									cCannon:DespawnOrUnsummon();
 									PreparedStatements(2, "creature", cannonspawnid)
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
