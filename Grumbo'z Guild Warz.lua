@@ -305,7 +305,7 @@ GGW[player:GetAccountId()] = {
 				Gcommands = CreateGcommands(player:GetGuild(), Guildname)
 			end
 	
-		player:SendBroadcastMessage(GWCOMM[Server].color_14.."Use '/guild "..GWCOMM[Guildname].commands.." for a list of GGW commands.")	
+		player:SendBroadcastMessage(GWCOMM[Server].color_14.."Use '/guild "..GWCOMM[Guildname].commands.."' for a list of GGW commands.")	
 	end
 end
 								
