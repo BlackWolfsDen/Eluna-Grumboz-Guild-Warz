@@ -314,7 +314,6 @@ RegisterPlayerEvent(3, PlrFaction)
 local function DespawnCreature(event, creature)
 
 	if(GGWC[creature:GetGUIDLow()] == 1)then
-print("DELAY", event)
 		creature:DespawnOrUnsummon();
 	end
 end
