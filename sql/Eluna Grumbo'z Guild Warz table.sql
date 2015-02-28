@@ -100,8 +100,7 @@ ENGINE=InnoDB;
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `cannon`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `vendor2_cost`, `vendor3_cost`, `cannon_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `vendor2_L`, `vendor3_L`, `cannon_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `cannon_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES 
 ('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 'cannon', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 25, 25, 25, 100, 1, 1, 1, 20, 10, 1, 1, 1, 3, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 49010, 'set', 1, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
-CREATE TABLE IF NOT EXISTS `help` 
-(
+CREATE TABLE IF NOT EXISTS `help` (
   `entry` bigint(20) unsigned DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `description` varchar(1028) DEFAULT NULL,
@@ -112,14 +111,6 @@ CREATE TABLE IF NOT EXISTS `help`
 COMMENT='version 1.76'
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
-
-REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
--- --------------------------------------------------------
--- Host:                         192.168.1.100
--- Server version:               5.5.9-log - MySQL Community Server (GPL)
--- Server OS:                    Win32
--- HeidiSQL Version:             9.1.0.4867
--- --------------------------------------------------------
 
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
