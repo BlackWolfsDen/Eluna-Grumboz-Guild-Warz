@@ -6,8 +6,7 @@
 -- Grumboz Guild Warz            3.3.5a WotlK Eluna
 -- --------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS `guild_warz_335` /*!40100 DEFAULT CHARACTER SET latin1 */;
- 
+CREATE DATABASE IF NOT EXISTS `guild_warz_335`;
 USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
@@ -53,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `vendor1_L` smallint(5) unsigned NOT NULL DEFAULT '1',
   `vendor2_L` smallint(5) unsigned NOT NULL DEFAULT '1',
   `vendor3_L` smallint(5) unsigned NOT NULL DEFAULT '1',
-  `cannon_L`  smallint(5) unsigned NOT NULL DEFAULT '3',
+  `cannon_L` smallint(5) unsigned NOT NULL DEFAULT '3',
   `pig_payz` bigint(20) unsigned NOT NULL DEFAULT '100000' COMMENT 'amount in copper that each pig payz. hence "pig payz". default 100000 = 10g ',
   `pig_payz_timer` bigint(20) unsigned NOT NULL DEFAULT '1800000' COMMENT 'timer for pig payz. default  1800000 = 30 minutes.',
   `gift_count` tinyint(3) unsigned NOT NULL DEFAULT '25' COMMENT 'how many of currency item to give to guildmaster of newly created guild.',
@@ -92,25 +91,20 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `color_15` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'Bad Annoucements RED',
   PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
-)
-COMMENT='version 1.76'
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
-REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `cannon`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `vendor2_cost`, `vendor3_cost`, `cannon_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `vendor2_L`, `vendor3_L`, `cannon_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `cannon_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES 
+REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `loc`, `farm`, `barrack`, `hall`, `pig`, `guard`, `vendor1`, `vendor2`, `vendor3`, `cannon`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `loc_cost`, `farm_cost`, `barrack_cost`, `hall_cost`, `pig_cost`, `guard_cost`, `vendor1_cost`, `vendor2_cost`, `vendor3_cost`, `cannon_cost`, `farm_L`, `barrack_L`, `hall_L`, `pig_L`, `guard_L`, `vendor1_L`, `vendor2_L`, `vendor3_L`, `cannon_L`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `flag_id`, `farm_id`, `barrack_id`, `hall_id`, `pig_id`, `guard_id`, `vendor1_id`, `vendor2_id`, `vendor3_id`, `cannon_id`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
 ('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 'area', 'farm', 'barrack', 'hall', 'pig', 'guard', 'vendor1', 'vendor2', 'vendor3', 'cannon', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 10, 5, 10, 100, 1, 1, 25, 25, 25, 100, 1, 1, 1, 20, 10, 1, 1, 1, 3, 100000, 1800000, 25, 0, 'SERVER', 187432, 500000, 500002, 500004, 49000, 49002, 49004, 49006, 49008, 49010, 'set', 1, 0, 300, 0, 0, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` (
-  `entry` bigint(20) unsigned DEFAULT NULL,
+  `entry` bigint(20) unsigned NOT NULL DEFAULT '0',
   `name` varchar(50) DEFAULT NULL,
-  `description` varchar(1028) DEFAULT NULL,
-  `example` varchar(1028) DEFAULT NULL,
-  `command_level` varchar(1028) DEFAULT NULL,
+  `description` varchar(1028) NOT NULL,
+  `example` varchar(1028) NOT NULL,
+  `command_level` varchar(1028) NOT NULL,
+  PRIMARY KEY (`entry`),
   UNIQUE KEY `entry` (`entry`)
-)
-COMMENT='version 1.76'
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
 	(1, 'guild', 'Guild name for command entry . non-modifyable >>>>>DO NOT CHANGE<<<<<<', 'LOCKED', '7'),
@@ -222,11 +216,8 @@ CREATE TABLE IF NOT EXISTS `zones` (
   `flag_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `fs_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'game time (in seconds) when the flag was spawned.',
   `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
-	PRIMARY KEY (`entry`)
-)
-COMMENT='version 1.76'
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+  PRIMARY KEY (`entry`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
 REPLACE INTO `zones` (`entry`, `map_id`, `area_id`, `zone_id`, `guild_name`, `team`, `x`, `y`, `z`, `farm_count`, `barrack_count`, `hall_count`, `pig_count`, `guard_count`, `vendor1_count`, `vendor2_count`, `vendor3_count`, `cannon_count`, `flag_id`, `fs_time`, `guild_id`) VALUES
 (1, 0, 0, 0, 'SERVER', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
