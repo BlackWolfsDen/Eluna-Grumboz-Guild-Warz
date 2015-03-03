@@ -6,12 +6,12 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49001, 744, 'Guild War\'z Pig', 'Horde', NULL, 80, 80, 83, 84, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49002, 26725, 'Guild War\'z Guard', 'Alliance', 'Attack', 80, 80, 84, 83, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
 (49003, 26725, 'Guild War\'z Guard', 'Horde', 'Attack', 80, 80, 83, 84, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
-(49004, 10722, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49005, 10722, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49004, 18239, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49005, 1322, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49006, 10722, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49007, 10722, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49008, 10722, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49009, 10722, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
+(49007, 3608, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49008, 3527, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
+(49009, 1321, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
 
 REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`) VALUES 
 (49010,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,84,83,16777216,1,1,1,1,25200,35700,0,304,7.5,2000,0,1,32772,2048,8,0,215,320,44,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,0,1,344276858, 2),
