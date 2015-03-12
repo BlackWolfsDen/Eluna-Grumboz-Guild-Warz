@@ -236,13 +236,13 @@ local function PreparedStatements(key, ...)
 	if(key == 2) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
-		LoadGWtable()
 	end
 	
 	if(key == 3) then
+		local subtable, value, guild = ...
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
-		LoadGWtable()
+		GWCOMM[guild][subtable] = value;
 	end
 end
 
