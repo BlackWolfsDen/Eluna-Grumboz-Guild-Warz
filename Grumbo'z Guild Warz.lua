@@ -449,15 +449,18 @@ local guild = player:GetGuild();
 local Guildname = player:GetGuildName();
 local guild_id = player:GetGuildId();
 local LocId = GetLocationId(player);
-	
+local pGuildRank = player:GetGuildRank();
+local pGMRank = player:GetGMRank();
+local pName = player:GetName();
+
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
 	
 	if(GWCOMM[Guildname]==nil)then
-		Gcommands = CreateGcommands(player:GetGuild(), player:GetGuildName())
+		Gcommands = CreateGcommands(guild, Guildname)
 	end
-
+	
 	local Zoneprice = (GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[Server].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[Server].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[Server].cannon_cost*GWARZ[LocId].cannon_count);
 	local yentry = 0
 	local ypigcnt = 0
@@ -474,7 +477,7 @@ local LocId = GetLocationId(player);
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."*  -Grumbo'z Guild Warz Commands:-  *");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*********************************************");
 			player:SendBroadcastMessage("(Guild: "..Guildname..")");
-			player:SendBroadcastMessage("(Name: "..player:GetName()..") (Guild Rank: "..player:GetGuildRank()..") (GAME Rank: "..player:GetGMRank()..")");
+			player:SendBroadcastMessage("(Name: "..pName..") (Guild Rank: "..pGuildRank..") (GAME Rank: "..pGMRank..")");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.." Guild Member Commands:");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
@@ -487,8 +490,8 @@ local LocId = GetLocationId(player);
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00"..GWCOMM[Guildname].version.."|r                    "..GWCOMM[Guildname].color_3.."-displays Core versions.|r");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 
-			if(player:GetGuildRank() <= GWCOMM[Guildname].GLD_lvlb)then
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvlb..GWCOMM[Guildname].color_8.." access.");
+			if(pGuildRank <= GWCOMM[Guildname].GLD_lvlb)then
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[Guildname].GLD_lvlb..GWCOMM[Guildname].color_8.." access.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- purchase area.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."- purchase a guild farm.|r");
@@ -505,8 +508,8 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 			
-			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvls)then
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvls..GWCOMM[Guildname].color_8.." access.|r");
+			if(pGuildRank <= GWCOMM[Guildname].GLD_lvls)then
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[Guildname].GLD_lvls..GWCOMM[Guildname].color_8.." access.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- sell area for its TOTAL value.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].farm.."|r       "..GWCOMM[Guildname].color_3.."- sell farm.|r")	;	
@@ -525,16 +528,16 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 			
-			if(player:GetGuildRank()==0)then
+			if(pGuildRank == 0)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Guild Master settings:");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild Buy. minimum required guild rank|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[player:GetGuildName()].GLD_lvlb.."");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild Sell. minimum required guild rank|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[player:GetGuildName()].GLD_lvls.."");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild Buy. minimum required guild rank|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Guildname].GLD_lvlb.."");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild Sell. minimum required guild rank|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Guildname].GLD_lvls.."");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild invite system|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Guildname].guild_invite.."|r          "..GWCOMM[Guildname].color_3.."0 = off 1 = on.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 
-			if(player:GetGuildRank()==0)or(player:GetGMRank()==GWCOMM[Server].GM_admin)then
+			if(pGuildRank == 0)or(pGMRank == GWCOMM[Server].GM_admin)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Guild Master/Game Master/Admin special Commands:")
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1..""..GWCOMM[Server].command_set.."|r      "..GWCOMM[Guildname].color_3.."used to modify commands and settings.|r")
@@ -542,7 +545,7 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 			
-			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
+			if(pGuildRank <= GWCOMM[Guildname].GLD_lvlb)or(pGMRank >= GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Prices in "..Currencyname..""..GWCOMM[Guildname].color_8.."'s:|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Zone price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].loc_cost.."|r "..GWCOMM[Guildname].color_3.."base location price.|r");
@@ -560,7 +563,7 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 
-			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
+			if(pGuildRank <= GWCOMM[Guildname].GLD_lvlb)or(pGMRank >= GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Location Limits:");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Farm limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].farm_L.."|r "..GWCOMM[Guildname].color_3.."per location.|r");
@@ -576,7 +579,7 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 			
-			if(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
+			if(pGMRank >= GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Game Master Commands:")
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1..""..GWCOMM[Server].details_loc.."|r                   "..GWCOMM[Guildname].color_3.."-location info.|r");
@@ -599,7 +602,7 @@ local LocId = GetLocationId(player);
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 				
-			if(player:GetGMRank()==GWCOMM[Server].GM_admin)then
+			if(pGMRank == GWCOMM[Server].GM_admin)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."ADMIN settings:")
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."ADMIN Level Access|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].GM_admin.."|r");
@@ -640,7 +643,7 @@ local LocId = GetLocationId(player);
 		end
 		
 		if(ChatCache[1]==GWCOMM[Guildname].list_loc)then
-			local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..player:GetGuildName().."';");
+			local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_name` = '"..Guildname.."';");
 			
 			if(Glocdb==nil)then
 				player:SendBroadcastMessage("Your guild does not own any land");
@@ -690,13 +693,13 @@ local LocId = GetLocationId(player);
 					
 							if(GWHELP[i].command_level<=4)then
 							
-								if(player:GetGuildRank()==0)then
-									PreparedStatements(3, ChatCache[2], ChatCache[3], player:GetGuildName())
+								if(pGuildRank == 0)then
+									PreparedStatements(3, ChatCache[2], ChatCache[3], Guildname)
 									player:SendBroadcastMessage("guild cmd "..ChatCache[2].." set to "..ChatCache[3]..".");
 									return false;
 								else
 								
-									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GLD CMD ACCESS ERROR.:|r "..player:GetGuildRank());
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GLD CMD ACCESS ERROR.:|r "..pGuildRank);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2].." "..ChatCache[3]);
 									return false;
 								end
@@ -704,12 +707,12 @@ local LocId = GetLocationId(player);
 				
 							if(GWHELP[i].command_level<=6)and(GWHELP[i].command_level>=5)then
 								
-								if(player:GetGMRank()==GWCOMM[Server].GM_admin)then
+								if(pGMRank == GWCOMM[Server].GM_admin)then
 									PreparedStatements(3, ChatCache[2], ChatCache[3], Server)
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."GM cmd "..ChatCache[2].." set to "..ChatCache[3].."|r.");
 									return false;
 								else
-									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GM CMD ACCESS ERROR.: |r"..player:GetGMRank());
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."GM CMD ACCESS ERROR.: |r"..pGMRank);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2].." "..ChatCache[3]);
 									return false;
 								end
@@ -739,11 +742,11 @@ local LocId = GetLocationId(player);
 						
 						for b = 1, #GWHELP do
 
-							if((player:GetGuildRank()==0)and(GWHELP[b].command_level<=4))then
+							if((pGuildRank == 0)and(GWHELP[b].command_level<=4))then
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_10..""..GWHELP[b].command.."     -     "..GWCOMM[Guildname].color_11..""..GWHELP[b].description.."|r");
 							end
 							
-							if(player:GetGMRank()==GWCOMM[Server].GM_admin)and(GWHELP[b].command_level>=5)and(GWHELP[b].command_level<=6)then
+							if(pGMRank == GWCOMM[Server].GM_admin)and(GWHELP[b].command_level>=5)and(GWHELP[b].command_level<=6)then
 	                        	player:SendBroadcastMessage(GWCOMM[Guildname].color_10..""..GWHELP[b].command.."     -     "..GWCOMM[Guildname].color_11..""..GWHELP[b].description.."|r");
 	                        end
 						end
@@ -752,14 +755,14 @@ local LocId = GetLocationId(player);
 				
 				if(ChatCache[3] == tostring(GWHELP[i].command))then
 				
-					if(player:GetGuildRank()==0)and(GWHELP[i].command_level<=4)then
+					if(pGuildRank == 0)and(GWHELP[i].command_level<=4)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10..""..GWHELP[i].command.."      -      |cff00cc00"..GWHELP[i].description.."|r");
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."Example:|r /g "..GWCOMM[Guildname].color_11..""..GWHELP[i].example.."");
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."Current:|r "..GWCOMM[Guildname].color_13..""..GWCOMM[Guildname][GWHELP[i].command].."");
 						return false;
 					end
 					
-					if(player:GetGMRank()==GWCOMM[Server].GM_admin)and(GWHELP[i].command_level>=5)and(GWHELP[i].command_level<=6)then
+					if(pGMRank == GWCOMM[Server].GM_admin)and(GWHELP[i].command_level>=5)and(GWHELP[i].command_level<=6)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10..""..GWHELP[i].command.."      -      |cff00cc00"..GWHELP[i].description.."|r");
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."Example:|r /g "..GWCOMM[Guildname].color_11..""..GWHELP[i].example.."");
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_10.."Current:|r "..GWCOMM[Guildname].color_13..""..GWCOMM[Guildname][GWHELP[i].command].."");
@@ -775,7 +778,7 @@ local LocId = GetLocationId(player);
 -- ************ CORE: Guild Master Commands ***********
 -- ****************************************************
 
-		if(player:GetGuildRank() <= GWCOMM[Guildname].GLD_lvlb and ChatCache[1] == "buy")then
+		if(pGuildRank <= GWCOMM[Guildname].GLD_lvlb and ChatCache[1] == "buy")then
 
 -- ******************* Buy commands *******************
 
@@ -798,7 +801,7 @@ local LocId = GetLocationId(player);
 						else
 
 							Gflag = PerformIngameSpawn(2, GWCOMM[Server].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
-							PreparedStatements(1, "guild_name", player:GetGuildName(), LocId)
+							PreparedStatements(1, "guild_name", Guildname, LocId)
 							PreparedStatements(1, "team", player:GetTeam(), LocId)
 							PreparedStatements(1, "x", player:GetX(), LocId)
 							PreparedStatements(1, "y", player:GetY(), LocId)
@@ -809,9 +812,9 @@ local LocId = GetLocationId(player);
 							player:RemoveItem(GWCOMM[Server].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations King "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations King "..pName..". you have expanded "..Guildname.."'s land.|r");
 							else
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Queen "..player:GetName()..". you have expanded "..player:GetGuildName().."'s land.|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Queen "..pName..". you have expanded "..Guildname.."'s land.|r");
 							end
 						return false;
 						end
@@ -821,7 +824,7 @@ local LocId = GetLocationId(player);
 	
 			if(ChatCache[2] == GWCOMM[Guildname].farm)then
 
-				if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				if(GWARZ[LocId].guild_name ~= Guildname)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 					return false;
 				else
@@ -845,8 +848,8 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(2, GWCOMM[Server].farm_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "farm_count", GWARZ[LocId].farm_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].farm_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Grunt "..player:GetName()..".|r");
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14..""..player:GetGuildName().." has added a farm at location: "..LocId..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Grunt "..pName..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14..""..Guildname.." has added a farm at location: "..LocId..".|r");
 								return false;
 							end
 						end
@@ -856,7 +859,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].barrack)then
 
-				if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				if(GWARZ[LocId].guild_name ~= Guildname)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 					return false;
 				else
@@ -880,8 +883,8 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(2, GWCOMM[Server].barrack_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "barrack_count", GWARZ[LocId].barrack_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].barrack_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Commander "..player:GetName()..".|r");
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14..""..player:GetGuildName().." has added a barracks at location: "..LocId..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations Commander "..pName..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14..""..Guildname.." has added a barracks at location: "..LocId..".|r");
 								return false;
 							end
 						end
@@ -891,7 +894,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].hall)then
 
-				if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 					return false;
 				else
@@ -917,7 +920,7 @@ local LocId = GetLocationId(player);
 								PreparedStatements(1, "hall_count", GWARZ[LocId].hall_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].hall_cost)
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congradulations!.|r");
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Commandant "..player:GetName()..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Commandant "..pName..".|r");
 								return false;
 							end
 						end
@@ -927,7 +930,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].pig)then
 
-				if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				if(GWARZ[LocId].guild_name ~= Guildname)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 					return false;
 				else
@@ -958,7 +961,7 @@ local LocId = GetLocationId(player);
 									PreparedStatements(1, "pig_count", GWARZ[LocId].pig_count+1, LocId)
 									player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].pig_cost)
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congradulations!.|r");
-									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Farmer "..player:GetName()..".|r");
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Farmer "..pName..".|r");
 									return false;
 								end
 							end
@@ -969,7 +972,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].guard)then
 
-				if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+				if(GWARZ[LocId].guild_name ~= Guildname)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 					return false;
 				else
@@ -993,7 +996,7 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(1, GWCOMM[Server].guard_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].guard_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Guard added by Commander "..player:GetName()..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Guard added by Commander "..pName..".|r");
 								return false;
 							end
 						end
@@ -1005,7 +1008,7 @@ local LocId = GetLocationId(player);
 
 				if(GWCOMM[Server].vendor1_id > 0)then
 				
-					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+					if(GWARZ[LocId].guild_name ~= Guildname)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 						return false;
 					else
@@ -1024,7 +1027,7 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(1, GWCOMM[Server].vendor1_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "vendor1_count", GWARZ[LocId].vendor1_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].vendor1_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor1 added by Commander "..player:GetName()..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor1 added by Commander "..pName..".|r");
 								return false;
 							end
 						end
@@ -1039,7 +1042,7 @@ local LocId = GetLocationId(player);
 			
 				if(GWCOMM[Server].vendor2_id > 0)then
 				
-					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+					if(GWARZ[LocId].guild_name ~= Guildname)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 						return false;
 					else
@@ -1058,7 +1061,7 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(1, GWCOMM[Server].vendor2_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "vendor2_count", GWARZ[LocId].vendor2_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].vendor2_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor2 added by Commander "..player:GetName()..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor2 added by Commander "..pName..".|r");
 								return false;
 							end
 						end
@@ -1073,7 +1076,7 @@ local LocId = GetLocationId(player);
 			
 				if(GWCOMM[Server].vendor3_id > 0)then
 				
-					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+					if(GWARZ[LocId].guild_name ~= Guildname)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 						return false;
 					else
@@ -1089,7 +1092,7 @@ local LocId = GetLocationId(player);
 								PerformIngameSpawn(1, GWCOMM[Server].vendor3_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 								PreparedStatements(1, "vendor3_count", GWARZ[LocId].vendor3_count+1, LocId)
 								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].vendor3_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor3 added by Commander "..player:GetName()..".|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor3 added by Commander "..pName..".|r");
 								return false;
 							end
 						end
@@ -1104,7 +1107,7 @@ local LocId = GetLocationId(player);
 			
 				if(GWCOMM[Server].cannon_id > 0)then
 				
-					if(GWARZ[LocId].guild_name ~= player:GetGuildName())then
+					if(GWARZ[LocId].guild_name ~= Guildname)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
 						return false;
 					else
@@ -1124,7 +1127,7 @@ local LocId = GetLocationId(player);
 									PerformIngameSpawn(1, GWCOMM[Server].cannon_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count+1, LocId)
 									player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
-									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."cannon added by Commander "..player:GetName()..".|r");
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."cannon added by Commander "..pName..".|r");
 									return false;
 								end
 							end
@@ -1141,11 +1144,11 @@ local LocId = GetLocationId(player);
 
 -- ******************* Sell commands ******************
 
-		if(player:GetGuildRank() <= GWCOMM[Guildname].GLD_lvls)and(ChatCache[1] == "sell")then
+		if(pGuildRank <= GWCOMM[Guildname].GLD_lvls)and(ChatCache[1] == "sell")then
 		
 			if(ChatCache[2] == GWCOMM[Guildname].loc)then
 			
-				if(GWARZ[LocId].guild_name~=player:GetGuildName())then
+				if(GWARZ[LocId].guild_name ~= Guildname)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1166,7 +1169,7 @@ local LocId = GetLocationId(player);
 						PreparedStatements(1, "fs_time", 0, LocId);
 						PreparedStatements(1, "guild_id", 0, LocId);
 						player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].loc_cost);
-						player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations! Realtor "..player:GetName().." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r");
+						player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations! Realtor "..pName.." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r");
 						return false;
 					end
 				end
@@ -1174,7 +1177,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].farm)then
 
-				if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1200,7 +1203,7 @@ local LocId = GetLocationId(player);
 								PreparedStatements(2, "gameobject", farmspawnid);
 								PreparedStatements(1, "farm_count", GWARZ[LocId].farm_count-1, LocId);
 								player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].farm_cost);
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..player:GetGuildName().." has sold a guild farm. For "..GWCOMM[Server].farm_cost.." "..Currencyname.."'s.|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..Guildname.." has sold a guild farm. For "..GWCOMM[Server].farm_cost.." "..Currencyname.."'s.|r");
 								return false;
 							end
 						end
@@ -1210,7 +1213,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].barrack)then
 
-				if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1237,7 +1240,7 @@ local LocId = GetLocationId(player);
 								PreparedStatements(2, "gameobject", barrackspawnid)
 								PreparedStatements(1, "barrack_count", GWARZ[LocId].barrack_count-1, LocId)
 								player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].barrack_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."!Congratulations! Builder "..player:GetGuildName().." has sold a garrison. For "..GWCOMM[Server].barrack_cost.." "..Currencyname.."'s.|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."!Congratulations! Builder "..Guildname.." has sold a garrison. For "..GWCOMM[Server].barrack_cost.." "..Currencyname.."'s.|r");
 								return false;
 							end
 						end
@@ -1247,7 +1250,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].hall)then
 
-				if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1269,7 +1272,7 @@ local LocId = GetLocationId(player);
 							PreparedStatements(2, "gameobject", hallspawnid)
 							PreparedStatements(1, "hall_count", GWARZ[LocId].hall_count-1, LocId)
 							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].hall_cost)
-							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..player:GetGuildName().." has sold a Hall. For "..GWCOMM[Server].hall_cost.." "..Currencyname.."'s.|r");
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..Guildname.." has sold a Hall. For "..GWCOMM[Server].hall_cost.." "..Currencyname.."'s.|r");
 							return false;
 						end
 					end
@@ -1278,7 +1281,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].pig)then
 
-				if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1304,7 +1307,7 @@ local LocId = GetLocationId(player);
 								PreparedStatements(2, "creature", pigspawnid)
 								PreparedStatements(1, "pig_count", GWARZ[LocId].pig_count-1, LocId)
 								player:AddItem(GWCOMM[Server].currency, GWCOMM["SERVER"].pig_cost)
-								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Butcher "..player:GetName().." sold 1 pig to the market.|r");
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Butcher "..pName.." sold 1 pig to the market.|r");
 								return false;
 							end
 						end
@@ -1314,7 +1317,7 @@ local LocId = GetLocationId(player);
 			
 			if(ChatCache[2] == GWCOMM[Guildname].guard)then
 
-				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+				if(Guildname ~= GWARZ[LocId].guild_name)then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 					return false;
 				else
@@ -1353,7 +1356,7 @@ local LocId = GetLocationId(player);
 
 				if(GWCOMM[Server].vendor1_id > 0)then
 				
-					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+					if(Guildname ~= GWARZ[LocId].guild_name)then
 				
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 						return false;
@@ -1399,7 +1402,7 @@ local LocId = GetLocationId(player);
 
 				if(GWCOMM[Server].vendor2_id > 0)then
 				
-					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+					if(Guildname ~= GWARZ[LocId].guild_name)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 						return false;
 					else
@@ -1444,7 +1447,7 @@ local LocId = GetLocationId(player);
 
 				if(GWCOMM[Server].vendor3_id > 0)then
 				
-					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+					if(Guildname ~= GWARZ[LocId].guild_name)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 						return false;
 					else
@@ -1489,7 +1492,7 @@ local LocId = GetLocationId(player);
 
 				if(GWCOMM[Server].cannon_id > 0)then
 				
-					if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+					if(Guildname ~= GWARZ[LocId].guild_name)then
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
 						return false;
 					else
@@ -1539,7 +1542,7 @@ local LocId = GetLocationId(player);
 -- **************** Game Master Commands **************
 -- ****************************************************
 		
-		if(player:GetGMRank() >= GWCOMM[Server].GM_minimum)then
+		if(pGMRank >= GWCOMM[Server].GM_minimum)then
 		
 			if(ChatCache[1] == "lock")and(ChatCache[2] == GWCOMM[Server].loc)then
 				PreparedStatements(1, "guild_name", Server, LocId)
@@ -1756,12 +1759,12 @@ local startpos, endpos = string.find(message, ChatMsg)
 			if(GWARZ[Loc]==nil)then
 				player:SendBroadcastMessage("Grumbo says:|cffcc0000error.... teleport entry doesn't exsist.|r");
 			else
-				if(GWARZ[Loc].guild_name~=player:GetGuildName())then
-					player:SendBroadcastMessage("Raider says:Your guild doesn't own that area.");
-					player:SendBroadcastMessage("Raider says:You cannot teleport there.");
-				else
+				if(GWARZ[Loc].guild_name == player:GetGuildName())or((player:IsGM())and(player:GetGMRank() >= GWCOMM[Server].GM_minimum))then
 					player:Teleport(GWARZ[Loc].map_id, GWARZ[Loc].x, GWARZ[Loc].y, GWARZ[Loc].z, 1.0)
 					player:SendBroadcastMessage("DeadByDawn says:|cff00cc00Teleport complete.|r");
+				else
+					player:SendBroadcastMessage("Raider says:Your guild doesn't own that area.");
+					player:SendBroadcastMessage("Raider says:You cannot teleport there.");
 				end
 			end
 		end
