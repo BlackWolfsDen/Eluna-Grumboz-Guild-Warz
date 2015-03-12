@@ -203,6 +203,97 @@ end
 
 LoadGWtable()
 
+local function LoadGWCOMMTable(name)
+
+local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands WHERE `guild`='"..name.."';");
+
+	if(Gcsql)then
+		repeat
+			GWCOMM[name] = {
+				guild = Gcsql:GetString(0),
+				commands = Gcsql:GetString(1),
+				info_loc = Gcsql:GetString(2),
+				list_loc = Gcsql:GetString(3),
+				tele = Gcsql:GetString(4),
+				version = Gcsql:GetString(5),
+				loc = Gcsql:GetString(6),
+				farm = Gcsql:GetString(7),
+				barrack = Gcsql:GetString(8),
+				hall = Gcsql:GetString(9),
+				pig = Gcsql:GetString(10),
+				guard = Gcsql:GetString(11),
+				vendor1 = Gcsql:GetString(12),
+				vendor2 = Gcsql:GetString(13),
+				vendor3 = Gcsql:GetString(14),
+				cannon = Gcsql:GetString(15),
+				GLD_lvlb = Gcsql:GetUInt32(16),
+				GLD_lvls = Gcsql:GetUInt32(17),
+				respawn_flag = Gcsql:GetString(18),
+				details_loc = Gcsql:GetString(19),
+				table = Gcsql:GetString(20),
+				GM_admin = Gcsql:GetUInt32(21),
+				GM_minimum = Gcsql:GetUInt32(22),
+				currency = Gcsql:GetUInt32(23),
+				loc_cost = Gcsql:GetUInt32(24),
+				farm_cost = Gcsql:GetUInt32(25),
+				barrack_cost = Gcsql:GetUInt32(26),
+				hall_cost = Gcsql:GetUInt32(27),
+				pig_cost = Gcsql:GetUInt32(28),
+				guard_cost = Gcsql:GetUInt32(29),
+				vendor1_cost = Gcsql:GetUInt32(30),
+				vendor2_cost = Gcsql:GetUInt32(31),
+				vendor3_cost = Gcsql:GetUInt32(32),
+				cannon_cost = Gcsql:GetUInt32(33),
+				farm_L = Gcsql:GetUInt32(34),
+				barrack_L = Gcsql:GetUInt32(35),
+				hall_L = Gcsql:GetUInt32(36),
+				pig_L = Gcsql:GetUInt32(37),
+				guard_L = Gcsql:GetUInt32(38),
+				vendor1_L = Gcsql:GetUInt32(39),
+				vendor2_L = Gcsql:GetUInt32(40),
+				vendor3_L = Gcsql:GetUInt32(41),
+				cannon_L = Gcsql:GetUInt32(42),
+				pig_payz = Gcsql:GetUInt32(43),
+				pig_payz_timer = Gcsql:GetUInt32(44),
+				gift_count = Gcsql:GetUInt32(45),
+				flag_require = Gcsql:GetUInt32(46),
+				Server = Gcsql:GetString(47),
+				flag_id = Gcsql:GetUInt32(48),
+				farm_id = Gcsql:GetUInt32(49),
+				barrack_id = Gcsql:GetUInt32(50),
+				hall_id = Gcsql:GetUInt32(51),
+				pig_id = Gcsql:GetUInt32(52),
+				guard_id = Gcsql:GetUInt32(53),
+				vendor1_id = Gcsql:GetUInt32(54),
+				vendor2_id = Gcsql:GetUInt32(55),
+				vendor3_id = Gcsql:GetUInt32(56),
+				cannon_id = Gcsql:GetUInt32(57),
+				command_set = Gcsql:GetString(58),
+				anarchy = Gcsql:GetUInt32(59),			
+				flag_timer = Gcsql:GetUInt32(60),
+				spawn_timer = Gcsql:GetUInt32(61),
+				guild_id = Gcsql:GetUInt32(62),
+				guild_invite = Gcsql:GetUInt32(63),
+				color_1 = Gcsql:GetString(64),
+				color_2 = Gcsql:GetString(65),
+				color_3 = Gcsql:GetString(66),
+				color_4 = Gcsql:GetString(67),
+				color_5 = Gcsql:GetString(68),
+				color_6 = Gcsql:GetString(69),
+				color_7 = Gcsql:GetString(70),
+				color_8 = Gcsql:GetString(71),
+				color_9 = Gcsql:GetString(72),
+				color_10 = Gcsql:GetString(73),
+				color_11 = Gcsql:GetString(74),
+				color_12 = Gcsql:GetString(75),
+				color_13 = Gcsql:GetString(76),
+				color_14 = Gcsql:GetString(77),
+				color_15 = Gcsql:GetString(78),
+			};
+		until not Gcsql:NextRow()
+	end
+end
+
 print("Guild Warz tables version: "..table_version);
 
 local Currencyname = GetItemLink(GWCOMM[Server].currency);
@@ -223,12 +314,13 @@ local function PreparedStatements(key, ...)
 	local Query = {
 		[1] = "UPDATE "..guild_warz_DB..".zones SET `%s` = '%s' WHERE `entry` = '%s';",
 		[2] = "DELETE FROM %s WHERE `guid` = '%s';",
-		[3] = "UPDATE "..guild_warz_DB..".commands SET `%s` = '%s' WHERE `guild` = '%s';"
+		[3] = "UPDATE "..guild_warz_DB..".commands SET `%s` = '%s' WHERE `guild` = '%s';",
+		[4] = "DELETE FROM "..guild_warz_DB..".commands WHERE `%s` = '%s';",
 	}
 	
 	if(key == 1) then
-		local subtable, value, loc = ...
-		local qs = string.format(Query[key], ...)
+		local subtable, value, loc = ...;
+		local qs = string.format(Query[key], subtable, value, loc)
 		WorldDBQuery(qs)
 		GWARZ[loc][subtable] = value;
 	end
@@ -236,14 +328,22 @@ local function PreparedStatements(key, ...)
 	if(key == 2) then
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
-		LoadGWtable()
 	end
 	
 	if(key == 3) then
+		local subtable, value, guild = ...;
 		local qs = string.format(Query[key], ...)
 		WorldDBQuery(qs)
-		LoadGWtable()
+		GWCOMM[guild][subtable] = value;
 	end
+	
+	if(key == 4) then
+		local subtable, name = ...;
+		local qs = string.format(Query[key], ...)
+		GWCOMM[subtable] = nil;
+		WorldDBQuery(qs)
+	end
+	
 end
 
 function CreateLocation(map, area, zone)
@@ -269,16 +369,17 @@ function CreateLocation(map, area, zone)
 end
 
 function CreateGcommands(guild, name)
-	local gid = guild:GetId()
+	local gid = guild:GetId();
 	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
-	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild` = '"..name.."';");
+
+	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild` = '"..name.."';")
+	LoadGWCOMMTable(name)	
 	PreparedStatements(3, "guild_id", gid, name)
-	print("commands for: "..name.." : created.")	
-	LoadGWtable()
+	print("commands for: "..name.." : created.")
 	return guild;
 end
 
-local GW_version =  ((table_version+core_version+pigpayz_version+tele_version+pvp_version+vendor_version)/4)
+local GW_version = ((table_version+core_version+pigpayz_version+tele_version+pvp_version+vendor_version)/4);
 
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
 	CreateGcommands(guild, name)
@@ -287,6 +388,13 @@ function Newguildgift(eventId, guild, leader, name) -- idea provided by creative
 end
 
 RegisterGuildEvent(5, Newguildgift)
+
+local function OnGuildDelete(event, guild) -- clears a guilds commands from the table since guild id can be re-used.
+	local Guildname = guild:GetName();
+	PreparedStatements(4, "guild", Guildname)
+end
+
+RegisterGuildEvent(6, OnGuildDelete) 
 
 function PlrFaction(eventId, player)
 
@@ -300,12 +408,13 @@ GGW[player:GetAccountId()] = {
 	if(player:GetGuildName())then
 		
 		local Guildname = player:GetGuildName();
-	
-			if(GWCOMM[Guildname]==nil)then
-				Gcommands = CreateGcommands(player:GetGuild(), Guildname)
+		local Guild = player:GetGuild();
+		
+			if(GWCOMM[Guildname] == nil)then
+				Gcommands = CreateGcommands(Guild, Guildname)
 			end
 	
-		player:SendBroadcastMessage(GWCOMM[Server].color_14.."Use '/guild "..GWCOMM[Guildname].commands.."' for a list of GGW commands.")	
+		player:SendBroadcastMessage(GWCOMM[Server].color_14.."Use '/guild "..GWCOMM[Server].commands.."' for a list of GGW commands.")	
 	end
 end
 								
@@ -336,23 +445,19 @@ local ChatCache = {}
 
 math.randomseed(tonumber(os.time()*os.time()))
 
-local guild_id = player:GetGuildId()
-local LocId = GetLocationId(player)
+local guild = player:GetGuild();
+local Guildname = player:GetGuildName();
+local guild_id = player:GetGuildId();
+local LocId = GetLocationId(player);
 	
 	if(LocId == nil)then
 		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
 	
-local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
-
 	if(GWCOMM[Guildname]==nil)then
 		Gcommands = CreateGcommands(player:GetGuild(), player:GetGuildName())
 	end
-	
-	if(GWCOMM[Guildname]==nil)then
-		Gcommands = CreateGcommands(player:GetGuildName())
-	end
-			
+
 	local Zoneprice = (GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[Server].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[Server].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[Server].cannon_cost*GWARZ[LocId].cannon_count);
 	local yentry = 0
 	local ypigcnt = 0
@@ -364,7 +469,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 
 	if(player:IsInGuild()==true)then
 		
-		if(ChatCache[1]==GWCOMM[player:GetGuildName()].commands)then
+		if(ChatCache[1]==GWCOMM[Guildname].commands)then
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*********************************************");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."*  -Grumbo'z Guild Warz Commands:-  *");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*********************************************");
@@ -382,7 +487,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00"..GWCOMM[Guildname].version.."|r                    "..GWCOMM[Guildname].color_3.."-displays Core versions.|r");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 
-			if(player:GetGuildRank() <= GWCOMM[player:GetGuildName()].GLD_lvlb)then
+			if(player:GetGuildRank() <= GWCOMM[Guildname].GLD_lvlb)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvlb..GWCOMM[Guildname].color_8.." access.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."buy "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- purchase area.");
@@ -400,7 +505,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 			
-			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvls)then
+			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvls)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].color_8.."Guild Master level Commands:Rank: "..GWCOMM[Guildname].color_2..GWCOMM[player:GetGuildName()].GLD_lvls..GWCOMM[Guildname].color_8.." access.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].loc.."|r         "..GWCOMM[Guildname].color_3.."- sell area for its TOTAL value.|r");
@@ -437,7 +542,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 			
-			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
+			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Prices in "..Currencyname..""..GWCOMM[Guildname].color_8.."'s:|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Zone price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].loc_cost.."|r "..GWCOMM[Guildname].color_3.."base location price.|r");
@@ -455,7 +560,7 @@ local Guildname = player:GetGuildName(); -- ""..player:GetGuildName()..""
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 
-			if(player:GetGuildRank()<=GWCOMM[player:GetGuildName()].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
+			if(player:GetGuildRank()<=GWCOMM[Guildname].GLD_lvlb)or(player:GetGMRank()>=GWCOMM[Server].GM_minimum)then
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_8.."Location Limits:");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."-------------------------------------------");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Farm limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].farm_L.."|r "..GWCOMM[Guildname].color_3.."per location.|r");
