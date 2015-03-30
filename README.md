@@ -114,6 +114,6 @@ I have added a new "OPTIONAL" Feature ::: No-Tag-Flag
           
 All commands and settings happen LIVE in game so becareful of who's location your in when you turn it on.
 
-Tutorial Video's: https://www.youtube.com/user/TheBlackwolfsden
+Tutorial Video's: https://www.youtube.com/user/TheBlackwolfsden/videos
 
 So have fun and remember to !! RAPE PLUNDER and PILLAGE !!.
