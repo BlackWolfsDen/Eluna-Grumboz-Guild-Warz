@@ -197,31 +197,14 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				spawn_time = Gwsql:GetUInt32(19),
 				guild_id = Gwsql:GetUInt32(20),
 			};
-			
-				if not(GWARZ[Gwsql:GetString(4)])then
-					GWARZ[Gwsql:GetString(4)] = {
-						total = 0,
-					};
-				end
-			
-			GWARZ[Gwsql:GetString(4)].total = GWARZ[Gwsql:GetString(4)].total+1;
-					
 		until not Gwsql:NextRow();
 	end
 end
 
-LoadGWtable();
+LoadGWtable()
 
 local function LoadGWCOMMTable(name)
 
-local Ggsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".zones WHERE `guild`='"..name.."';"):GetRowCount();
-
-	if(Ggsqp <= 0)then
-		GWARZ[name].total = 0;
-	else
-		GWARZ[name].total = Ggsql:GetRowCount();
-	end
-		
 local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands WHERE `guild`='"..name.."';");
 
 	if(Gcsql)then
@@ -818,16 +801,15 @@ local pName = player:GetName();
 						else
 
 							Gflag = PerformIngameSpawn(2, GWCOMM[Server].flag_id+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow()
-							PreparedStatements(1, "guild_name", Guildname, LocId);
-							PreparedStatements(1, "team", player:GetTeam(), LocId);
-							PreparedStatements(1, "x", player:GetX(), LocId);
-							PreparedStatements(1, "y", player:GetY(), LocId);
-							PreparedStatements(1, "z", player:GetZ(), LocId);
-							PreparedStatements(1, "flag_id", Gflag, LocId);
-							PreparedStatements(1, "fs_time", GetGameTime(), LocId);						
-							PreparedStatements(1, "guild_id", guild_id, LocId);
-							player:RemoveItem(GWCOMM[Server].currency, Zoneprice);
-							GWARZ[Guildname].total = GWARZ[Guildname].total + 1;
+							PreparedStatements(1, "guild_name", Guildname, LocId)
+							PreparedStatements(1, "team", player:GetTeam(), LocId)
+							PreparedStatements(1, "x", player:GetX(), LocId)
+							PreparedStatements(1, "y", player:GetY(), LocId)
+							PreparedStatements(1, "z", player:GetZ(), LocId)
+							PreparedStatements(1, "flag_id", Gflag, LocId)
+							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
+							PreparedStatements(1, "guild_id", guild_id, LocId)
+							player:RemoveItem(GWCOMM[Server].currency, Zoneprice)
 						
 							if(player:GetGender()==0)then
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Congratulations King "..pName..". you have expanded "..Guildname.."'s land.|r");
@@ -1188,10 +1170,6 @@ local pName = player:GetName();
 						PreparedStatements(1, "guild_id", 0, LocId);
 						player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].loc_cost);
 						player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations! Realtor "..pName.." has sold this land. For "..Zoneprice.." "..Currencyname.."'s.|r");
-						GWARZ[Guildname].total = GWARZ[Guildname].total - 1;
-						
-							if(GWCOMM[Guildname].total < 0)then GWCOMM[Guildname].total = 0;end
-							
 						return false;
 					end
 				end
@@ -1824,7 +1802,6 @@ function TransferFlag(player, locid, go)
 		else
 			player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System:|r");
 			player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location "..player:GetName()..".|r");
-			player:SendBroadcastMessage("|cff00cc00They control a total of "..GWARZ[Guildname].total.." locations.");
 			player:SendBroadcastMessage("|cff00cc00Join a Guild to participate in Grumbo\'z Guild Warz System.|r");
 			player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo.|r");
 			player:SendBroadcastMessage("|cff00cc00This Guild Master has disabled the guild\'s invite system.|r");
@@ -1850,24 +1827,19 @@ function TransferFlag(player, locid, go)
 				if(	player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)))then
 
 					if(((GWARZ[locid].guard_count==0)and(GWCOMM[Server].flag_require==1))or(GWCOMM[Server].flag_require==0))then
-						
-						player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)):Despawn();
-						Nflag = (PerformIngameSpawn(2, (GWCOMM[Server].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow());
-	
-						GWARZ[GWARZ[locid].guild_name].total = GWARZ[GWARZ[locid].guild_name].total  - 1;
-						GWARZ[player:GetGuildName()].total = GWARZ[player:GetGuildName()].total + 1;
-						
-						PreparedStatements(2, "gameobject", go:GetGUIDLow());
+						player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)):Despawn()
+						Nflag = (PerformIngameSpawn(2, (GWCOMM[Server].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
+						PreparedStatements(2, "gameobject", go:GetGUIDLow())
 						SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1);
-						PreparedStatements(1, "guild_name", player:GetGuildName(), locid);
-						PreparedStatements(1, "team", player:GetTeam(), locid);
-						PreparedStatements(1, "x", player:GetX(), locid);
-						PreparedStatements(1, "y", player:GetY(), locid);
-						PreparedStatements(1, "z", player:GetZ(), locid);
-						PreparedStatements(1, "flag_id", Nflag, locid);
-						PreparedStatements(1, "flag_id", Nflag, locid);
-						PreparedStatements(1, "fs_time", GetGameTime(), locid);
-						PreparedStatements(1, "guild_id", player:GetGuildId(), locid);	
+						PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
+						PreparedStatements(1, "team", player:GetTeam(), locid)
+						PreparedStatements(1, "x", player:GetX(), locid)
+						PreparedStatements(1, "y", player:GetY(), locid)
+						PreparedStatements(1, "z", player:GetZ(), locid)
+						PreparedStatements(1, "flag_id", Nflag, locid)
+						PreparedStatements(1, "flag_id", Nflag, locid)
+						PreparedStatements(1, "fs_time", GetGameTime(), locid)
+						PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
 					end
 				end
 			end
@@ -1890,30 +1862,20 @@ RegisterGameObjectGossipEvent(GWCOMM[Server].flag_id+1, 1, Tagflag)
 
 function Gwarz_Guild_Flag_Hello(eventid, player, object)
 	local locid = GetLocationId(player)
-	player:GossipClearMenu();
+	player:GossipClearMenu()
 	player:GossipMenuAddItem(1,"Join "..GWARZ[locid].guild_name..".",0,10)
-	player:GossipMenuAddItem(1,"They control a total of "..GWARZ[GWARZ[locid].guild_name].total.." locations.",0,12)
 	player:GossipMenuAddItem(1,"Nevermind.",0,11)
 	player:GossipSendMenu(1, object)
 end
 
 function Gwarz_Guild_Flag_Select(eventid, player, object, sender, intid, code)
 local locid = GetLocationId(player)
-
-	if (intid == 12) then
-		Gwarz_Guild_Flag_Hello(1, player, object)
-	return false;
-	end
-	
 	if (intid == 10) then
 		GetGuildByName(GWARZ[locid].guild_name):AddMember(player, 255) -- attempts to add the new member at lowest(255) guild level.
 	end
-	
 	if (intid == 11) then
 	end
-	
-player:GossipComplete();
-
+player:GossipComplete()
 end
 
 RegisterGameObjectGossipEvent(GWCOMM[Server].flag_id, 2, Gwarz_Guild_Flag_Select)
