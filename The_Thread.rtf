@@ -1,0 +1,141 @@
+Grumbo'z Guild Warz.
+WoW's Bloodiest
+Guild House/Plot System
+'Tides of Darkness'
+This is NOT your Grandpa's Guild House System. 
+--Built-Tested and Approved for ArcEmu ALE--
+--Modified-Tested and Approved for TC2 3.3.5a Eluna--
+--Updated-tested and Approved for TC2 4.3.4 Eluna--
+
+This System allows Guild Masters to purchase multiple Guild Plot locations for xx guild coins. when a location is purchased a flag will spawn based on team ally/horde. 
+Guild members can invade other guild plot locations from an apposing team or Guild and attempt to take there flag. if a guildmember tags the flag of an apposing team or Guild, that location will transfer ownership including all pigs in that location to the guild that tagged the flag.
+
+"PERK" "Guild Commands" Access to Buy/Sell commands is adjustable by the GuildMasters.
+Guild members with access to the sell commands can sell off the individual team based npc's and buildings of any won or Guild built locations. 
+Guild members with access to the buy commands can buy areas, buildings and npc's for any Guild location.
+"FEATURE" "Anarchy System." Allows Flags to be captured by same team guilds thru FFAGvGPvP Chaotic Anarchy. May be turned on/off live in game by the Admin.
+"FEATURE" "No-Tag-Flag Timer." A cooldown timer so Flags cant be captured until the timer expires. May be turned on/off and time adjusted live in game by the Admin.
+"FEATURE" "Guild Invite" Allows Non-guild players to interact with the guild flags. the flags will open a gossip menu so players can choose to join the flag's guild. May be turned on/off live in game for individual guilds by there GuildMaster.
+"FEATURE" "Flag Require" Invaders MUST clear ALL guards to be able to claim flag. May be turned on/off live in-game.
+"PERK" "Farms" Guild masters can now buy farms to support buying pigs. Guild masters can place up to xx guild pigs. (to have pigs you must have a farm)
+"PERK" "Pig Payz" Each pig will pay xx gold to all guild members online per half hour. 
+Farms are faction based and display id's can be changed in the DB.(GOB ID's 500000 Ally, 500001 Horde) 
+Amount of pigs per farm can be adjusted live in game by the Admin.
+"PERK" "Barracks" Guild masters can now buy barracks to support guards. barracks require a pig farm to support them.
+Barracks are faction based and display id's can be changed in the DB.(GOB ID's 500002 Ally, 500003 Horde)
+"PERK" "Guards" Guild masters can place guards at each location to protect there flag for xx guild coin each. Guards require a barrack.
+guards will announce location id when in combat so guild members can tele to location. 
+guards are disposable and wont respawn when killed. 
+guards are faction based and id's can be changed in the DB.(NPC ID's 49002 Ally, 49003 Horde)
+"PERK" "Guild Hall" Guild masters can place a BIG ol' Guild Hall at each location for xx Guild coins.
+To have Hall's you must have a barracks. 
+Halls are faction based and id's can be changed in the DB.(GOB ID's 500004 Ally, 500005 Horde)
+"PERK" "Guild Vendors" Vendors Require a Guild Hall.
+"Guild Buff vendor" Guild masters can place a Guild Buff vendor at each location for xx Guild coins. .(NPC ID's 49004 Ally, 49005 Horde). 
+"Guild Fun items vendor" Guild masters can place a Guild Fun items vendor at each location for xx Guild coins. .(NPC ID's 49006 Ally, 49007 Horde). 
+"Guild Gear vendor" Guild masters can place a Guild Gear vendor at each location for xx Guild coins.(NPC ID's 49008 Ally, 49009 Horde). 
+You can create your own custom team vendor's for guilds and add there id's live in-game.
+"PERK" "Guild Cannons" Cannon's Require a Guild Hall.
+Guild masters can place Guild cannon's at each location for xx Guild coins.(NPC ID's 49010 Ally, 49011 Horde)
+"PERK" "Guild Teleporter" Guild members can easily teleport to any of there guild's locations using the location's id.
+Guild members can list all the areas owned by there guild by location id. 
+Guild members can display information about the location they are at.
+"PERK" "New Guild Gift" Newly formed Guilds will be gifted xx amount of Guild Coins to the Guild Master to get started with. 
+"PERK" "Adjustable color layout" Now GuildMasters can change the color layout for the chatbox menus/data. 
+"CMD" Guild master can customize most guild accessible commands in-game. 
+"CMD" Guild master can change access level for buy commands in-game. 
+"CMD" Guild masters can change access level for sell commands in-game. 
+"CMD" GuildMasters can change the color layout for menus for there guild menus. 
+"CMD" Admin can customize most GM commands and SYSTEM settings in-game. 
+"CMD" Admin can change access level for GM commands in-game and the sql.
+
+
+NOW Supports multi-realm servers. now you can run this on multiple realms . just add the DB table and re-name it then edit the DB name variable `guild_warz_DB` in the start of the script so each realms script matches there individual DB table.
+
+NOW with an adjustable Guild Menu color layout
+All variables "xx" , (item, npc, gob)ID's, GM access levels, Guild Member access levels, prices, limits and commands 
+can easily be changed LIVE in-game, or the sql. 
+
+Horde Location:
+ 
+Ally Location:
+ 
+Horde Location: 
+ 
+Vendor 1:
+ 
+Vendor 2:
+ 
+Vendor 3:
+ 
+Yup.... Guilds have cannons now:
+ 
+ 
+`!! Its a cannon !!`
+
+Lua for Eluna: 
+
+latest version 4.85/03-12-2015 
+
+--Modified-Tested and Approved for TC2 3.3.5a Eluna--
+--Modified-Tested and Approved for TC2 4.3.4 Eluna--
+
+>> Requires the latest Eluna Release : 64f1f9ccc617 01-17-2014 or newer. <<
+Now supports Multi-Realm use
+
+>> Grumbo'z Guild Warz TC2 3.3.5<<
+
+>> Grumbo'z Guild Warz TC2 4.3.4<<
+>> The Wiki <<
+
+all commands can be altered easily in-game and the Sql table.
+all limits and costs can be altered easily in-game and the Sql table. 
+Commands function only while using Guild Chat. 
+
+ArcEmu/ALE
+Project
+
+latest version: 3.65 - 2-12-2014
+>> Grumbo'z Guild Warz << 
+
+"Welcome to my nightmare" 
+"I think your gonna like it"
+"I think your gonna feel"
+"right at home"
+"here"
+
+
+here you go Trinity .....
+
+`...and so his Guildmates roared and cheared as he mounted the bloody head of yet another fallen Guild leader in there Great Hall.`
+
+"!!KING SPADE!!" 
+!! Raid !! Plunder !! Pilage !! 
+!! it's bloody frak'n Anarchy !! 
+"covered with dren." 
+
+"cuz PvP'z better with a bag 'o' weed" 
+
+special thanks to these guyz:
+
+@Rochet2 -- lotta guideance n redo's of my stuff.
+@Foereaper -- huge re-write of major parts for efficiency and speed.
+@Grandelf -- for that teleporter that inspired this whole idea !BUMP!.
+@Greone -- un-ending testing and all that video footage. 
+@Freedom -- testing,testing,testing and more testing, and all round great help.
+things like these cannot be done alone . thank you guyz. 
+
+Additional thanks to:
+@Creativextent -- for the Newly formed guilds perk idea - adjustable guild command access idea.
+@foxthecrash -- for the No-Tag-Flag Timer idea.
+
+without these guys assistance, testing, guidance and ideas it would never have been possible to create this high-tech slick responsive power house system it is now. thank you every one. 
+
+
+
+My twisted idea of a Guild Plot System 
+
+
+"Cuz PvP's better with a bag 'o' weed" 
+!! I'm Grumbo Bitch !! 
+!! King Spade !!
