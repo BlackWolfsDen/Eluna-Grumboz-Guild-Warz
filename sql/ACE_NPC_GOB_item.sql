@@ -33,9 +33,9 @@ REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconN
 (500004, 33, 7900, 'Tiff\'s Guild Hall', 'Interact', '', '', 35, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', ''),
 (500005, 33, 7878, 'Grumbo\'z Guild Hall', 'Interact', '', '', 35, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', '');
 
-REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`, `WDBVerified`, `mingold`, `maxgold`) VALUES 
-(500006,34,7604, 'Alliance Guild Vault', '', '', '',0,0,1.5, '', '',1, NULL, 0),
-(500007,34,7604, 'Horde Guild Vault', '', '', '',0,0,1.5, '', '',1, NULL, 0);
+REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`, `WDBVerified`) VALUES 
+(500008,19,7605,'Alliance Guild Mailbox','','','',0,0,0.5,'','',12340),
+(500009,19,7605,'Horde Guild Mailbox','','','',0,0,0.5,'','',12340);
 
 REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`, `WDBVerified`, `mingold`, `maxgold`) VALUES 
 (500008,19,7605,'Alliance Guild Mailbox','','','',0,0,0.5,'','',12340,NULL,0),
