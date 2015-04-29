@@ -37,9 +37,9 @@ REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconN
 (500006,34,7604, 'Alliance Guild Vault', '', '', '',0,0,1.5, '', '',1, NULL, 0),
 (500007,34,7604, 'Horde Guild Vault', '', '', '',0,0,1.5, '', '',1, NULL, 0);
 
-REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`, `WDBVerified`, `mingold`, `maxgold`) VALUES 
-(500008,19,7605,'Alliance Guild Mailbox','','','',0,0,0.5,'','',12340,NULL,0),
-(500009,19,7605,'Horde Guild Mailbox','','','',0,0,0.5,'','',12340,NULL,0);
+REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`, `WDBVerified`) VALUES 
+(500008,19,7605,'Alliance Guild Mailbox','','','',0,0,0.5,'','',12340),
+(500009,19,7605,'Horde Guild Mailbox','','','',0,0,0.5,'','',12340);
 
 REPLACE INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclass`, `name`, `displayid`, `Quality`, `Flags`, `FlagsExtra`, `BuyCount`, `BuyPrice`, `SellPrice`, `InventoryType`, `AllowableClass`, `AllowableRace`, `maxcount`, `stackable`, `bonding`, `description`, `RequiredDisenchantSkill`, `ScriptName`) VALUES 
 (62006, 0, 8, -1, 'Guild Coin', 34104, 4, 0, 0, 1, 500000000, 500000000, 0, -1, -1, 2147483647, 2147483647, 0, 'Grumbo\'z Guild Warz', -1, '');
