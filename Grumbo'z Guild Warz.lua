@@ -1160,6 +1160,67 @@ local pName = player:GetName();
 					return false;
 				end				
 			end
+
+			if(ChatCache[2] == GWCOMM[Guildname].vault)then
+			
+				if(GWARZ[LocId].guild_name ~= Guildname)then
+					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
+					return false;
+				else
+					if(player:GetItemCount(GWCOMM[Server].currency) < GWCOMM[Server].vault_cost)then
+						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Each vault costs "..GWCOMM[Server].cannon_cost.." "..Currencyname..".");
+						return false;
+					else
+						if(GWARZ[LocId].vault_count >= GWCOMM[Server].vault_L * GWARZ[LocId].hall_count)then
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You have "..GWARZ[LocId].vault_count.." "..GWCOMM[Guildname].vault.."'s at this location.");
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You can only have "..GWCOMM[Server].vault_L.." per hall.");
+							return false;
+						else
+							if(GWARZ[LocId].hall_count == 0)then
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Vaults require a Hall.");
+								return false;
+							else
+								PerformIngameSpawn(2, GWCOMM[Server].vault_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+								PreparedStatements(1, "vault_count", GWARZ[LocId].vault_count+1, LocId)
+								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].vault_cost)
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vault added by Comissioner "..pName..".|r");
+								return false;
+							end
+						end
+					end
+				end
+			end
+
+			if(ChatCache[2] == GWCOMM[Guildname].mailbox)then
+			
+				if(GWARZ[LocId].guild_name ~= Guildname)then
+					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your Guild does not own this land.");
+					return false;
+				else
+					if(player:GetItemCount(GWCOMM[Server].currency) < GWCOMM[Server].mailbox_cost)then
+						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Each mailbox costs "..GWCOMM[Server].mailbox_cost.." "..Currencyname..".");
+						return false;
+					else
+						if(GWARZ[LocId].mailbox_count >= GWCOMM[Server].mailbox_L * GWARZ[LocId].hall_count)then
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You have "..GWARZ[LocId].mailbox_count.." "..GWCOMM[Guildname].mailbox.."'s at this location.");
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You can only have "..GWCOMM[Server].mailbox_L.." per hall.");
+							return false;
+						else
+							if(GWARZ[LocId].hall_count == 0)then
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Mailboxs require a Hall.");
+								return false;
+							else
+								PerformIngameSpawn(2, GWCOMM[Server].mailbox_id+GWARZ[LocId].team, player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1)
+								PreparedStatements(1, "mailbox_count", GWARZ[LocId].mailbox_count+1, LocId)
+								player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].mailbox_cost)
+								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Mailbox added by Comissioner "..pName..".|r");
+								return false;
+							end
+						end
+					end
+				end
+			end
+
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
 			return false;
 		end
@@ -1282,12 +1343,12 @@ local pName = player:GetName();
 						return false;
 					else
 
-						if(((player:GetNearestGameObject(7, GWCOMM[Server].hall_id))or(player:GetNearestGameObject(5, GWCOMM[Server].hall_id+1))) == nil)then
+						if(((player:GetNearestGameObject(7, GWCOMM[Server].hall_id))or(player:GetNearestGameObject(7, GWCOMM[Server].hall_id+1))) == nil)then
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You must be near to your hall to sell it.");
 							return false;
 						else
 
-							local hall = ((player:GetNearestGameObject(7, GWCOMM[Server].hall_id))or(player:GetNearestGameObject(5, GWCOMM[Server].hall_id+1)));
+							local hall = ((player:GetNearestGameObject(7, GWCOMM[Server].hall_id))or(player:GetNearestGameObject(7, GWCOMM[Server].hall_id+1)));
 							local hallspawnid = hall:GetGUIDLow(); -- use this to avoid ghost respawns
 							hall:Despawn();
 							hall:RemoveFromWorld();
@@ -1556,10 +1617,72 @@ local pName = player:GetName();
 				end
 			end	
 			
+			if(ChatCache[2] == GWCOMM[Guildname].vault)then
+
+				if(Guildname ~= GWARZ[LocId].guild_name)then
+					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
+					return false;
+				else
+
+					if(GWARZ[LocId].vault_count <= 0)then
+						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own a vault at this location.");
+						return false;
+					else
+
+						if(((player:GetNearestGameObject(2, GWCOMM[Server].vault_id))or(player:GetNearestGameObject(2, GWCOMM[Server].vault_id+1))) == nil)then
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You must be near to your vault to sell it.");
+							return false;
+						else
+
+							local vault = ((player:GetNearestGameObject(2, GWCOMM[Server].vault_id))or(player:GetNearestGameObject(2, GWCOMM[Server].vault_id+1)));
+							local vaultspawnid = vault:GetGUIDLow(); -- use this to avoid ghost respawns
+							vault:Despawn();
+							vault:RemoveFromWorld();
+							PreparedStatements(2, "gameobject", vaultspawnid)
+							PreparedStatements(1, "vault_count", GWARZ[LocId].vault_count-1, LocId)
+							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vault_cost)
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..pName.." has sold a vault. For "..GWCOMM[Server].vault_cost.." "..Currencyname.."'s.|r");
+							return false;
+						end
+					end
+				end
+			end
+
+			if(ChatCache[2] == GWCOMM[Guildname].mailbox)then
+
+				if(Guildname ~= GWARZ[LocId].guild_name)then
+					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own this land.");
+					return false;
+				else
+
+					if(GWARZ[LocId].mailbox_count <= 0)then
+						player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."Your guild does not own a mailbox at this location.");
+						return false;
+					else
+
+						if(((player:GetNearestGameObject(2, GWCOMM[Server].mailbox_id))or(player:GetNearestGameObject(2, GWCOMM[Server].mailbox_id+1))) == nil)then
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."You must be near to your mailbox to sell it.");
+							return false;
+						else
+
+							local mailbox = ((player:GetNearestGameObject(2, GWCOMM[Server].mailbox_id))or(player:GetNearestGameObject(2, GWCOMM[Server].mailbox_id+1)));
+							local mailboxspawnid = mailbox:GetGUIDLow(); -- use this to avoid ghost respawns
+							mailbox:Despawn();
+							mailbox:RemoveFromWorld();
+							PreparedStatements(2, "gameobject", mailboxspawnid)
+							PreparedStatements(1, "mailbox_count", GWARZ[LocId].mailbox_count-1, LocId)
+							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].mailbox_cost)
+							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..pName.." has sold a mailbox. For "..GWCOMM[Server].vault_cost.." "..Currencyname.."'s.|r");
+							return false;
+						end
+					end
+				end
+			end
+
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
 			return false;
 		end
-		
+
 -- ****************************************************
 -- **************** Game Master Commands **************
 -- ****************************************************
