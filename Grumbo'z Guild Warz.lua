@@ -201,9 +201,11 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				vendor2_count = Gwsql:GetUInt32(15),
 				vendor3_count = Gwsql:GetUInt32(16),
 				cannon_count = Gwsql:GetUInt32(17),
-				flag_id = Gwsql:GetUInt32(18),
-				spawn_time = Gwsql:GetUInt32(19),
-				guild_id = Gwsql:GetUInt32(20),
+				vault_count = Gwsql:GetUInt32(18),
+				mailbox_count = Gwsql:GetUInt32(19),
+				flag_id = Gwsql:GetUInt32(20),
+				spawn_time = Gwsql:GetUInt32(21),
+				guild_id = Gwsql:GetUInt32(22),
 			};
 		until not Gwsql:NextRow();
 	end
@@ -469,7 +471,7 @@ local pName = player:GetName();
 		Gcommands = CreateGcommands(guild, Guildname)
 	end
 	
-	local Zoneprice = (GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[Server].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[Server].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[Server].cannon_cost*GWARZ[LocId].cannon_count);
+	local Zoneprice = (GWCOMM[Server].loc_cost)+(GWCOMM[Server].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[Server].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[Server].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[Server].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[Server].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[Server].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[Server].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[Server].cannon_cost*GWARZ[LocId].cannon_count)+(GWCOMM[Server].vault_cost*GWARZ[LocId].vault_count)+(GWCOMM[Server].mailbox_cost*GWARZ[LocId].mailbox_count);
 	local yentry = 0
 	local ypigcnt = 0
 	local yvalue = 0
@@ -529,9 +531,12 @@ local pName = player:GetName();
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                        "..GWCOMM[Guildname].color_3.."no cash back.|r");
 		
 				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].cannon.."|r  "..GWCOMM[Guildname].color_3.."- sell a selected cannon.|r");end
-				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor1.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor1.|r");end
-				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor2.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor2.|r");end
-				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor3.."|r  "..GWCOMM[Guildname].color_3.."- removes a selected vendor3.|r");end
+				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor1.."|r  "..GWCOMM[Guildname].color_3.."- sells a selected vendor1.|r");end
+				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor2.."|r  "..GWCOMM[Guildname].color_3.."- sells a selected vendor2.|r");end
+				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|cff00cc00sell "..GWCOMM[Guildname].vendor3.."|r  "..GWCOMM[Guildname].color_3.."- sells a selected vendor3.|r");end
+
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].vault.."|r  "..GWCOMM[Guildname].color_3.."- sells a guild vault.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."sell "..GWCOMM[Guildname].mailbox.."|r  "..GWCOMM[Guildname].color_3.."- sells a guild mailbox.|r");
 
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
@@ -568,6 +573,9 @@ local pName = player:GetName();
 				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor2 price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor2_cost.."|r");end
 				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor3 price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor3_cost.."|r");end
 
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Vault price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vault_cost.."|r - "..GWCOMM[Guildname].color_14.."|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Mailbox price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].mailbox_cost.."|r - "..GWCOMM[Guildname].color_14.."|r");
+
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
 
@@ -584,6 +592,10 @@ local pName = player:GetName();
 				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Vendor2 limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor2_L.."|r "..GWCOMM[Guildname].color_3.."per location. Require a hall.|r");end
 				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Vendor3 limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor3_L.."|r "..GWCOMM[Guildname].color_3.."per location. Require a hall.|r");end
 				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Cannon limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].cannon_L.."|r "..GWCOMM[Guildname].color_3.."per hall. Require a hall.|r");end
+
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild Vault limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vault_L.."|r "..GWCOMM[Guildname].color_3.."per location. Require a hall.|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild MailBox limit|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].mailbox_L.."|r "..GWCOMM[Guildname].color_3.."per location. Require a hall.|r");
+
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************");
 			end
 			
@@ -2236,3 +2248,4 @@ print ("GUILD WARZ ver: "..GW_version.." Loaded.")
 local duration = (string.format("Load Time: %0.03f seconds.", os.clock() - start));
 print(duration)
 print("-----------------------------------\n") 
+
