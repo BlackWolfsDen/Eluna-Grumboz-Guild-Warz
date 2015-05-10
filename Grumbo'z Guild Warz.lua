@@ -573,8 +573,8 @@ local pName = player:GetName();
 				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor2 price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor2_cost.."|r");end
 				if(GWCOMM[Server].vendor3_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor3 price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor3_cost.."|r");end
 
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Vault price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vault_cost.."|r - "..GWCOMM[Guildname].color_14.."|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Mailbox price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].mailbox_cost.."|r - "..GWCOMM[Guildname].color_14.."|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Vault price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vault_cost.."|r "..GWCOMM[Guildname].color_14.."|r");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Mailbox price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].mailbox_cost.."|r "..GWCOMM[Guildname].color_14.."|r");
 
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."************************************************************")
 			end
