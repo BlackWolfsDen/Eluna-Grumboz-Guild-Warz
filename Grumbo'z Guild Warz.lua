@@ -1638,6 +1638,18 @@ local pName = player:GetName();
 				return false;
 				end
 				
+				if(ChatCache[2] == GWCOMM[Server].vault)then
+					PreparedStatements(1, "vault_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." vault count reset.|r");
+				return false;
+				end
+				
+				if(ChatCache[2] == GWCOMM[Server].mailbox)then
+					PreparedStatements(1, "mailbox_count", 0, LocId)
+					player:SendBroadcastMessage("|cff00cc00Area: "..GWARZ[LocId].entry.." mailbox count reset.|r");
+				return false;
+				end
+				
 				if(ChatCache[1] == "reset")then
 					player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
 					return false;
