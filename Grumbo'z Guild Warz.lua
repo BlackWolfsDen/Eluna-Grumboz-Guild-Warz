@@ -34,8 +34,8 @@ else
 end
 
 local Guard_Died_Drop = 20558; -- wsg's
-local table_version = 2.60;  
-local core_version = 6.50;  
+local table_version = 2.70;  
+local core_version = 6.60;  
 local pigpayz_version = 2.50;
 local tele_version = 1.50;
 local pvp_version = 4.80;
