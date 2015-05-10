@@ -1698,6 +1698,8 @@ local pName = player:GetName();
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Pig count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].pig_count.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."guard count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].guard_count.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."cannon count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].cannon_count.."|r.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vault count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vault_count.."|r.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."mailbox count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].mailbox_count.."|r.");
 			
 				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor1_count.."|r.");end
 				if(GWCOMM[Server].vendor2_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor2 count|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].vendor2_count.."|r.");end
