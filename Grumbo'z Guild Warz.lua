@@ -1150,6 +1150,7 @@ local pName = player:GetName();
 									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count+1, LocId)
 									player:RemoveItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."cannon added by Commander "..pName..".|r");
+									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!! Its a cannon !!|r");
 									return false;
 								end
 							end
