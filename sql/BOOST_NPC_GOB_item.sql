@@ -1,21 +1,19 @@
 -- // these are created from an Ace based Core. so you may need to change some of the column names.
 -- // i slimmed them down to just the required data but you still may need to change column names.
 
-REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconName`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `family`, `type`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RegenHealth`, `flags_extra`) VALUES 
-(49000, 193, 'Guild War\'z Pig', 'Alliance', NULL, 80, 80, 84, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49001, 744, 'Guild War\'z Pig', 'Horde', NULL, 80, 80, 83, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49002, 26725, 'Guild War\'z Guard', 'Alliance', 'Attack', 80, 80, 84, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
-(49003, 26725, 'Guild War\'z Guard', 'Horde', 'Attack', 80, 80, 83, 0, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
-(49004, 18239, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49005, 1322, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49006, 10722, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49007, 3608, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49008, 3527, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49009, 1321, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0);
-
-REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`) VALUES 
-(49010,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,84,83,16777216,1,1,1,1,25200,35700,0,304,7.5,2000,0,1,32772,2048,8,0,215,320,44,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,0,1,344276858, 2),
-(49011,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,83,84,16777216,1,1,1,1,25200,35700,0,304,7.5,2000,0,1,32772,2048,8,0,215,320,44,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,0,1,344276858, 2);
+REPLACE INTO `creature_template` (`entry`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `RacialLeader`, `mechanic_immune_mask`, `flags_extra`) VALUES 
+(49000, 193, 0, 0, 0, 'Guild War\'z Pig', 'Alliance', NULL, 0, 80, 80, 84, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49001, 744, 0, 0, 0, 'Guild War\'z Pig', 'Horde', NULL, 0, 80, 80, 83, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49002, 26725, 0, 0, 0, 'Guild War\'z Guard', 'Alliance', 'Attack', 0, 80, 80, 84, 0, 1.5, 2.5, 1, 4, 1, 520, 0, 0, 17, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'AggressorAI', 1, 7, 1, 0, 0, 33024),
+(49003, 26725, 0, 0, 0, 'Guild War\'z Guard', 'Horde', 'Attack', 0, 80, 80, 83, 0, 1.5, 2.5, 1, 4, 1, 520, 0, 0, 17, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'AggressorAI', 1, 7, 1, 0, 0, 33024),
+(49004, 18239, 0, 0, 0, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49005, 1322, 0, 0, 0, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49006, 10722, 0, 0, 0, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49007, 3608, 0, 0, 0, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49008, 3527, 0, 0, 0, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49009, 1321, 0, 0, 0, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 0, 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 0, 0, 0),
+(49010, 27101, 0, 0, 0, 'Anti-personnel Cannon', '', 'vehichleCursor', 0, 80, 80, 84, 16777216, 1, 1, 1, 1, 1, 32772, 2048, 8, 0, 0, 0, 0, 0, 9, 262176, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49872, 160, 0, 0, 'NullAI', 0, 3, 1, 0, 344276858, 2),
+(49011, 27101, 0, 0, 0, 'Anti-personnel Cannon', '', 'vehichleCursor', 0, 80, 80, 83, 16777216, 1, 1, 1, 1, 1, 32772, 2048, 8, 0, 0, 0, 0, 0, 9, 262176, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49872, 160, 0, 0, 'NullAI', 0, 3, 1, 0, 344276858, 2);
 
 REPLACE INTO `npc_spellclick_spells` (`npc_entry`, `spell_id`, `cast_flags`, `user_type`) VALUES 
 (49010, 60682, 1, 0),
