@@ -2090,10 +2090,18 @@ local LocId = GetLocationId(player);
 
 		local guildname = player:GetGuildName();
 
-			if(guildname == GWARZ[LocId].guild_name)then
+			if(guildname ~= GWARZ[LocId].guild_name)then
+
+				if(Pteam == GWARZ[LocId].team)then
+				
+					creature:SetFaction(84-Pteam); -- 84 A
+				else
+					creature:SetFaction(83+Pteam); -- 83 H
+				end
+			else
 				creature:SetFaction(84+Pteam);
 			end
-			
+
 			if((Pteam~=GWARZ[LocId].team)and(guildname~=GWARZ[LocId].guild_name))or((GWCOMM[Server].anarchy==1)and(Pteam==GWARZ[LocId].team)and(guildname~=GWARZ[LocId].guild_name))then
 
 				player:SetFFA(1)
