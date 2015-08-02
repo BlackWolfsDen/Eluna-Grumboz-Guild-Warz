@@ -1947,7 +1947,7 @@ function TransferFlag(player, locid, go)
 local locid = GetLocationId(player);
 
 	if(go:GetGUIDLow() ~= GWARZ[locid].flag_id)then
-		go:Despawn()
+		go:Despawn();
 		player:SendBroadcastMessage("|cffcc0000error.... Phantom flag removed.|r");
 		PreparedStatements(2, "gameobject", go:GetGUIDLow())
 		return false;
@@ -1990,19 +1990,22 @@ local locid = GetLocationId(player);
 				if(	player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)))then
 
 					if(((GWARZ[locid].guard_count==0)and(GWCOMM[Server].flag_require==1))or(GWCOMM[Server].flag_require==0))then
-						player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)):Despawn()
-						Nflag = (PerformIngameSpawn(2, (GWCOMM[Server].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow())
-						PreparedStatements(2, "gameobject", go:GetGUIDLow())
+
+						player:GetNearestGameObject(2, (GWCOMM[Server].flag_id+GWARZ[locid].team)):Despawn();
+						Nflag = (PerformIngameSpawn(2, (GWCOMM[Server].flag_id)+(player:GetTeam()), player:GetMapId(), 0, player:GetX(), player:GetY(), player:GetZ(), player:GetO(), 1, 0, 1):GetGUIDLow());
+						
+						PreparedStatements(2, "gameobject", go:GetGUIDLow());
+						PreparedStatements(1, "guild_name", player:GetGuildName(), locid);
+						PreparedStatements(1, "team", player:GetTeam(), locid);
+						PreparedStatements(1, "x", player:GetX(), locid);
+						PreparedStatements(1, "y", player:GetY(), locid);
+						PreparedStatements(1, "z", player:GetZ(), locid);
+						PreparedStatements(1, "flag_id", Nflag, locid);
+						PreparedStatements(1, "flag_id", Nflag, locid);
+						PreparedStatements(1, "fs_time", GetGameTime(), locid);
+						PreparedStatements(1, "guild_id", player:GetGuildId(), locid);
+
 						SendWorldMessage("|cffff0000!! "..player:GetGuildName().." takes location:"..GWARZ[locid].entry.." from "..GWARZ[locid].guild_name.." !!|r", 1);
-						PreparedStatements(1, "guild_name", player:GetGuildName(), locid)
-						PreparedStatements(1, "team", player:GetTeam(), locid)
-						PreparedStatements(1, "x", player:GetX(), locid)
-						PreparedStatements(1, "y", player:GetY(), locid)
-						PreparedStatements(1, "z", player:GetZ(), locid)
-						PreparedStatements(1, "flag_id", Nflag, locid)
-						PreparedStatements(1, "flag_id", Nflag, locid)
-						PreparedStatements(1, "fs_time", GetGameTime(), locid)
-						PreparedStatements(1, "guild_id", player:GetGuildId(), locid)
 					end
 				end
 			end
@@ -2072,12 +2075,12 @@ end
 
 local function Watcher(eventid, creature, player)
 
-local LocId = GetLocationId(player)
+local LocId = GetLocationId(player);
 
 	if(player:GetObjectType()=="Player")then
 	
-	local Pteam = GGW[player:GetAccountId()].team
-	local LocId = GetLocationId(player)
+	local Pteam = GGW[player:GetAccountId()].team;
+	local LocId = GetLocationId(player);
 	
 		if(LocId == nil)then
 			LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
@@ -2085,7 +2088,21 @@ local LocId = GetLocationId(player)
 	
 		if(player:IsInGuild()==true)then
 
-			if((Pteam~=GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))or((GWCOMM[Server].anarchy==1)and(Pteam==GWARZ[LocId].team)and(player:GetGuildName()~=GWARZ[LocId].guild_name))then
+		local guildname = player:GetGuildName();
+
+			if(guildname ~= GWARZ[LocId].guild_name)then
+
+				if(Pteam == GWARZ[LocId].team)then
+				
+					creature:SetFaction(84-Pteam); -- 84 A
+				else
+					creature:SetFaction(83+Pteam); -- 83 H
+				end
+			else
+				creature:SetFaction(84+Pteam);
+			end
+
+			if((Pteam~=GWARZ[LocId].team)and(guildname~=GWARZ[LocId].guild_name))or((GWCOMM[Server].anarchy==1)and(Pteam==GWARZ[LocId].team)and(guildname~=GWARZ[LocId].guild_name))then
 
 				player:SetFFA(1)
 				player:SetPvP(1)
@@ -2106,7 +2123,6 @@ local LocId = GetLocationId(player)
 					end
 				else
 				end
-			else
 			end
 		else
 		end
