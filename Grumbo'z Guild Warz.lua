@@ -34,7 +34,7 @@ else
 end
 
 local Guard_Died_Drop = 20558; -- wsg's
-local table_version = 2.70;  
+local table_version = 2.72;  
 local core_version = 6.60;  
 local pigpayz_version = 2.50;
 local tele_version = 1.50;
@@ -93,71 +93,71 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				list_loc = Gcsql:GetString(3),
 				tele = Gcsql:GetString(4),
 				version = Gcsql:GetString(5),
-				GLD_lvlb = Gcsql:GetUInt32(6),
-				GLD_lvls = Gcsql:GetUInt32(7),
+				GLD_lvlb = Gcsql:GetUInt8(6),
+				GLD_lvls = Gcsql:GetUInt8(7),
 				respawn_flag = Gcsql:GetString(8),
 				details_loc = Gcsql:GetString(9),
 				table = Gcsql:GetString(10),
-				GM_admin = Gcsql:GetUInt32(11),
-				GM_minimum = Gcsql:GetUInt32(12),
+				GM_admin = Gcsql:GetUInt8(11),
+				GM_minimum = Gcsql:GetUInt8(12),
 				currency = Gcsql:GetUInt32(13),
 				pig_payz = Gcsql:GetUInt32(14),
 				pig_payz_timer = Gcsql:GetUInt32(15),
-				gift_count = Gcsql:GetUInt32(16),
-				flag_require = Gcsql:GetUInt32(17),
+				gift_count = Gcsql:GetUInt16(16),
+				flag_require = Gcsql:GetUInt8(17),
 				Server = Gcsql:GetString(18),
 				command_set = Gcsql:GetString(19),
-				anarchy = Gcsql:GetUInt32(20),			
-				flag_timer = Gcsql:GetUInt32(21),
+				anarchy = Gcsql:GetUInt8(20),			
+				flag_timer = Gcsql:GetUInt8(21),
 				spawn_timer = Gcsql:GetUInt32(22),
 				guild_id = Gcsql:GetUInt32(23),
-				guild_invite = Gcsql:GetUInt32(24),
+				guild_invite = Gcsql:GetUInt8(24),
 				loc = Gcsql:GetString(25),
-				loc_cost = Gcsql:GetUInt32(26),
+				loc_cost = Gcsql:GetUInt8(26),
 				flag_id = Gcsql:GetUInt32(27),
 				farm = Gcsql:GetString(28),
-				farm_cost = Gcsql:GetUInt32(29),
-				farm_L = Gcsql:GetUInt32(30),
+				farm_cost = Gcsql:GetUInt8(29),
+				farm_L = Gcsql:GetUInt8(30),
 				farm_id = Gcsql:GetUInt32(31),
 				barrack = Gcsql:GetString(32),
-				barrack_cost = Gcsql:GetUInt32(22),
-				barrack_L = Gcsql:GetUInt32(34),
+				barrack_cost = Gcsql:GetUInt8(33),
+				barrack_L = Gcsql:GetUInt8(34),
 				barrack_id = Gcsql:GetUInt32(35),
 				hall = Gcsql:GetString(36),
-				hall_cost = Gcsql:GetUInt32(37),
-				hall_L = Gcsql:GetUInt32(38),
+				hall_cost = Gcsql:GetUInt8(37),
+				hall_L = Gcsql:GetUInt8(38),
 				hall_id = Gcsql:GetUInt32(39),
 				pig = Gcsql:GetString(40),
-				pig_cost = Gcsql:GetUInt32(41),
-				pig_L = Gcsql:GetUInt32(42),
+				pig_cost = Gcsql:GetUInt8(41),
+				pig_L = Gcsql:GetUInt8(42),
 				pig_id = Gcsql:GetUInt32(43),
 				guard = Gcsql:GetString(44),
-				guard_cost = Gcsql:GetUInt32(45),
-				guard_L = Gcsql:GetUInt32(46),
+				guard_cost = Gcsql:GetUInt8(45),
+				guard_L = Gcsql:GetUInt8(46),
 				guard_id = Gcsql:GetUInt32(47),
 				vendor1 = Gcsql:GetString(48),
-				vendor1_cost = Gcsql:GetUInt32(49),
-				vendor1_L = Gcsql:GetUInt32(50),
+				vendor1_cost = Gcsql:GetUInt8(49),
+				vendor1_L = Gcsql:GetUInt8(50),
 				vendor1_id = Gcsql:GetUInt32(51),
 				vendor2 = Gcsql:GetString(52),
-				vendor2_cost = Gcsql:GetUInt32(53),
-				vendor2_L = Gcsql:GetUInt32(54),
+				vendor2_cost = Gcsql:GetUInt8(53),
+				vendor2_L = Gcsql:GetUInt8(54),
 				vendor2_id = Gcsql:GetUInt32(55),
 				vendor3 = Gcsql:GetString(56),
-				vendor3_cost = Gcsql:GetUInt32(57),
-				vendor3_L = Gcsql:GetUInt32(58),
+				vendor3_cost = Gcsql:GetUInt8(57),
+				vendor3_L = Gcsql:GetUInt8(58),
 				vendor3_id = Gcsql:GetUInt32(59),
 				cannon = Gcsql:GetString(60),
-				cannon_cost = Gcsql:GetUInt32(61),
-				cannon_L = Gcsql:GetUInt32(62),
+				cannon_cost = Gcsql:GetUInt8(61),
+				cannon_L = Gcsql:GetUInt8(62),
 				cannon_id = Gcsql:GetUInt32(63),
 				vault = Gcsql:GetString(64),
-				vault_cost = Gcsql:GetUInt32(65),
-				vault_L = Gcsql:GetUInt32(66),
+				vault_cost = Gcsql:GetUInt8(65),
+				vault_L = Gcsql:GetUInt8(66),
 				vault_id = Gcsql:GetUInt32(67),
 				mailbox = Gcsql:GetString(68),
-				mailbox_cost = Gcsql:GetUInt32(69),
-				mailbox_L = Gcsql:GetUInt32(70),
+				mailbox_cost = Gcsql:GetUInt8(69),
+				mailbox_L = Gcsql:GetUInt8(70),
 				mailbox_id = Gcsql:GetUInt32(71),
 				color_1 = Gcsql:GetString(72),
 				color_2 = Gcsql:GetString(73),
@@ -188,7 +188,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				area_id = Gwsql:GetUInt32(2),
 				zone_id = Gwsql:GetUInt32(3),
 				guild_name = Gwsql:GetString(4),
-				team = Gwsql:GetUInt32(5),
+				team = Gwsql:GetUInt8(5),
 				x = Gwsql:GetFloat(6),
 				y = Gwsql:GetFloat(7),
 				z = Gwsql:GetFloat(8),
@@ -566,7 +566,7 @@ local pName = player:GetName();
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Barracks price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].barrack_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Hall price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].hall_cost.."|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Pig price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].pig_cost.."|r");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r - "..GWCOMM[Guildname].color_14.."Dont increase location price.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guard price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].guard_cost.."|r - "..GWCOMM[Guildname].color_14.."These Dont increase location price.");
 				
 				if(GWCOMM[Server].cannon_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."cannon price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].cannon_cost.."|r");end
 				if(GWCOMM[Server].vendor1_id > 0)then player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."vendor1 price|r: "..GWCOMM[Guildname].color_2..""..GWCOMM[Server].vendor1_cost.."|r");end
@@ -617,7 +617,7 @@ local pName = player:GetName();
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].cannon.."|r          "..GWCOMM[Guildname].color_3.."- Resets location cannon count to 0.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].vault.."|r          "..GWCOMM[Guildname].color_3.."- Resets location vault count to 0.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."reset "..GWCOMM[Server].mailbox.."|r          "..GWCOMM[Guildname].color_3.."- Resets location mailbox count to 0.|r");
-							
+	
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."spawn "..GWCOMM[Server].respawn_flag.."|r         "..GWCOMM[Guildname].color_3.."- Spawns new flag if current|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."|r                         "..GWCOMM[Guildname].color_3.."flag is missing.|r");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."lock "..GWCOMM[Server].loc.."|r         "..GWCOMM[Guildname].color_3.."- locks a location from purchase.|r");
@@ -829,7 +829,7 @@ local pName = player:GetName();
 							PreparedStatements(1, "y", player:GetY(), LocId)
 							PreparedStatements(1, "z", player:GetZ(), LocId)
 							PreparedStatements(1, "flag_id", Gflag, LocId)
-							PreparedStatements(1, "fs_time", GetGameTime(), LocId)							
+							PreparedStatements(1, "fs_time", GetCurrTime(), LocId)							
 							PreparedStatements(1, "guild_id", guild_id, LocId)
 							player:RemoveItem(GWCOMM[Server].currency, Zoneprice)
 						
@@ -1683,7 +1683,7 @@ local pName = player:GetName();
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_15.."CMD ERROR:|r "..ChatCache[1].." "..ChatCache[2]);
 			return false;
 		end
-
+		
 -- ****************************************************
 -- **************** Game Master Commands **************
 -- ****************************************************
@@ -1846,7 +1846,7 @@ local pName = player:GetName();
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."flag spawn id|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].flag_id.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."flag spawn time|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].spawn_time.."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Guild ID|r:  "..GWCOMM[Guildname].color_2..""..GWARZ[LocId].guild_id.."|r.");
-				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Game Time|r:  "..GWCOMM[Guildname].color_2..""..GetGameTime().."|r.");
+				player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Game Time|r:  "..GWCOMM[Guildname].color_2..""..GetCurrTime().."|r.");
 				player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*************************************");
 			return false;
 			end
