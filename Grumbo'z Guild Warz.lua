@@ -2045,13 +2045,7 @@ local locid = GetLocationId(player)
 
 	if (intid == 11) then
 	end
-
-	if(intid==12)then
-
-		player:SendTabardVendorActivate(object);
-	end
-
-player:GossipComplete()
+player:GossipComplete();
 end
 
 RegisterGameObjectGossipEvent(GWCOMM[Server].flag_id, 2, Gwarz_Guild_Flag_Select)
