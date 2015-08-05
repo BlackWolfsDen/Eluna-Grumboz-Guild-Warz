@@ -2041,9 +2041,6 @@ local locid = GetLocationId(player)
 	end
 	if (intid == 11) then
 	end
-	if(intid==12)then
-		player:SendTabardVendorActivate(object);
-	end
 player:GossipComplete()
 end
 
