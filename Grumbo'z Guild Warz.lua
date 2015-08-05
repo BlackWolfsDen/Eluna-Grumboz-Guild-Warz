@@ -1972,15 +1972,6 @@ local locid = GetLocationId(player);
 		end
 	end
 
-	if((player:GetGuildName()==GWARZ[locid].guild_name)and(player:GetGuildRank()==0))then
-	
-		player:GossipClearMenu();
-		player:GossipMenuAddItem(1,"Modify Guild Crest.",0,12)
-		player:GossipMenuAddItem(1,"Nevermind.",0,11)
-		player:GossipSendMenu(1, go)
-	end
-
-	
 	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM[Server].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r");
 		player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r");
