@@ -4,8 +4,8 @@
 REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconName`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `family`, `type`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RegenHealth`, `flags_extra`) VALUES 
 (49000, 193, 'Guild War\'z Pig', 'Alliance', NULL, 80, 80, 84, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49001, 744, 'Guild War\'z Pig', 'Horde', NULL, 80, 80, 83, 0, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
-(49002, 26725, 'Guild War\'z Guard', 'Alliance', 'Attack', 80, 80, 84, 524288, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
-(49003, 26725, 'Guild War\'z Guard', 'Horde', 'Attack', 80, 80, 83, 524288, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
+(49002, 26725, 'Guild War\'z Guard', 'Alliance', 'NULL', 80, 80, 84, 524288, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
+(49003, 26725, 'Guild War\'z Guard', 'Horde', 'NULL', 80, 80, 83, 524288, 1.5, 2.5, 1, 4, 5000, 50000, 0, 0, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 1, 33024),
 (49004, 18239, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49005, 1322, 'Buff Vendor 1', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
 (49006, 10722, 'Fun Vendor 2', 'Guild War\'z', 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 1, 0),
