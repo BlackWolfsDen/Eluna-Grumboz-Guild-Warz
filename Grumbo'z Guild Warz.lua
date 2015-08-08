@@ -1424,10 +1424,11 @@ local pName = player:GetName();
 								return false;
 							else
 
-								local guardspawnid = player:GetSelection():GetGUIDLow()
-								player:GetSelection():DespawnOrUnsummon()
-								PreparedStatements(2, "creature", guardspawnid)
-								PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)
+								local guardspawnid = player:GetSelection():GetGUIDLow();
+								player:GetSelection():SetPhaseMask(0); 
+								player:GetSelection():DespawnOrUnsummon();
+								PreparedStatements(2, "creature", guardspawnid);
+								PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId);
 								player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Guard removed.|r");
 								return false;
 							end
@@ -1467,9 +1468,9 @@ local pName = player:GetName();
 									local vendorspawnid1 = player:GetSelection():GetGUIDLow();
 									player:GetSelection():SetPhaseMask(0); 
 									player:GetSelection():DespawnOrUnsummon();
-									PreparedStatements(2, "creature", vendorspawnid1)
-									PreparedStatements(1, "vendor1_count", GWARZ[LocId].vendor1_count-1, LocId)
-									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor1_cost)
+									PreparedStatements(2, "creature", vendorspawnid1);
+									PreparedStatements(1, "vendor1_count", GWARZ[LocId].vendor1_count-1, LocId);
+									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor1_cost);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor1 sold.|r");
 									return false;
 								end
@@ -1512,9 +1513,9 @@ local pName = player:GetName();
 									local vendorspawnid2 = player:GetSelection():GetGUIDLow();
 									player:GetSelection():SetPhaseMask(0); 
 									player:GetSelection():DespawnOrUnsummon();
-									PreparedStatements(2, "creature", vendorspawnid2)
-									PreparedStatements(1, "vendor2_count", GWARZ[LocId].vendor2_count-1, LocId)
-									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor2_cost)
+									PreparedStatements(2, "creature", vendorspawnid2);
+									PreparedStatements(1, "vendor2_count", GWARZ[LocId].vendor2_count-1, LocId);
+									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor2_cost);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor2 sold.|r");
 									return false;
 								end
@@ -1557,9 +1558,9 @@ local pName = player:GetName();
 									local vendorspawnid3 = player:GetSelection():GetGUIDLow();
 									player:GetSelection():SetPhaseMask(0); 
 									player:GetSelection():DespawnOrUnsummon();
-									PreparedStatements(2, "creature", vendorspawnid3)
-									PreparedStatements(1, "vendor3_count", GWARZ[LocId].vendor3_count-1, LocId)
-									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor3_cost)
+									PreparedStatements(2, "creature", vendorspawnid3);
+									PreparedStatements(1, "vendor3_count", GWARZ[LocId].vendor3_count-1, LocId);
+									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vendor3_cost);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Vendor3 sold.|r");
 									return false;
 								end
@@ -1603,9 +1604,9 @@ local pName = player:GetName();
 									local cannonspawnid = cCannon:GetGUIDLow();
 									GGWC[cannonspawnid] = 1;
 									cCannon:DespawnOrUnsummon();
-									PreparedStatements(2, "creature", cannonspawnid)
-									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId)
-									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost)
+									PreparedStatements(2, "creature", cannonspawnid);
+									PreparedStatements(1, "cannon_count", GWARZ[LocId].cannon_count-1, LocId);
+									player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].cannon_cost);
 									player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."Cannon sold.|r");
 									return false;
 								end
@@ -1639,9 +1640,9 @@ local pName = player:GetName();
 							local vaultspawnid = vault:GetGUIDLow(); -- use this to avoid ghost respawns
 							vault:Despawn();
 							vault:RemoveFromWorld();
-							PreparedStatements(2, "gameobject", vaultspawnid)
-							PreparedStatements(1, "vault_count", GWARZ[LocId].vault_count-1, LocId)
-							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vault_cost)
+							PreparedStatements(2, "gameobject", vaultspawnid);
+							PreparedStatements(1, "vault_count", GWARZ[LocId].vault_count-1, LocId);
+							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].vault_cost);
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..pName.." has sold a vault. For "..GWCOMM[Server].vault_cost.." "..Currencyname.."'s.|r");
 							return false;
 						end
@@ -1670,9 +1671,9 @@ local pName = player:GetName();
 							local mailboxspawnid = mailbox:GetGUIDLow(); -- use this to avoid ghost respawns
 							mailbox:Despawn();
 							mailbox:RemoveFromWorld();
-							PreparedStatements(2, "gameobject", mailboxspawnid)
-							PreparedStatements(1, "mailbox_count", GWARZ[LocId].mailbox_count-1, LocId)
-							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].mailbox_cost)
+							PreparedStatements(2, "gameobject", mailboxspawnid);
+							PreparedStatements(1, "mailbox_count", GWARZ[LocId].mailbox_count-1, LocId);
+							player:AddItem(GWCOMM[Server].currency, GWCOMM[Server].mailbox_cost);
 							player:SendBroadcastMessage(GWCOMM[Guildname].color_14.."!Congratulations!"..pName.." has sold a mailbox. For "..GWCOMM[Server].vault_cost.." "..Currencyname.."'s.|r");
 							return false;
 						end
