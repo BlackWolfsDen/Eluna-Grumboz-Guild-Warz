@@ -1425,6 +1425,7 @@ local pName = player:GetName();
 							else
 
 								local guardspawnid = player:GetSelection():GetGUIDLow()
+								player:GetSelection():SetPhaseMask(0); 
 								player:GetSelection():DespawnOrUnsummon()
 								PreparedStatements(2, "creature", guardspawnid)
 								PreparedStatements(1, "guard_count", GWARZ[LocId].guard_count-1, LocId)
