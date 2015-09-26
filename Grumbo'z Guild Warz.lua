@@ -1860,7 +1860,7 @@ RegisterPlayerEvent(21, GWcommands)
 print ("Guild Warz core version: "..core_version)
 
 -- ****************************************************
--- Pig Payz System -- Ty rochet2 of EmuDevs.com
+-- Pig Payz System -- Ty rochet2 of EmuDevs.com  Vork'z gonna luv this .
 -- ****************************************************
 
 local function pig_payz(eventid, timer, cycles, player)
