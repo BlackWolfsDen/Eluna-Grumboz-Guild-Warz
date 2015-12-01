@@ -6,7 +6,7 @@ Grumboz-Guild-Warz
 now that we are done with the fun stuff :
 
 what is this ... well this is an alternate perspective for PvP. you can PvP bg'z, you can PvP by raiding towns and malls, you can even PvP by teams, but now you have a fun way to PvP by GvG !! yes !! GvG "Guild Versus Guild". ..
-.. Anarchy you say.. well !! YES IT IS !! so grab you guild members and run around searching out the apposing teams guild locations. kill and destroy there defenses take there flag ... strip it down and sell it all off for profit ... or claim it as your own and expand your power and wealth deep into the enemies territory. build farms to supply your troops. build barracks to supply guards to help protect your lands . raise a hall for you troops to chill.
+.. Anarchy you say.. well !! YES IT IS !! so grab your guild mates and run around searching out the apposing teams guild locations. kill and destroy there defenses take there flag ... strip it down and sell it all off for profit ... or claim it as your own and expand your power and wealth deep into the enemies territory. build farms to supply your troops. build barracks to supply guards to help protect your lands . raise a hall for you troops to chill.
 
 ok now how to basics:
      first of course you must be in a guild.
