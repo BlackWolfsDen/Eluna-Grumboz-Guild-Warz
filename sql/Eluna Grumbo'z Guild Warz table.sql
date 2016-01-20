@@ -96,12 +96,10 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `color_13` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'SET Values color WHITE',
   `color_14` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'Good Announcements color GREEN',
   `color_15` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'Bad Annoucements RED',
-  PRIMARY KEY (`guild`),guild_warz_335
-  UNIQUE KEY `guild` (`guild`)
+  PRIMARY KEY (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
 REPLACE INTO `commands` (`guild`, `commands`, `info_loc`, `list_loc`, `tele`, `version`, `GLD_lvlb`, `GLD_lvls`, `respawn_flag`, `details_loc`, `table`, `GM_admin`, `GM_minimum`, `currency`, `pig_payz`, `pig_payz_timer`, `gift_count`, `flag_require`, `Server`, `command_set`, `anarchy`, `f_timer`, `s_timer`, `guild_id`, `guild_invite`, `loc`, `loc_cost`, `flag_id`, `farm`, `farm_cost`, `farm_L`, `farm_id`, `barrack`, `barrack_cost`, `barrack_L`, `barrack_id`, `hall`, `hall_cost`, `hall_L`, `hall_id`, `pig`, `pig_cost`, `pig_L`, `pig_id`, `guard`, `guard_cost`, `guard_L`, `guard_id`, `vendor1`, `vendor1_cost`, `vendor1_L`, `vendor1_id`, `vendor2`, `vendor2_cost`, `vendor2_L`, `vendor2_id`, `vendor3`, `vendor3_cost`, `vendor3_L`, `vendor3_id`, `cannon`, `cannon_cost`, `cannon_L`, `cannon_id`, `vault`, `vault_cost`, `vault_L`, `vault_id`, `mailbox`, `mailbox_cost`, `mailbox_L`, `mailbox_id`, `color_1`, `color_2`, `color_3`, `color_4`, `color_5`, `color_6`, `color_7`, `color_8`, `color_9`, `color_10`, `color_11`, `color_12`, `color_13`, `color_14`, `color_15`) VALUES
-	('Liya', 'commands', 'info', 'list', 'gtele', 'ver', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 100000, 1800000, 25, 0, 'SERVER', 'set', 0, 0, 300, 4, 0, 'area', 10, 187432, 'farm', 5, 1, 500000, 'barrack', 10, 1, 500002, 'hall', 100, 1, 500004, 'pig', 1, 20, 49000, 'guard', 1, 10, 49002, 'vendor1', 25, 1, 49004, 'vendor2', 25, 1, 49006, 'vendor3', 25, 1, 49008, 'cannon', 100, 3, 49010, 'vault', 100, 3, 500006, 'mailbox', 10, 3, 500008, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000'),
 	('SERVER', 'commands', 'info', 'list', 'gtele', 'ver', 0, 0, 'flag', 'loc', 'table', 5, 4, 62006, 100000, 1800000, 25, 0, 'SERVER', 'set', 1, 1, 300, 0, 0, 'area', 10, 187432, 'farm', 5, 3, 500000, 'barrack', 10, 1, 500002, 'hall', 100, 1, 500004, 'pig', 1, 5, 49000, 'guard', 1, 10, 49002, 'vendor1', 25, 1, 49004, 'vendor2', 25, 1, 49006, 'vendor3', 25, 1, 49008, 'cannon', 100, 3, 49010, 'vault', 100, 3, 500006, 'mailbox', 10, 3, 500008, '|cff00cc00', '|cffFFFF00', '|cffFFFFFF', '|cff3399FF', '|cffFF0000', '|cffFFFF00', '|cffFF0000', '|cffC0C0C0', '|cff000000', '|cff00cc00', '|cffFFFF00', '|cffFF0000', '|cffFFFFFF', '|cff00cc00', '|cffFF0000');
 
 CREATE TABLE IF NOT EXISTS `help` (
@@ -110,8 +108,7 @@ CREATE TABLE IF NOT EXISTS `help` (
   `description` varchar(1028) NOT NULL,
   `example` varchar(1028) NOT NULL,
   `command_level` varchar(1028) NOT NULL,
-  PRIMARY KEY (`entry`),
-  UNIQUE KEY `entry` (`entry`)
+  PRIMARY KEY (`entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
 REPLACE INTO `help` (`entry`, `name`, `description`, `example`, `command_level`) VALUES
