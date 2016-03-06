@@ -693,6 +693,7 @@ local pName = player:GetName();
 		
 		if(ChatCache[1]==GWCOMM[Guildname].version)then
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."****************************************");
+			player:SendBroadcastMessage(GWCOMM[Guildname].color_9.."*                 "..GWCOMM[guild_id].color_1.."Eluna                "..GWCOMM[guild_id].color_9.."*");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Grumbo'z Guild Warz. VER : "..GW_version.."|r");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."Core :: "..core_version..".|r");
 			player:SendBroadcastMessage(GWCOMM[Guildname].color_1.."PigPayz :: "..pigpayz_version..".|r");
