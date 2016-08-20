@@ -401,7 +401,6 @@ local gid = guild:GetId();
 	
 		WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands (`guild`, `guild_id`) VALUES ('"..name.."', '"..gid.."');")
 		LoadGWCOMMTable(gid)	
---		PreparedStatements(3, "guild", name, gid)
 		print("commands for: "..name.." : created.")
 		return guild;
 	end
