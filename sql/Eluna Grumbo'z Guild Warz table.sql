@@ -11,7 +11,7 @@ USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
-  `guild_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
+  `guild_id` mediumint(8) unsigned NULL DEFAULT NULL COMMENT 'guild id',
   `team` tinyint(1) unsigned NOT NULL COMMENT 'guild team id',
   `commands` varchar(10) NOT NULL DEFAULT 'commands',
   `info_loc` varchar(10) NOT NULL DEFAULT 'info',

@@ -392,21 +392,25 @@ function CreateLocation(map, area, zone)
 	return CLentry;
 end
 
-function CreateGcommands(guild, name)
-	local gid = guild:GetId();
-	local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
+function CreateGcommands(guild)
+local name = guild:GetName();
+local gid = guild:GetId();
 
-	WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands SET `guild_id` = '"..gid.."';")
-	LoadGWCOMMTable(gid)	
-	PreparedStatements(3, "guild", name, gid)
-	print("commands for: "..name.." : created.")
-	return guild;
+	if(gid ~= 0)then
+		local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
+	
+		WorldDBQuery("INSERT INTO "..guild_warz_DB..".commands (`guild`, `guild_id`) VALUES ('"..name.."', '"..gid.."');")
+		LoadGWCOMMTable(gid)	
+--		PreparedStatements(3, "guild", name, gid)
+		print("commands for: "..name.." : created.")
+		return guild;
+	end
 end
 
 local GW_version = ((table_version+core_version+pigpayz_version+tele_version+pvp_version+vendor_version)/4);
 
 function Newguildgift(eventId, guild, leader, name) -- idea provided by creativextent . wrote by BlackWolf
-	CreateGcommands(guild, name)
+	CreateGcommands(guild)
 	leader:AddItem(GWCOMM[SERVER_GUILD_ID].currency, GWCOMM[SERVER_GUILD_ID].gift_count)
 	SendWorldMessage(GWCOMM[SERVER_GUILD_ID].color_13.."The Guild "..name.." lead by "..leader:GetName().." has entered exsistance..!! NOW Prepair to hold your lands!!|r")
 end
@@ -435,7 +439,7 @@ GGW[player:GetAccountId()] = {
 		local Guild = player:GetGuild();
 		
 			if(GWCOMM[PLAYER_GUILD_ID] == nil)then
-				Gcommands = CreateGcommands(Guild, PLAYER_GUILD_ID)
+				Gcommands = CreateGcommands(Guild)
 			end
 	
 		player:SendBroadcastMessage(GWCOMM[SERVER_GUILD_ID].color_14.."Use '/guild "..GWCOMM[SERVER_GUILD_ID].commands.."' for a list of GGW commands.")	
@@ -483,7 +487,7 @@ local pName = player:GetName();
 	end
 	
 	if(GWCOMM[PLAYER_GUILD_ID] == nil)then
-		Gcommands = CreateGcommands(guild, PLAYER_GUILD_ID)
+		Gcommands = CreateGcommands(guild)
 	end
 	
 	local Zoneprice = (GWCOMM[SERVER_GUILD_ID].loc_cost)+(GWCOMM[SERVER_GUILD_ID].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[SERVER_GUILD_ID].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[SERVER_GUILD_ID].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[SERVER_GUILD_ID].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[SERVER_GUILD_ID].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[SERVER_GUILD_ID].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[SERVER_GUILD_ID].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[SERVER_GUILD_ID].cannon_cost*GWARZ[LocId].cannon_count)+(GWCOMM[SERVER_GUILD_ID].vault_cost*GWARZ[LocId].vault_count)+(GWCOMM[SERVER_GUILD_ID].mailbox_cost*GWARZ[LocId].mailbox_count);
