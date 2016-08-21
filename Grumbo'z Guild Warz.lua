@@ -379,7 +379,7 @@ function CreateLocation(map, area, zone)
 	PreparedStatements(1, "map_id", map, CLentry)
 	PreparedStatements(1, "area_id", area, CLentry)
 	PreparedStatements(1, "zone_id", zone, CLentry)
-	PreparedStatements(1, "guild_name", SERVER_GUILD_ID, CLentry)
+	PreparedStatements(1, "guild_name", SERVER_GUILD_NAME, CLentry)
 	PreparedStatements(1, "team", 2, CLentry)
 	PreparedStatements(1, "x", 0, CLentry)
 	PreparedStatements(1, "y", 0, CLentry)
@@ -395,6 +395,7 @@ end
 function CreateGcommands(guild)
 local name = guild:GetName();
 local gid = guild:GetId();
+local guild_team = guild:GetLeader():GetTeam();
 
 	if(gid ~= 0)then
 		local CLentry = (#GWCOMM+1) -- should create varchar entry of guild name
@@ -482,11 +483,11 @@ local pGMRank = player:GetGMRank();
 local pName = player:GetName();
 
 	if(LocId == nil)then
-		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
+		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId());
 	end
 	
 	if(GWCOMM[PLAYER_GUILD_ID] == nil)then
-		Gcommands = CreateGcommands(guild)
+		Gcommands = CreateGcommands(guild);
 	end
 	
 	local Zoneprice = (GWCOMM[SERVER_GUILD_ID].loc_cost)+(GWCOMM[SERVER_GUILD_ID].farm_cost*GWARZ[LocId].farm_count)+(GWCOMM[SERVER_GUILD_ID].barrack_cost*GWARZ[LocId].barrack_count)+(GWCOMM[SERVER_GUILD_ID].hall_cost*GWARZ[LocId].hall_count)+(GWCOMM[SERVER_GUILD_ID].pig_cost*GWARZ[LocId].pig_count)+(GWCOMM[SERVER_GUILD_ID].vendor1_cost*GWARZ[LocId].vendor1_count)+(GWCOMM[SERVER_GUILD_ID].vendor2_cost*GWARZ[LocId].vendor2_count)+(GWCOMM[SERVER_GUILD_ID].vendor3_cost*GWARZ[LocId].vendor3_count)+(GWCOMM[SERVER_GUILD_ID].cannon_cost*GWARZ[LocId].cannon_count)+(GWCOMM[SERVER_GUILD_ID].vault_cost*GWARZ[LocId].vault_count)+(GWCOMM[SERVER_GUILD_ID].mailbox_cost*GWARZ[LocId].mailbox_count);
