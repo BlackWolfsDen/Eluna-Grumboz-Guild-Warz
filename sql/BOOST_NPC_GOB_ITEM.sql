@@ -8,10 +8,10 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49003, 26725, "Guild War\'z Guard", 'Horde', 'NULL', 85, 85, 83, 524288, 1.5, 2.5, 1, 4, 4, 1200, 0, 1, 520, 17, 7, 'AggressorAI', 1, 7, 1, 1, 1, 1, 154355, 1, 33024),
 (49004, 18239, 'Buff Vendor 1', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
 (49005, 1322, 'Buff Vendor 1', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
-(49006, 10722, 'Fun Vendor 2', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
-(49007, 3608, 'Fun Vendor 2', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
-(49008, 3527, 'Gear Vendor 3', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
-(49009, 1321, 'Gear Vendor 3', "Guild War\'z", 'Buy', 80, 80, 35, 129, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0);
+(49006, 10722, 'Fun Vendor 2', "Guild War\'z", 'Buy', 80, 80, 35, 128, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
+(49007, 3608, 'Fun Vendor 2', "Guild War\'z", 'Buy', 80, 80, 35, 128, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
+(49008, 3527, 'Gear Vendor 3', "Guild War\'z", 'Buy', 80, 80, 35, 128, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0),
+(49009, 1321, 'Gear Vendor 3', "Guild War\'z", 'Buy', 80, 80, 35, 128, 1, 1.14286, 1, 0, 1, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 1, 0);
 
 REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `dmgschool`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `DamageModifier`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`) VALUES 
 (49010,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,84,16777216,1,1,1,1,0,2000,0,1,32772,2048,8,0,9,262176,49872,160,0,0, 'NullAI',0,3,1,8.64198,1,1,134343,0,1,344276858, 2),
@@ -43,3 +43,33 @@ REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconN
 
 REPLACE INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclass`, `name`, `displayid`, `Quality`, `Flags`, `FlagsExtra`, `BuyCount`, `BuyPrice`, `SellPrice`, `InventoryType`, `AllowableClass`, `AllowableRace`, `maxcount`, `stackable`, `bonding`, `description`, `RequiredDisenchantSkill`, `ScriptName`) VALUES 
 (62006, 0, 8, -1, 'Guild Coin', 34104, 4, 0, 0, 1, 500000000, 500000000, 0, -1, -1, 2147483647, 2147483647, 0, 'Grumbo\'z Guild Warz', -1, '');
+
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES 
+-- Vendor2
+(49006, 1, 7734, 0, 0, 0, 0),(49006, 2, 6948, 0, 0, 0, 0),
+(49006, 3, 49912, 0, 0, 0, 0),(49006, 4, 34498, 0, 0, 0, 0),
+(49006, 5, 46693, 0, 0, 0, 0),(49006, 6, 34499, 0, 0, 0, 0),
+(49006, 7, 35557, 0, 0, 0, 0),(49006, 8, 37431, 0, 0, 0, 0),
+(49006, 9, 17202, 0, 0, 0, 0),(49006, 10, 21038, 0, 0, 0, 0),
+(49006, 11, 46783, 0, 0, 0, 0),
+
+(49007, 1, 7734, 0, 0, 0, 0),(49007, 2, 6948, 0, 0, 0, 0),
+(49007, 3, 49912, 0, 0, 0, 0),(49007, 4, 34498, 0, 0, 0, 0),
+(49007, 5, 46693, 0, 0, 0, 0),(49007, 6, 34499, 0, 0, 0, 0),
+(49007, 7, 35557, 0, 0, 0, 0),(49007, 8, 37431, 0, 0, 0, 0),
+(49007, 9, 17202, 0, 0, 0, 0),(49007, 10, 21038, 0, 0, 0, 0),
+(49007, 11, 46783, 0, 0, 0, 0),
+
+-- Vendor3
+(49008, 1, 32837, 0, 0, 0, 0),(49008, 2, 32838, 0, 0, 0, 0),
+(49008, 3, 22736, 0, 0, 0, 0),(49008, 4, 19019, 0, 0, 0, 0),
+(49008, 5, 51858, 0, 0, 0, 0),(49008, 6, 24550, 0, 0, 0, 0),
+(49008, 7, 2000, 0, 0, 0, 0),(49008, 8, 50730, 0, 0, 0, 0),
+(49008, 9, 50070, 0, 0, 0, 0),(49008, 10, 34196, 0, 0, 0, 0),
+(49008, 11, 30906, 0, 0, 0, 0),
+
+(49009, 1, 32837, 0, 0, 0, 0),(49009, 2, 32838, 0, 0, 0, 0),
+(49009, 3, 22736, 0, 0, 0, 0),(49009, 4, 19019, 0, 0, 0, 0),
+(49009, 5, 51858, 0, 0, 0, 0),(49009, 6, 24550, 0, 0, 0, 0),
+(49009, 7, 2000, 0, 0, 0, 0),(49009, 8, 50730, 0, 0, 0, 0),
+(49009, 9, 50070, 0, 0, 0, 0),(49009, 10, 34196, 0, 0, 0, 0);

@@ -117,3 +117,7 @@ All commands and settings happen LIVE in game so becareful of who's location you
 Tutorial Video's: https://www.youtube.com/user/TheBlackwolfsden/videos
 
 So have fun and remember to !! RAPE PLUNDER and PILLAGE !!.
+
+#Grumbo
+#Grumbo'z
+#GrumbozGuildWarz
