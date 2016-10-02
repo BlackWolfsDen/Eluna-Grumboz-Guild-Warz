@@ -743,29 +743,33 @@ local pName = player:GetName();
 		end
 		
 		if(ChatCache[1]==GWCOMM[PLAYER_GUILD_ID].list_loc)then
-			local Glocdb = WorldDBQuery("SELECT `entry` FROM "..guild_warz_DB..".zones WHERE `guild_id` = '"..PLAYER_GUILD_ID.."';");
+
+			local Gloc;
+
+			player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
+			player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_1.."Loc ID:     farm:     barracks:     Hall:     Guards:     Pigs:          Zone value:|r");
 			
-			if(Glocdb==nil)then
-				player:SendBroadcastMessage("Your guild does not own any land");
-			end
+				for k,_ in ipairs(GWARZ) do
+				
+					Gloc = GWARZ[k].entry;
+	
+						if(GWARZ[Gloc].guild_id == PLAYER_GUILD_ID)then
+						
+							local Xzoneprice = (GWCOMM[SERVER_GUILD_ID].loc_cost)+(GWCOMM[SERVER_GUILD_ID].farm_cost*GWARZ[Gloc].farm_count)+(GWCOMM[SERVER_GUILD_ID].barrack_cost*GWARZ[Gloc].barrack_count)+(GWCOMM[SERVER_GUILD_ID].hall_cost*GWARZ[Gloc].hall_count)+(GWCOMM[SERVER_GUILD_ID].pig_cost*GWARZ[Gloc].pig_count)+(GWCOMM[SERVER_GUILD_ID].vendor1_cost*GWARZ[Gloc].vendor1_count)+(GWCOMM[SERVER_GUILD_ID].cannon_cost*GWARZ[Gloc].cannon_count);
+					
+							player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_2..""..Gloc.."             "..GWARZ[Gloc].farm_count.."             "..GWARZ[Gloc].barrack_count.."             "..GWARZ[Gloc].hall_count.."             "..GWARZ[Gloc].guard_count.."             "..GWARZ[Gloc].pig_count.."                  "..Xzoneprice.."|r");
+					
+							yentry = yentry+1;
+							ypigcnt = ypigcnt+GWARZ[Gloc].pig_count;
+							yvalue = yvalue+Xzoneprice;
+						end
+	
+				end
 			
-			if(Glocdb~=nil)then
-				player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
-				player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_1.."Loc ID:     farm:     barracks:     Hall:     Guards:     Pigs:          Zone value:|r");
-				
-				repeat
-					local Gloc = Glocdb:GetUInt32(0)
-					local Xzoneprice=(GWCOMM[SERVER_GUILD_ID].loc_cost)+(GWCOMM[SERVER_GUILD_ID].farm_cost*GWARZ[Gloc].farm_count)+(GWCOMM[SERVER_GUILD_ID].barrack_cost*GWARZ[Gloc].barrack_count)+(GWCOMM[SERVER_GUILD_ID].hall_cost*GWARZ[Gloc].hall_count)+(GWCOMM[SERVER_GUILD_ID].pig_cost*GWARZ[Gloc].pig_count)+(GWCOMM[SERVER_GUILD_ID].vendor1_cost*GWARZ[Gloc].vendor1_count)+(GWCOMM[SERVER_GUILD_ID].cannon_cost*GWARZ[Gloc].cannon_count);
-					player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_2..""..Gloc.."             "..GWARZ[Gloc].farm_count.."             "..GWARZ[Gloc].barrack_count.."             "..GWARZ[Gloc].hall_count.."             "..GWARZ[Gloc].guard_count.."             "..GWARZ[Gloc].pig_count.."                  "..Xzoneprice.."|r");
-					yentry = yentry+1;
-					ypigcnt = ypigcnt+GWARZ[Gloc].pig_count;
-					yvalue = yvalue+Xzoneprice;
-				until Glocdb:NextRow()~=true;
-				
-				player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
-				player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_1.."total locations: "..GWCOMM[PLAYER_GUILD_ID].color_2..""..yentry.."|r      "..GWCOMM[PLAYER_GUILD_ID].color_1.."total pigs:|r "..GWCOMM[PLAYER_GUILD_ID].color_2..""..ypigcnt.."|r      "..GWCOMM[PLAYER_GUILD_ID].color_1.."Total value:|r "..GWCOMM[PLAYER_GUILD_ID].color_2..""..yvalue.."|r "..GWCOMM[PLAYER_GUILD_ID].color_1..""..Currencyname.."'s.|r");
-				player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
-			end
+			player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
+			player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_1.."total locations: "..GWCOMM[PLAYER_GUILD_ID].color_2..""..yentry.."|r      "..GWCOMM[PLAYER_GUILD_ID].color_1.."total pigs:|r "..GWCOMM[PLAYER_GUILD_ID].color_2..""..ypigcnt.."|r      "..GWCOMM[PLAYER_GUILD_ID].color_1.."Total value:|r "..GWCOMM[PLAYER_GUILD_ID].color_2..""..yvalue.."|r "..GWCOMM[PLAYER_GUILD_ID].color_1..""..Currencyname.."'s.|r");
+			player:SendBroadcastMessage(GWCOMM[PLAYER_GUILD_ID].color_9.."**********************************************************************");
+	
 			return false;
 		end
 		
