@@ -35,5 +35,19 @@ REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconN
 (500008, 19, 7605, 'Alliance Guild Mailbox', '', 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (500009, 19, 7605, 'Horde Guild Mailbox', '', 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
+REPLACE INTO `gameobject_template_addon` (`entry`, `faction`, `flags`, `mingold`, `maxgold`) VALUES 
+(187431, 35, 0, 0, 0),
+(187432, 35, 0, 0, 0),
+(500000, 84, 6553632, 0, 0),
+(50001, 83, 6553632, 0, 0),
+(500002, 84, 6553632, 0, 0),
+(500003, 83, 6553632, 0, 0),
+(500004, 84, 6553632, 0, 0),
+(500005, 83, 6553632, 0, 0),
+(500006, 84, 0, 0, 0),
+(500007, 83, 0, 0, 0),
+(500008, 84, 0, 0, 0),
+(500009, 83, 0, 0, 0);
+
 REPLACE INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclass`, `name`, `displayid`, `Quality`, `Flags`, `FlagsExtra`, `BuyCount`, `BuyPrice`, `SellPrice`, `InventoryType`, `AllowableClass`, `AllowableRace`, `maxcount`, `stackable`, `bonding`, `description`, `RequiredDisenchantSkill`, `ScriptName`) VALUES 
 (62006, 0, 8, -1, 'Guild Coin', 34104, 4, 0, 0, 1, 500000000, 500000000, 0, -1, -1, 2147483647, 2147483647, 0, 'Grumbo\'z Guild Warz', -1, '');
