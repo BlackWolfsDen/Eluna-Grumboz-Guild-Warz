@@ -2120,6 +2120,10 @@ function TransferFlag(player, locid, go)
 local locid = GetLocationId(player);
 local gGuid = go:GetDBTableGUIDLow();
 
+	if(locid == nil)then
+		locid = CreateLocation(go:GetMapId(), go:GetAreaId(), go:GetZoneId());
+	end
+
 	if(gGuid ~= GWARZ[locid].flag_id)then
 
 		go:Despawn();
