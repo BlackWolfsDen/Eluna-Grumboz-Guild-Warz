@@ -326,8 +326,12 @@ local Currencyname = GetItemLink(GWCOMM[SERVER_GUILD_ID].currency);
 -- ******************************************************
 
 local function GetLocationId(player)
+local map_id = player:GetMapId();
+local area_id = player:GetAreaId();
+local zone_id = player:GetZoneId();
+
 	for i = 1, #GWARZ do
-		if(GWARZ[i].map_id == player:GetMapId() and GWARZ[i].area_id == player:GetAreaId() and GWARZ[i].zone_id == player:GetZoneId()) then
+		if(GWARZ[i].map_id == map_id and GWARZ[i].area_id == area_id and GWARZ[i].zone_id == zone_id) then
 			return i;
 		end
 	end
