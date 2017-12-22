@@ -10,6 +10,7 @@ USE `guild_warz_335`;
 
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
+  `guild_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
   `commands` varchar(10) NOT NULL DEFAULT 'commands',
   `info_loc` varchar(10) NOT NULL DEFAULT 'info',
   `list_loc` varchar(10) NOT NULL DEFAULT 'list',
@@ -32,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `anarchy` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'pure GvG PvP no faction filter.',
   `f_timer` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'applies a cooldown-timer when a flag spaws. 0=off::1=on',
   `s_timer` bigint(20) unsigned NOT NULL DEFAULT '300' COMMENT 'no-tag-flag timer cooldown time in seconds. i.e. 5 minutes = 300 seconds.',
-  `guild_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'guild id',
   `guild_invite` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'guild invite system. 0 == off :: 1 == on',
   `loc` varchar(15) NOT NULL DEFAULT 'area',
   `loc_cost` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT 'price for basic empty zone.',
@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `mailbox_cost` smallint(5) unsigned NOT NULL DEFAULT '10',
   `mailbox_L` smallint(5) unsigned NOT NULL DEFAULT '1',
   `mailbox_id` bigint(20) unsigned NOT NULL DEFAULT '500010' COMMENT 'Do Not Touch',
+  `setup` VARCHAR(50) NOT NULL DEFAULT '500010' COMMENT 'command used to list commands',
   `color_1` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'Command color GREEN',
   `color_2` varchar(10) NOT NULL DEFAULT '|cffFFFF00' COMMENT 'Value color YELLOW',
   `color_3` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'Info color WHITE',
