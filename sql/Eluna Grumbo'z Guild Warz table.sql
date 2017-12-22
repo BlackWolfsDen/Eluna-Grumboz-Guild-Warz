@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `color_13` varchar(10) NOT NULL DEFAULT '|cffFFFFFF' COMMENT 'SET Values color WHITE',
   `color_14` varchar(10) NOT NULL DEFAULT '|cff00cc00' COMMENT 'Good Announcements color GREEN',
   `color_15` varchar(10) NOT NULL DEFAULT '|cffFF0000' COMMENT 'Bad Annoucements RED',
-  PRIMARY KEY (`guild`),guild_warz_335
+  PRIMARY KEY (`guild`),
   UNIQUE KEY `guild` (`guild`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='version 1.76';
 
