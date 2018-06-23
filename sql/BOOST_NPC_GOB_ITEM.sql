@@ -33,13 +33,21 @@ REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconN
 (500004, 33, 7900, 'Tiff\'s Guild Hall', 'Interact', '', '', 84, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', ''),
 (500005, 33, 7878, 'Grumbo\'z Guild Hall', 'Interact', '', '', 83, 6553632, 0.3, 5000, 35074, 0, 19669, 1, 25000, 1, 1, 0, 19672, 1, 1, 19675, 39, 19678, '', '');
 
-REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`) VALUES 
-(500006,34,7613, 'Alliance Guild Vault', '', '', '',84,0,1, '', ''),
-(500007,34,7613, 'Horde Guild Vault', '', '', '',83,0,1, '', '');
+REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, `AIName`, `ScriptName`) VALUES 
+(500006,34,7613, 'Alliance Guild Vault', '', '', '',1, '', ''),
+(500007,34,7613, 'Horde Guild Vault', '', '', '',1, '', '');
 
-REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `AIName`, `ScriptName`) VALUES 
-(500008,19,7605,'Alliance Guild Mailbox','','','',84,0,0.5,'',''),
-(500009,19,7605,'Horde Guild Mailbox','','','',83,0,0.5,'','');
+REPLACE INTO `gameobject_template_addon` (`entry`, `faction`, `flags`) VALUES 
+(500006, 84,0),
+(500007,83,0);
+
+REPLACE INTO `gameobject_template` (`entry`,	`type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, `AIName`, `ScriptName`) VALUES 
+(500008,19,7605,'Alliance Guild Mailbox','','','',0.5,'',''),
+(500009,19,7605,'Horde Guild Mailbox','','','',0.5,'','');
+
+REPLACE INTO `gameobject_template_addon` (`entry`, `faction`, `flags`) VALUES 
+(500008, 84,0),
+(500009,83,0);
 
 REPLACE INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclass`, `name`, `displayid`, `Quality`, `Flags`, `FlagsExtra`, `BuyCount`, `BuyPrice`, `SellPrice`, `InventoryType`, `AllowableClass`, `AllowableRace`, `maxcount`, `stackable`, `bonding`, `description`, `RequiredDisenchantSkill`, `ScriptName`) VALUES 
 (62006, 0, 8, -1, 'Guild Coin', 34104, 4, 0, 0, 1, 500000000, 500000000, 0, -1, -1, 2147483647, 2147483647, 0, 'Grumbo\'z Guild Warz', -1, '');
