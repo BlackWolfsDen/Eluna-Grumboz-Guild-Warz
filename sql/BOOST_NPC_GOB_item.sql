@@ -13,14 +13,14 @@ REPLACE INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `IconN
 (49008, 3527, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 0, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 1, 1, 0, '', 0),
 (49009, 1321, 'Gear Vendor 3', 'Guild War\'z', 'Buy', 80, 80, 0, 35, 129, 1, 1.14286, 1, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 1, 1, 0, '', 0);
 
-REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `dmgschool`, `DamageModifier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `spell1`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`) VALUES 
-(49010,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,84,16777216,1,1,1,1,304,7.5,2000,0,1,32772,2048,8,0,9,262176,49872,160,0,0, 'NullAI',0,1,8.64198,1,1,0,1,344276858, 2),
-(49011,32795,27101, 'Anti-personnel Cannon', '', 'vehichleCursor',0,80,80,83,16777216,1,1,1,1,304,7.5,2000,0,1,32772,2048,8,0,9,262176,49872,160,0,0, 'NullAI',0,1,8.64198,1,1,0,1,344276858, 2);
-/*
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `modelid1`, `name`, `subname`, `IconName`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `dmgschool`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `type`, `type_flags`, `spell1`, `VehicleId`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `DamageModifier`, `ExperienceModifier`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES 
+(49010, 32795, 27101, 'Anti-personnel Cannon', '', 'vehichleCursor', 80, 80, 84, 16777216, 1, 1, 1, 1, 127, 2000, 0, 1, 1, 1, 32772, 2048, 8, 9, 262176, 49872, 160, 'NullAI', 0, 1, 8.64198, 1, 1, 7.5, 1, 0, 1, 344276858, 2, '', 0),
+(49011, 32795, 27101, 'Anti-personnel Cannon', '', 'vehichleCursor', 80, 80, 83, 16777216, 1, 1, 1, 1, 127, 2000, 0, 1, 1, 1, 32772, 2048, 8, 9, 262176, 49872, 160, 'NullAI', 0, 1, 8.64198, 1, 1, 7.5, 1, 0, 1, 344276858, 2, '', 0);
+
 REPLACE INTO `npc_spellclick_spells` (`npc_entry`, `spell_id`, `cast_flags`, `user_type`) VALUES 
 (49010, 60682, 1, 0),
 (49011, 60682, 1, 0);
-*/
+
 REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, `data0`, `data1`, `data2`, `data3`, `data4`, `AIName`, `ScriptName`) VALUES 
 (187432, 10, 5651, 'Alliance Guild Flag', 'interact', '', '', 4, 0, 0, 0, 3000, 0, '', ''),
 (187433, 10, 5652, 'Horde Guild Flag', 'interact', '', '', 4, 0, 0, 0, 3000, 0, '', ''),
